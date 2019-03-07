@@ -1,0 +1,53 @@
+@import "../../../assets/css/class.scss";
+
+.proj-item {
+  width: calc(100% + 2rem);
+  max-height: 200px;
+  padding: 10px 1rem;
+  box-sizing: border-box;
+  margin: 10px -1rem 0;
+  border-bottom: 1px solid #eee;
+
+  .top-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .text {
+      flex: 1;
+      width: 100%;
+      height: 33px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      overflow: hidden;
+
+      p {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+      h6 {
+        @extend .toe;
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+
+  }
+  .content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+  }
+}

@@ -1,0 +1,26 @@
+.clearfix::after,
+.clearfix::before {
+  content: "";
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both
+}
+
+.cursor {
+  cursor: pointer
+}
+
+.toe {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.toe2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical
+}

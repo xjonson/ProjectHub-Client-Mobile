@@ -1,0 +1,73 @@
+// nav
+mat-toolbar {
+  background: #24292e;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+
+  mat-toolbar-row {
+    padding: 0;
+  }
+
+  .menu-btn {
+    height: 100%;
+    margin-right: 6px;
+  }
+
+  .search-btn {
+    margin-right: 15px;
+    margin-left: auto;
+  }
+
+  span {
+    // font-weight: normal;
+  }
+}
+
+// side
+mat-sidenav {
+  min-width: 250px;
+}
+
+// main
+.main {
+  height: 100vh;
+  min-height: 450px;
+  box-sizing: border-box;
+  padding: 65px 1rem 45px 1rem;
+}
+
+
+// footer
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    flex: 1;
+    min-height: 44px;
+    border-radius: 0;
+
+    &.active {
+      mat-icon {
+        color: #24292e;
+      }
+    }
+
+    mat-icon {
+      color: #aaa;
+    }
+  }
+}
