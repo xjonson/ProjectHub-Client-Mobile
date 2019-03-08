@@ -1,3 +1,74 @@
-<p>
-  register works!
-</p>
+<mat-card class="mt-2">
+
+  <mat-card-subtitle class="d-flex align-items-center flex-column mb-3">
+    <app-logo [size]="40" class="mb-3"></app-logo>
+    <small>在ProjectHub轻松实现需求与开发完美对接</small>
+  </mat-card-subtitle>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div class="form-item">
+        <label>*邮 箱</label>
+        <input type="email" formControlName="email" required>
+      </div>
+      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.getError('required') Else emailInvaildTpl">
+          请输入邮箱
+        </div>
+        <ng-template #emailInvaildTpl>请输入正确邮箱格式</ng-template>
+      </mat-error>
+      <div class="form-item">
+        <label>*密 码</label>
+        <input type="password" formControlName="password" required minlength="6">
+      </div>
+      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.getError('required')">
+          请输入密码
+        </div>
+        <div *ngIf="password.getError('minlength')">
+          密码不可小于6位
+        </div>
+        <div *ngIf="password.getError('maxlength')">
+          密码不可大于15位
+        </div>
+      </mat-error>
+      <div class="form-item">
+        <label>*确认密码</label>
+        <input type="password" formControlName="password2" required minlength="6">
+      </div>
+      <mat-error *ngIf="password2.invalid && (password2.dirty || password2.touched)">
+        <div *ngIf="password2.getError('required')">
+          请再次输入密码
+        </div>
+      </mat-error>
+      <form formGroupName="profile">
+        <div class="form-item">
+          <label>*昵 称</label>
+          <input type="text" formControlName="name" required maxlength="6">
+        </div>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.getError('required')">
+            请输入昵称
+          </div>
+        </mat-error>
+        <div class="form-item">
+          <label>*手机号</label>
+          <input type="phone" formControlName="phone" required maxlength="11">
+        </div>
+        <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+          <div *ngIf="phone.getError('required')">
+            请输入手机号
+          </div>
+        </mat-error>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="d-flex align-items-center justify-content-between">
+      <a mat-button color="primary" routerLink="/login">去登录</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+        注册
+      </button>
+    </mat-card-actions>
+  </form>
+
+  <p class="copyright">Copyright © 2019 ProjectHub </p>
+</mat-card>

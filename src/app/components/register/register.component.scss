@@ -1,0 +1,13 @@
+form {
+  .form-item {
+    label {
+      flex: 0 0 70px;
+    }
+  }
+}
+
+mat-error {    
+  display: block;
+  margin-left: 70px;
+  margin-bottom: 10px;
+}

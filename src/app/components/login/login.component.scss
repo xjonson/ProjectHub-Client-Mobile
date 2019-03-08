@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+
+form {
+  .form-item {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+
+    label {
+      flex: 0 0 40px;
+    }
+
+    input {
+      height: 28px;
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      outline: none;
+      flex: 1;
+      border: 1px solid #ddd;
+      background-color: #fff;
+
+      &:focus {
+        border-color: #1a73e8;
+      }
+    }
+
+  }
+
+}
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+}

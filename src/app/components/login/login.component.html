@@ -1,3 +1,28 @@
-<p>
-  login works!
-</p>
+<mat-card class="mt-2">
+
+  <mat-card-subtitle class="d-flex align-items-center flex-column mb-3">
+    <app-logo [size]="40" class="mb-3"></app-logo>
+    <small>在ProjectHub轻松实现需求与开发完美对接</small>
+  </mat-card-subtitle>
+
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <mat-card-content>
+      <div class="form-item">
+        <label for="name">邮箱</label>
+        <input type="email" name="name" [(ngModel)]="user.email" required>
+      </div>
+      <div class="form-item">
+        <label for="password">密码</label>
+        <input type="password" name="password" [(ngModel)]="user.password" required minlength="6">
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="d-flex align-items-center justify-content-between">
+      <a mat-button color="primary" routerLink="/register">注册账号</a>
+      <button mat-raised-button color="primary" type="submit">
+        登录
+      </button>
+    </mat-card-actions>
+  </form>
+
+  <p class="copyright">Copyright © 2019 ProjectHub </p>
+</mat-card>

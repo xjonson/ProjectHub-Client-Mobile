@@ -6,14 +6,40 @@ import { ProjectDetailComponent } from '../components/project-detail/project-det
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { LoginComponent } from '../components/login/login.component';
+import { AuthGuard } from '../service/auth.service';
 
 const routes: Routes = [
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'project/:id', component: ProjectDetailComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**', component: NotFoundComponent },
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  },
+  {
+    path: 'project/:id',
+    component: ProjectDetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
+    redirectTo: 'projects',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
 ];
 
 @NgModule({

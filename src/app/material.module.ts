@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, MatOptionModule, MatGridListModule, MatProgressBarModule, MatSliderModule, MatSlideToggleModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatInputModule, MatSidenavModule, MatCardModule, MatIconModule, MatRadioModule, MatProgressSpinnerModule, MatTabsModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, MatOptionModule, MatGridListModule, MatProgressBarModule, MatSliderModule, MatSlideToggleModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatInputModule, MatSidenavModule, MatCardModule, MatIconModule, MatRadioModule, MatProgressSpinnerModule, MatTabsModule, MatListModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -49,5 +49,15 @@ import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, M
     MatTabsModule,
     MatListModule
   ],
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 2500,
+        panelClass: 'white-bg',
+        verticalPosition: 'top'
+      }
+    }
+  ]
 })
 export class AppMaterialModule { }

@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/css/resset.css";
-@import "./assets/css/class.scss";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+//白天主题
+$my-app-primary:mat-palette($mat-grey, 800);
+$my-app-accent:mat-palette($mat-blue, 500);
+$my-app-warn:mat-palette($mat-deep-orange, 700);
+$my-app-theme:mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+//黑夜主题
+$my-dark-primary:mat-palette($mat-blue-grey);
+$my-dark-accent:mat-palette($mat-amber, A200, A100, A400);
+$my-dark-warn:mat-palette($mat-deep-orange);
+$my-dark-theme:mat-dark-theme($my-dark-primary, $my-dark-accent, $my-dark-warn);
+.myapp-dark-theme {
+  @include angular-material-theme($my-dark-theme);
+}

@@ -13,7 +13,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './common/side-bar/side-bar.component';
-
+import { FormsModule } from '@angular/forms';
+import { LogoComponent } from './common/logo/logo.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,16 @@ import { SideBarComponent } from './common/side-bar/side-bar.component';
     ProjectDetailComponent,
     NotFoundComponent,
     SideBarComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
