@@ -21,6 +21,9 @@
   background-color: #fff;
   color: #000;
 }
+.text-center {
+  text-align: center;
+}
 $spacer: 1rem !default;
 $spacers: () !default;
 $spacers: map-merge((

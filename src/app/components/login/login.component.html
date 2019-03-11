@@ -1,8 +1,11 @@
 <mat-card class="mt-2">
 
-  <mat-card-subtitle class="d-flex align-items-center flex-column mb-3">
-    <app-logo [size]="40" class="mb-3"></app-logo>
-    <small>在ProjectHub轻松实现需求与开发完美对接</small>
+  <mat-card-title class="d-flex align-items-center flex-column mb-3">
+    <!-- <app-logo [size]="40" class="mb-3"></app-logo> -->
+    <h2>登录</h2>
+  </mat-card-title>
+  <mat-card-subtitle class="text-center mb-3">
+    <p>在ProjectHub轻松实现需求与开发完美对接</p>
   </mat-card-subtitle>
 
   <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">

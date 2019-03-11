@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.user).then(res => {
-      let snackBarRef = this.snackBar.open('登录成功！');
+    this.authService.login(this.user).then((user: User) => {
+      this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
       this.router.navigate(['projects'])
     }).catch(err => {
-      let snackBarRef = this.snackBar.open(err);
+      this.snackBar.open(err);
       console.log(err);
     })
   }

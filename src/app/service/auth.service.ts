@@ -19,15 +19,22 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.http.get('/api/users').subscribe(
         (users: User[]) => {
+          let match = false
+          let loginUser: User
           users.forEach((user: User) => {
-            if (loginForm.email === user.email && loginForm.password === user.password) {
-              // 登录成功
-              this.loginState = true
-              resolve()
-            } else {
-              reject('账户密码错误')
+            if ((loginForm.email === user.email) && (loginForm.password === user.password)) {
+              // 匹配
+              match = true
+              loginUser = user
             }
           });
+          // 登录成功
+          if (match) {
+            this.loginState = true
+            resolve(loginUser)
+          } else {
+            reject('账户密码错误')
+          }
         }),
         error => {
           reject(error)

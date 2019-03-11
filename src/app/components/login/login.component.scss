@@ -19,7 +19,10 @@ form {
       flex: 1;
       border: 1px solid #ddd;
       background-color: #fff;
-
+      &::placeholder {
+        color: #ddd;
+        font-size: 14px;
+      }
       &:focus {
         border-color: #1a73e8;
       }

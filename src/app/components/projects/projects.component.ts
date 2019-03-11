@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/service/project.service';
+import { Project } from 'src/app/models/Project';
 
 @Component({
   selector: 'app-projects',
@@ -6,21 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  projects = [
-    {
-      avatar: 'http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg',
-      title: '小程序开发',
-      desc: '开发者接受需求开发者接开发者接受需求开发者接受需求开发者接受需求受需求开发者接受需求开发者接开发者接受需求开发者接受需求开发者接受需求受需求开发者接受需求开发者接开发者接受需求开发者接受需求开发者接受需求受需求开发者接受需求开发者接开发者接受需求开发者接受需求开发者接受需求受需求',
-      create_time: '2019-03-07 17:03:22',
-      deadline: '2019-04-07 08:00:00',
-      price: 800,
-      status: 0,
-    }
-  ]
+  projects: Project[]
 
-  constructor() { }
+  constructor(
+    private projectService: ProjectService
+  ) { }
 
   ngOnInit() {
+    this.projectService.getProjects().subscribe(
+      (val: Project[]) => {
+        console.log(val);
+        
+        this.projects = val
+      }
+    )
   }
+
+  
 
 }
