@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.user).then((user: User) => {
       this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
-      this.router.navigate(['projects'])
+      // 跳转到保存到路由，如果没有就跳转到projects
+      const redirectUrl = this.authService.redirectUrl || 'projects'
+      this.router.navigate([redirectUrl])
     }).catch(err => {
       this.snackBar.open(err);
       console.log(err);

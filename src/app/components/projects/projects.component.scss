@@ -2,11 +2,12 @@
 
 .proj-item {
   width: calc(100% + 2rem);
-  max-height: 200px;
+  max-height: 300px;
   padding: 10px 1rem;
   box-sizing: border-box;
-  margin: 10px -1rem 0;
+  margin: 0px -1rem 15px;
   border-bottom: 1px solid #eee;
+  background-color: #fff;
 
   .top-info {
     display: flex;
@@ -19,6 +20,7 @@
       height: 40px;
       border-radius: 50%;
       margin-right: 8px;
+      border-bottom: 1px solid #eee;
     }
 
     .text {

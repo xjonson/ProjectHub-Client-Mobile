@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loginState = false
+  private loginState = false;
+  public redirectUrl: string;
 
   constructor(
     private http: HttpClient
@@ -58,10 +60,16 @@ export class AuthService {
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private location: Location
+  ) {}
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    // 保存进入前的路由
+    const redirectUrl: string = state.url;
+    console.log('进入前的路由: ' + redirectUrl)
+    this.authService.redirectUrl = redirectUrl
+    
     if (this.authService.getAuthState()) {
       return true
     } else {
