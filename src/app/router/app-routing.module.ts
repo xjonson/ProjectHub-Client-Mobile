@@ -7,38 +7,68 @@ import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { LoginComponent } from '../components/login/login.component';
 import { AuthGuard } from '../service/auth.service';
+import { HomePageComponent } from '../common/home-page/home-page.component';
+import { SubPageComponent } from '../common/sub-page/sub-page.component';
+import { ProjectEditComponent } from '../components/project-edit/project-edit.component';
 
 const routes: Routes = [
   {
-    path: 'projects',
-    component: ProjectsComponent
+    path: 'home',
+    component: HomePageComponent,
+    children: [
+      {
+        path: 'projects',
+        component: ProjectsComponent
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+        canActivate: [AuthGuard]
+      },
+    ]
   },
   {
-    path: 'project/:id',
-    component: ProjectDetailComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'user',
-    component: UserComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
+    path: 'sub',
+    component: SubPageComponent,
+    children: [
+      {
+        path: 'project/:id',
+        component: ProjectDetailComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'project-edit/:id',
+        component: ProjectEditComponent,
+        canActivate: [AuthGuard]
+        // HostGuard
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          title: '注册'
+        }
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          title: '登录'
+        }
+      },
+    ]
   },
   {
     path: '',
-    redirectTo: 'projects',
+    redirectTo: 'home/projects',
     pathMatch: 'full'
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: {
+      title: '404 Not Found'
+    }
   },
 ];
 

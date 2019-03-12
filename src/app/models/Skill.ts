@@ -1,10 +1,10 @@
 export enum Skill {
-  html,
-  css,
-  js,
-  ts,
-  vue,
-  angular,
-  react,
-  bootstrap
+  Html,
+  Css,
+  JavaScript,
+  TypeScript,
+  Vue,
+  Angular,
+  React,
+  Bootstrap
 }

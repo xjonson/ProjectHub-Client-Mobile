@@ -1,5 +1,5 @@
 <section class="projs">
-  <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/project', item.id ]">
+  <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/sub/project', item.id ]" [queryParams]="{title: item.title}">
     <div class="top-info">
       <img *ngIf="item.avatar; else defaultAvatar" [src]="item.avatar">
       <ng-template #defaultAvatar>
@@ -10,7 +10,13 @@
         <p>{{item.create_time}}</p>
       </div>
     </div>
-    <div class="content">{{item.desc}}</div>
+    <div class="content">
+      <span>{{item.desc}}</span>
+      <a>阅读全文</a>
+    </div>
+    <mat-chip-list>
+      <mat-chip color="{{ item.status | projectColor }}" selected>{{ item.status | projectStatus }}</mat-chip>
+    </mat-chip-list>
   </div>
 </section>
 

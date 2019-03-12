@@ -6,12 +6,18 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserService {
+  userInfo: User;
 
   constructor(private http: HttpClient) { }
 
 
   // 用户注册
   register(user: Partial<User>) {
-    return this.http.post('/api/users', user)
+    return this.http.post('/api/user', user)
+  }
+
+  // 用户信息
+  getUserInfo() {
+    return this.userInfo
   }
 }

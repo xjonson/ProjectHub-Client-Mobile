@@ -1,0 +1,43 @@
+// nav
+mat-toolbar {
+  background: #24292e;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+
+  mat-toolbar-row {
+    padding: 0;
+  }
+
+  span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 200px;
+
+  }
+
+  .left-icon {
+    height: 100%;
+    margin-right: 6px;
+  }
+
+  .right-btn {
+    margin-right: 15px;
+    margin-left: auto;
+  }
+
+}
+
+// main
+.main {
+  height: 100vh;
+  min-height: 450px;
+  box-sizing: border-box;
+  overflow: scroll;
+  padding: 70px 1rem 65px 1rem;
+}

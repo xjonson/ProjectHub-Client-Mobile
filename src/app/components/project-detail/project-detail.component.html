@@ -1,3 +1,46 @@
-<p>
-  project-detail works!
-</p>
+<div *ngIf="project">
+  <!-- nav -->
+  <!-- <app-subpage-nav [pageTitle]="project.title" [backUrl]="'projects'"></app-subpage-nav> -->
+
+  <!-- main -->
+  <mat-card class="proj-item">
+    <div class="top-info">
+      <img *ngIf="project.avatar; else defaultAvatar" [src]="project.avatar">
+      <ng-template #defaultAvatar>
+        <img src="../../../assets/image/shield-large.svg">
+      </ng-template>
+      <div class="text">
+        <h6>{{project.title}}</h6>
+        <p>{{project.create_time}}</p>
+      </div>
+    </div>
+    <h2>项目详情</h2>
+    <div class="content">{{project.desc}}</div>
+    <h2>技能需求</h2>
+    <mat-chip-list>
+      <mat-chip *ngFor="let item of project.skills | array" color="accent">{{ item | skill }}</mat-chip>
+    </mat-chip-list>
+    <h2>项目流程</h2>
+    <mat-chip-list>
+      <div class="status-row">
+        <div class="status-item" *ngFor="let item of [0,1,2,3]">
+          <mat-chip color="accent" :selected="{{item === project.status}}">{{ item | projectStatus }}</mat-chip>
+            <p>{{item | projectStatusText}}</p>
+        </div>
+      </div>
+    </mat-chip-list>
+  </mat-card>
+  <!-- 评论 -->
+  <mat-card class="proj-item"></mat-card>
+
+  <!-- bottom -->
+  <div class="footer-commit">
+    <img *ngIf="userInfo.profile.avatar; else defaultAvatar" [src]="userInfo.profile.avatar">
+    <ng-template #defaultAvatar>
+      <img src="../../../assets/image/shield-large.svg">
+    </ng-template>
+    <div class="add-commit-wrap">
+      添加评论...
+    </div>
+  </div>
+</div>

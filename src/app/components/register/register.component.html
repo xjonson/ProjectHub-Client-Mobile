@@ -82,9 +82,9 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="d-flex align-items-center justify-content-between">
-      <a mat-button color="primary" routerLink="/login">去登录</a>
-      <button mat-raised-button color="primary" type="submit" >
-      <!-- <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid"> -->
+      <a mat-button color="primary" [routerLink]="['/sub/login']" [queryParams]="{title: '登录'}">去登录</a>
+      <!-- <button mat-raised-button color="primary" type="submit"> -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
         注册
       </button>
     </mat-card-actions>

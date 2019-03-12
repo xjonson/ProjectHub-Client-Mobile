@@ -1,0 +1,33 @@
+<!-- top nav -->
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button class="menu-btn" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Project Hub</span>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-icon-button class="search-btn">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <!-- aside -->
+  <mat-sidenav #sidenav>
+    
+  </mat-sidenav>
+  <!-- main -->
+  <section class="main">
+    <router-outlet></router-outlet>
+  </section>
+  <!-- footer -->
+  <div class="footer-nav">
+    <button mat-button routerLink="projects" routerLinkActive="active">
+      <mat-icon>view_headline</mat-icon>
+    </button>
+    <button mat-button routerLink="user" routerLinkActive="active">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-sidenav-container>

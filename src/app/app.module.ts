@@ -17,6 +17,12 @@ import { FormsModule } from '@angular/forms';
 import { LogoComponent } from './common/logo/logo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProjectStatusPipe, ProjectStatusPipeText, ProjectColorPipe } from './pipes/project.pipe';
+import { ArrayPipe } from './pipes/common.pipe';
+import { SkillPipe } from './pipes/skill.pipe';
+import { HomePageComponent } from './common/home-page/home-page.component';
+import { SubPageComponent } from './common/sub-page/sub-page.component';
+import { ProjectEditComponent } from './components/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     SideBarComponent,
     LogoComponent,
+    ProjectStatusPipe,
+    ProjectStatusPipeText,
+    ProjectColorPipe,
+    ArrayPipe,
+    SkillPipe,
+    HomePageComponent,
+    SubPageComponent,
+    ProjectEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,17 @@
+<!-- top nav -->
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button class="left-icon" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>{{subTitle}}</span>
+
+    <button mat-icon-button class="right-btn">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<section class="main">
+  <router-outlet></router-outlet>
+</section>

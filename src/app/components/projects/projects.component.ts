@@ -5,7 +5,7 @@ import { Project } from 'src/app/models/Project';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  styleUrls: ['../project-detail/project-detail.component.scss', './projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[]
@@ -18,12 +18,14 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getProjects().subscribe(
       (val: Project[]) => {
         console.log(val);
-        
+        val.map(item => {
+          item.desc = item.desc.substr(0, 100) + '...'
+        })
         this.projects = val
       }
     )
   }
 
-  
+
 
 }

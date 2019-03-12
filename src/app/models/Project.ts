@@ -25,6 +25,23 @@ export interface Project {
 export enum Status {
   '新发布项目' = 0,
   '项目开发中' = 1,
-  '项目验收中' = 3,
-  '项目已结款' = 4
+  '项目验收中' = 2,
+  '项目已结款' = 3
+}
+
+export enum StatusText {
+  '项目已发布，还没有开发人员接单' = 0,
+  '已有开发人员对接，项目开发中' = 1,
+  '开发人员开发已完成，项目验收中' = 2,
+  '项目已完成' = 3
+}
+
+/**
+ * @description 项目状态的颜色
+ */
+export enum Color {
+  'warn' = 0,
+  'accent' = 1,
+  'primary' = 2,
+  'theme' = 3
 }

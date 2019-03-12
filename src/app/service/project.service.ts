@@ -16,6 +16,11 @@ export class ProjectService {
   
   // 获取全部project
   getProjects(): Observable<any> {
-    return this.http.get('api/projects')
+    return this.http.get('api/project')
+  }
+
+  // 获取单个project详情
+  getProject(id: number): Observable<any> {
+    return this.http.get(`api/project/${id}`)
   }
 }

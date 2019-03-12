@@ -1,0 +1,131 @@
+.proj-item {
+  width: calc(100% + 2rem);
+  padding: 10px 1rem;
+  box-sizing: border-box;
+  margin: 0px -1rem 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+
+  h2 {
+    font-weight: bold;
+    margin: 15px 0 6px;
+  }
+
+  .top-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .text {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      overflow: hidden;
+
+      h6 {
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+    }
+
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  mat-chip-list {
+    display: block;
+    margin: 6px 0 3px;
+
+    mat-chip {
+      font-size: 12px;
+      padding: 4px 10px;
+      min-height: 24px;
+    }
+  }
+
+  .status-row {
+    margin: 6px 0 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      height: 100%;
+      border-right: 1px solid #aaa;
+    }
+
+    .status-item {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 20px;
+
+      p {
+        font-size: 14px;
+        margin-left: 26px;
+        margin-top: 5px;
+      }
+    }
+
+  }
+}
+
+// commit
+.footer-commit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  img {
+    width: 36px;
+    height: 36px;
+    margin: 5px 0px;
+    margin-right: 15px;
+    border-radius: 50%;
+  }
+
+  .add-commit-wrap {
+    flex: 1;
+    font-size: 14px;
+    color: #aaa;
+  }
+}

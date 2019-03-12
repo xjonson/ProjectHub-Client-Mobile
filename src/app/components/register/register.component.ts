@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
       console.log('res: ', res);
       if (res) {
         alert('注册成功！')
-        this.router.navigate(['login'])
+        this.router.navigate(['sub/login'])
         // const snackBarRef = this.snackBar.open('注册成功！', '去登录');
         // snackBarRef.onAction().subscribe(() => {
         //   console.log('The snack-bar action was triggered!');
