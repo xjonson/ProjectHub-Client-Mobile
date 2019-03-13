@@ -6,7 +6,8 @@
 
 .toe {
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   white-space: nowrap;
 }
 

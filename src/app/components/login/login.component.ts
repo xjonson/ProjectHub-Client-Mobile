@@ -31,20 +31,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.user).then((user: User) => {
       this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
-      // 跳转到授权前的路由
-      const { redirectUrl, queryParams } = this.authService
-      // 中文 解码
-      if (queryParams) {
-        for (let key of Object.keys(queryParams)) {
-          queryParams[key] = decodeURI(queryParams[key])
-        }
-      }
-      // 重定向
-      this.router.navigate([redirectUrl], {
+      // 重定向到授权前的路由
+      this.router.navigate([this.authService.redirectUrl], {
         replaceUrl: true,
-        queryParams
       })
-
     }).catch(err => {
       this.snackBar.open(err);
       console.log(err);

@@ -12,7 +12,6 @@ import { UserService } from './user.service';
 export class AuthService {
   private loginState = false;
   public redirectUrl: string = 'home/projects';
-  public queryParams: object;
 
   constructor(
     private http: HttpClient,
@@ -70,18 +69,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // 分割出params，不然会报错
-    const [redirectUrl, params]: string[] = state.url.split('?')
+    const redirectUrl: string = state.url.split('?')[0]
     // 保存进入前的路由
     this.authService.redirectUrl = redirectUrl
     console.log('进入前的路由: ', redirectUrl);
-    // 保存路由参数
-    if (params) {
-      const [queryParamsKey, queryParamsValue] = params.split('=')
-      this.authService.queryParams = {
-        [queryParamsKey]: decodeURI(queryParamsValue)
-        // 使用decodeURI解码
-      }
-    }
 
     if (this.authService.getAuthState()) {
       return true

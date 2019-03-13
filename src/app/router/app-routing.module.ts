@@ -10,6 +10,7 @@ import { AuthGuard } from '../service/auth.service';
 import { HomePageComponent } from '../common/home-page/home-page.component';
 import { SubPageComponent } from '../common/sub-page/sub-page.component';
 import { ProjectEditComponent } from '../components/project-edit/project-edit.component';
+import { MsgComponent } from '../components/msg/msg.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'projects',
         component: ProjectsComponent
+      },
+      {
+        path: 'msgs',
+        component: MsgComponent
       },
       {
         path: 'user',
@@ -39,8 +44,11 @@ const routes: Routes = [
       {
         path: 'project-edit/:id',
         component: ProjectEditComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
         // HostGuard
+        data: {
+          title: '编辑项目需求'
+        },
       },
       {
         path: 'register',

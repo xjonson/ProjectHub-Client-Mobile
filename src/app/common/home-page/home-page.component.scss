@@ -14,12 +14,12 @@ mat-toolbar {
     padding: 0;
   }
 
-  .menu-btn {
+  .left-btn {
     height: 100%;
     margin-right: 6px;
   }
 
-  .search-btn {
+  .right-btn {
     margin-right: 15px;
     margin-left: auto;
   }
@@ -38,6 +38,7 @@ mat-sidenav {
   box-sizing: border-box;
   overflow: scroll;
   padding: 70px 1rem 65px 1rem;
+  background-color: #fafafa;
 }
 
 // footer

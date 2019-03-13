@@ -1,3 +1,43 @@
-<p>
-  user works!
-</p>
+<mat-card>
+
+  <mat-card-title class="d-flex align-items-center flex-column mb-3">
+    <img [src]="userInfo.profile.avatar" class="avatar">
+    <h2>
+      {{userInfo.profile.name}}
+    </h2>
+    <p class="text-center">{{userInfo.profile.desc}}</p>
+  </mat-card-title>
+  <mat-list>
+    <mat-divider></mat-divider>
+    <h3 matSubheader>信息</h3>
+    <mat-list-item>
+      <mat-icon matListIcon>account_circle</mat-icon>
+      <h3 mat-line>{{userInfo.role | userRole}}</h3>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>email</mat-icon>
+      <h3 mat-line>{{userInfo.email}}</h3>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>phone</mat-icon>
+      <h3 mat-line>{{userInfo.profile.phone}}</h3>
+    </mat-list-item>
+    <!-- <mat-divider></mat-divider> -->
+    <h3 matSubheader>功能</h3>
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon matListIcon>edit</mat-icon>
+        <h3 mat-line>修改信息</h3>
+      </a>
+      <a mat-list-item>
+        <mat-icon matListIcon>security</mat-icon>
+        <h3 mat-line>修改密码</h3>
+      </a>
+      <a mat-list-item>
+        <mat-icon matListIcon>settings</mat-icon>
+        <h3 mat-line>设置</h3>
+      </a>
+    </mat-nav-list>
+  </mat-list>
+
+</mat-card>

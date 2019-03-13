@@ -4,17 +4,28 @@ export interface User {
   id: number,
   email: string,
   password: string,
+  avatar?: string,
   role: Role,
   profile: profile,
   skill: Skill[],
-  msg?:[]
+  msgs?: Msg[]
+}
+
+/**
+ * @description 信息
+ */
+export interface Msg {
+  id: number,
+  from_user: Partial<User>,
+  content: string,
+  create_time: string,
 }
 
 // 用户身份
 export enum Role {
   admin = 1,
   demander = 2,
-  dev = 3
+  developer = 3
 }
 
 // 用户个人信息

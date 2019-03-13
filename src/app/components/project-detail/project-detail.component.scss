@@ -1,3 +1,4 @@
+// 项目
 .proj-item {
   width: calc(100% + 2rem);
   padding: 10px 1rem;
@@ -8,7 +9,7 @@
 
   h2 {
     font-weight: bold;
-    margin: 15px 0 6px;
+    margin: 15px 0 8px;
   }
 
   .top-info {
@@ -39,6 +40,7 @@
         font-size: 16px;
         font-weight: bold;
         margin-bottom: 10px;
+        min-height: 20px;
       }
 
       p {
@@ -50,7 +52,7 @@
 
   }
 
-  .content {
+  .desc {
     font-size: 14px;
     line-height: 1.5;
     color: #555;
@@ -100,8 +102,49 @@
   }
 }
 
-// commit
-.footer-commit {
+// 单个评论
+.comment-item {
+  @extend .proj-item;
+  border-top: 1px solid #eee;
+  padding: 10px;
+
+  .top-info {
+    align-items: flex-start;
+    margin: 0;
+
+    .text {
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+
+        span {
+          font-size: 12px;
+          color: #aaa;
+        }
+      }
+
+      h6 {
+        margin: 0;
+      }
+
+      p {
+        font-size: 13px;
+        margin-bottom: 5px;
+
+        &.content {
+          color: #666;
+          line-height: 1.2;
+        }
+      }
+    }
+  }
+
+}
+
+// footer
+.footer-comments {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -123,7 +166,7 @@
     border-radius: 50%;
   }
 
-  .add-commit-wrap {
+  .add-comments-wrap {
     flex: 1;
     font-size: 14px;
     color: #aaa;

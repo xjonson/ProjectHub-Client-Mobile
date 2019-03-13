@@ -1,0 +1,20 @@
+mat-card-title {
+
+  img.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+  }
+  h2 {
+    margin: 15px 0;
+  }
+  p {
+    color: #ccc;
+    font-size: 13px;
+  }
+}
+
+mat-list {
+  margin: 0 -16px;
+}

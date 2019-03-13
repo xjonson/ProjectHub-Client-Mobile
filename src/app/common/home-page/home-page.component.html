@@ -1,12 +1,11 @@
 <!-- top nav -->
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-button class="menu-btn" (click)="sidenav.toggle()">
+    <button mat-button class="left-btn" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Project Hub</span>
-    <span class="example-fill-remaining-space"></span>
-    <button mat-icon-button class="search-btn">
+    <button mat-icon-button class="right-btn">
       <mat-icon>search</mat-icon>
     </button>
   </mat-toolbar-row>
@@ -26,8 +25,11 @@
     <button mat-button routerLink="projects" routerLinkActive="active">
       <mat-icon>view_headline</mat-icon>
     </button>
+    <button mat-button routerLink="msgs" routerLinkActive="active">
+      <mat-icon>message</mat-icon>
+    </button>
     <button mat-button routerLink="user" routerLinkActive="active">
-      <mat-icon>account_circle</mat-icon>
+      <mat-icon>account_box</mat-icon>
     </button>
   </div>
 </mat-sidenav-container>

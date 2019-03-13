@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { User } from 'src/app/models/User';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { passwordEqulaValidator } from 'src/app/validators/validators';
 import { UserService } from 'src/app/service/user.service';
 

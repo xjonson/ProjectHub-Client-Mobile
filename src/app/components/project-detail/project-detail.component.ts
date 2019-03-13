@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
 import { ProjectService } from 'src/app/service/project.service';
 import { map } from "rxjs/operators";
@@ -18,6 +18,7 @@ export class ProjectDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private projectService: ProjectService,
     private userService: UserService
   ) { }
@@ -29,13 +30,18 @@ export class ProjectDetailComponent implements OnInit {
     this.userInfo = this.userService.getUserInfo()
 
   }
-
+  navigateTo2() {
+    this.router.navigate(['/sub/project', 2])
+  }
   // 获取项目详情
   handleGetProj(): void {
-    const id = +this.route.snapshot.paramMap.get('id')
-    this.projectService.getProject(id).subscribe(proj => {
-      this.project = proj
-      console.log('this.project: ', this.project);
+    this.route.params.subscribe(params => {
+      const id = params['id']
+      this.projectService.getProject(id).subscribe(proj => {
+        this.project = proj
+        this.projectService.setTitle(proj.title)
+        console.log('this.project: ', this.project);
+      })
     })
   }
 

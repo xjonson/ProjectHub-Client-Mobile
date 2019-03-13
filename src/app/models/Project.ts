@@ -1,5 +1,7 @@
 import { Skill } from './Skill';
+import { User } from './User';
 
+// 项目
 export interface Project {
   id: number,
   demand_user_id: number,
@@ -9,11 +11,21 @@ export interface Project {
   desc: string,
   skills: Skill[],
   create_time: string,
-  deadline: string,
+  cycle: number,
   price: number,
   status: Status,
+  comments: Comment[]
 }
 
+/**
+ * @description 项目评论
+ */
+export interface Comment {
+  id: number,
+  user: Partial<User>,
+  create_time: string,
+  content: string
+}
 
 /**
  * @description 项目状态
@@ -28,7 +40,6 @@ export enum Status {
   '项目验收中' = 2,
   '项目已结款' = 3
 }
-
 export enum StatusText {
   '项目已发布，还没有开发人员接单' = 0,
   '已有开发人员对接，项目开发中' = 1,

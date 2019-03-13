@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/service/project.service';
 import { Project } from 'src/app/models/Project';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-projects',
@@ -9,15 +11,25 @@ import { Project } from 'src/app/models/Project';
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[]
+  userInfo: User
+
 
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
+    // 获取用户信息
+    this.userInfo = this.userService.getUserInfo()
+    // 
+    this.handleGetProjects()
+  }
+
+  handleGetProjects() {
     this.projectService.getProjects().subscribe(
       (val: Project[]) => {
-        console.log(val);
+        // console.log(val);
         val.map(item => {
           item.desc = item.desc.substr(0, 100) + '...'
         })
@@ -25,7 +37,5 @@ export class ProjectsComponent implements OnInit {
       }
     )
   }
-
-
 
 }

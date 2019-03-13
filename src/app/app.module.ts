@@ -12,7 +12,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SideBarComponent } from './common/side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
 import { LogoComponent } from './common/logo/logo.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +21,9 @@ import { ArrayPipe } from './pipes/common.pipe';
 import { SkillPipe } from './pipes/skill.pipe';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { SubPageComponent } from './common/sub-page/sub-page.component';
-import { ProjectEditComponent } from './components/project-edit/project-edit.component';
+import { ProjectEditComponent, addProjectSuccessDialog } from './components/project-edit/project-edit.component';
+import { UserRolePipe } from './pipes/user.pipe';
+import { MsgComponent } from './components/msg/msg.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
     LoginComponent,
     ProjectDetailComponent,
     NotFoundComponent,
-    SideBarComponent,
     LogoComponent,
     ProjectStatusPipe,
     ProjectStatusPipeText,
@@ -43,6 +43,12 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
     HomePageComponent,
     SubPageComponent,
     ProjectEditComponent,
+    UserRolePipe,
+    MsgComponent,
+    addProjectSuccessDialog
+  ],
+  entryComponents: [
+    addProjectSuccessDialog
   ],
   imports: [
     BrowserModule,

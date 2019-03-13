@@ -1,5 +1,5 @@
 <section class="projs">
-  <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/sub/project', item.id ]" [queryParams]="{title: item.title}">
+  <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/sub/project', item.id ]">
     <div class="top-info">
       <img *ngIf="item.avatar; else defaultAvatar" [src]="item.avatar">
       <ng-template #defaultAvatar>
@@ -7,10 +7,10 @@
       </ng-template>
       <div class="text">
         <h6>{{item.title}}</h6>
-        <p>{{item.create_time}}</p>
+        <p>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
       </div>
     </div>
-    <div class="content">
+    <div class="desc">
       <span>{{item.desc}}</span>
       <a>阅读全文</a>
     </div>
@@ -21,8 +21,9 @@
 </section>
 
 
+<!-- <div class="fix-add-btn" *ngIf="userInfo && userInfo.role !== 3"> -->
 <div class="fix-add-btn">
-  <button mat-fab>
+  <button mat-fab routerLink="/sub/project-edit/0">
     <mat-icon>add</mat-icon>
   </button>
 </div>

@@ -1,14 +1,19 @@
 <!-- top nav -->
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-button class="left-icon" (click)="back()">
+    <button mat-button class="left-btn" (click)="back()">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <span>{{subTitle}}</span>
 
-    <button mat-icon-button class="right-btn">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+    <button mat-icon-button class="right-btn" [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{btns: menuBtns}">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <ng-template matMenuContent let-btns="btns">
+        <button mat-menu-item *ngFor="let btn of btns">{{btn}}</button>
+      </ng-template>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
 

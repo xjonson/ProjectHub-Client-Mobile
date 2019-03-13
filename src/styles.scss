@@ -15,6 +15,7 @@ $my-dark-primary:mat-palette($mat-blue-grey);
 $my-dark-accent:mat-palette($mat-amber, A200, A100, A400);
 $my-dark-warn:mat-palette($mat-deep-orange);
 $my-dark-theme:mat-dark-theme($my-dark-primary, $my-dark-accent, $my-dark-warn);
+
 .myapp-dark-theme {
   @include angular-material-theme($my-dark-theme);
 }
