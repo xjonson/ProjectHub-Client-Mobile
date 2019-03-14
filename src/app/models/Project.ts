@@ -3,9 +3,9 @@ import { User } from './User';
 
 // 项目
 export interface Project {
-  id: number,
-  demand_user_id: number,
-  dev_user_id: number,
+  id: string,
+  demand_user: User,
+  dev_user: User,
   avatar?: string,
   title: string,
   desc: string,
@@ -21,7 +21,7 @@ export interface Project {
  * @description 项目评论
  */
 export interface Comment {
-  id: number,
+  id: string, 
   user: Partial<User>,
   create_time: string,
   content: string

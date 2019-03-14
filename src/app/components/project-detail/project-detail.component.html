@@ -2,15 +2,16 @@
   <!-- main -->
   <div class="proj-item">
     <div class="top-info">
-      <img *ngIf="project.avatar; else defaultAvatar" [src]="project.avatar">
+      <img *ngIf="project.demand_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
       <ng-template #defaultAvatar>
         <img src="../../../assets/image/shield-large.svg">
       </ng-template>
       <div class="text">
-        <h6>{{project.title}}</h6>
+        <h6>{{project.demand_user.profile.name}}</h6>
         <p>{{project.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
       </div>
     </div>
+    <h2>{{project.title}}</h2>
     <h2>项目详情</h2>
     <div class="desc">{{project.desc}}</div>
     <h2>技能需求</h2>
@@ -18,7 +19,9 @@
       <mat-chip *ngFor="let item of project.skills | array" color="accent">{{ item | skill }}</mat-chip>
     </mat-chip-list>
     <h2>项目佣金</h2>
-    <div class="desc">￥{{project.price}}</div>
+    <div class="desc">
+      <p class="price">￥{{project.price}}</p>
+    </div>
     <h2>项目流程</h2>
     <mat-chip-list>
       <div class="status-row">
@@ -28,19 +31,20 @@
         </div>
       </div>
     </mat-chip-list>
+    <button *ngIf="project.status === 0 && userInfo.role === 3" mat-raised-button color="accent" block>我要接单</button>
   </div>
   <!-- 评论 -->
   <div *ngIf="!!project.comments">
-    <div class="comment-item" *ngFor="let item of project.comments; let i=index">
+    <div class="comment-item" *ngFor="let item of project.comments; let i=index" id="{{item.id}}">
       <div class="top-info">
-        <img *ngIf="item.user.avatar; else defaultAvatar" [src]="item.user.avatar">
+        <img *ngIf="item.user.profile.avatar; else defaultAvatar" [src]="item.user.profile.avatar">
         <ng-template #defaultAvatar>
           <img src="../../../assets/image/shield-large.svg">
         </ng-template>
         <div class="text">
           <div>
             <h6>{{item.user.profile.name}}</h6>
-            <span>#{{i}}</span>
+            <span>#{{ i + 1 }}</span>
           </div>
           <p>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
           <p class="content">{{item.content}}</p>
@@ -50,13 +54,19 @@
   </div>
 
   <!-- bottom -->
-  <div class="footer-comments">
-    <img *ngIf="userInfo.profile.avatar; else defaultAvatar" [src]="userInfo.profile.avatar">
-    <ng-template #defaultAvatar>
-      <img src="../../../assets/image/shield-large.svg">
-    </ng-template>
-    <div class="add-comments-wrap">
-      添加评论...
+  <footer>
+    <!-- 只有 项目的需求者 和 开发者 才可以评论，其余需求者不可评论-->
+    <div class="comments" *ngIf="userInfo.id === project.demand_user.id || userInfo.role != 2">
+      <img *ngIf="userInfo.profile.avatar; else defaultAvatar" [src]="userInfo.profile.avatar">
+      <ng-template #defaultAvatar>
+        <img src="../../../assets/image/shield-large.svg">
+      </ng-template>
+      <div class="add-comments-wrap">
+        <input type="text" placeholder="添加评论..." [(ngModel)]="commentContent" maxlength="50" required>
+      </div>
+      <button mat-button [disabled]="!commentContent" (click)="addComment()">
+        <mat-icon>send</mat-icon>
+      </button>
     </div>
-  </div>
+  </footer>
 </div>

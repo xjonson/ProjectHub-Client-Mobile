@@ -1,0 +1,9 @@
+mat-list {
+  margin: 0 -1rem;
+  a.mat-list-item {
+    background-color: #fff;
+    &.checked{
+      background-color: #eee;
+    }
+  }
+}

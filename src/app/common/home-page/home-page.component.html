@@ -14,7 +14,7 @@
 <mat-sidenav-container>
   <!-- aside -->
   <mat-sidenav #sidenav>
-    
+
   </mat-sidenav>
   <!-- main -->
   <section class="main">
@@ -26,7 +26,7 @@
       <mat-icon>view_headline</mat-icon>
     </button>
     <button mat-button routerLink="msgs" routerLinkActive="active">
-      <mat-icon>message</mat-icon>
+      <mat-icon [matBadge]="newMsg" [matBadgeHidden]="!newMsg" matBadgeSize="small" matBadgeColor="warn">message</mat-icon>
     </button>
     <button mat-button routerLink="user" routerLinkActive="active">
       <mat-icon>account_box</mat-icon>

@@ -15,19 +15,23 @@ export class ProjectsComponent implements OnInit {
 
 
   constructor(
-    private projectService: ProjectService,
-    private userService: UserService,
+    private projectSrv: ProjectService,
+    private userSrv: UserService,
   ) { }
 
   ngOnInit() {
     // 获取用户信息
-    this.userInfo = this.userService.getUserInfo()
+    this.userSrv.getUserInfo().subscribe(
+      (user: User) => {
+        this.userInfo = user
+      }
+    )
     // 
     this.handleGetProjects()
   }
 
   handleGetProjects() {
-    this.projectService.getProjects().subscribe(
+    this.projectSrv.getProjects().subscribe(
       (val: Project[]) => {
         // console.log(val);
         val.map(item => {

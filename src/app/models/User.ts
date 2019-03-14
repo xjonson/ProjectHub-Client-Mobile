@@ -1,7 +1,7 @@
 import { Skill } from './Skill';
 
 export interface User {
-  id: number,
+  id: string,
   email: string,
   password: string,
   avatar?: string,
@@ -15,9 +15,12 @@ export interface User {
  * @description 信息
  */
 export interface Msg {
-  id: number,
+  id: string,
+  project_id: string, // 项目id
+  project_msg_id: string, // 当前评论在原项目中的id
   from_user: Partial<User>,
   content: string,
+  checked: boolean,
   create_time: string,
 }
 

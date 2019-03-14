@@ -1,7 +1,7 @@
 <section class="projs">
   <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/sub/project', item.id ]">
     <div class="top-info">
-      <img *ngIf="item.avatar; else defaultAvatar" [src]="item.avatar">
+      <img *ngIf="item.demand_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
       <ng-template #defaultAvatar>
         <img src="../../../assets/image/shield-large.svg">
       </ng-template>
@@ -21,8 +21,8 @@
 </section>
 
 
-<!-- <div class="fix-add-btn" *ngIf="userInfo && userInfo.role !== 3"> -->
-<div class="fix-add-btn">
+<div class="fix-add-btn" *ngIf="userInfo && userInfo.role !== 3">
+<!-- <div class="fix-add-btn"> -->
   <button mat-fab routerLink="/sub/project-edit/0">
     <mat-icon>add</mat-icon>
   </button>

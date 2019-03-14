@@ -12,8 +12,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
   user: Partial<User> = {
-    email: 'jonson@ph.com',
-    password: 'jonson',
+    email: 'demand1@ph.com',
+    password: '123123',
   }
 
   @Output() subTitle: string = '请登录';

@@ -1,28 +1,36 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ProjectService } from 'src/app/service/project.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-sub-page',
   templateUrl: './sub-page.component.html',
   styleUrls: ['../home-page/home-page.component.scss', './sub-page.component.scss']
 })
-export class SubPageComponent implements OnInit {
+export class SubPageComponent implements OnInit, AfterViewChecked {
   subTitle: string;
   menuBtns = [
     'btn1',
     'btn2',
     'btn3'
-  ]
+  ];
+
+  @ViewChild('scrollWrap') private scrollContainer: ElementRef;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private projectService: ProjectService
+    private projectSrv: ProjectService,
+    private elementRef: ElementRef,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+
+  ngAfterViewChecked() {
+    this.handleScroll();
   }
 
   // 检测
@@ -32,7 +40,7 @@ export class SubPageComponent implements OnInit {
       this.subTitle = routerTitle
     } else {
       // 订阅 getTitle()，当进入页面获取到project详情时即可获得title
-      this.projectService.getTitle().subscribe((title: string) => {
+      this.projectSrv.getTitle().subscribe((title: string) => {
         // console.log('title: ', title);
         this.subTitle = title
       })
@@ -44,5 +52,22 @@ export class SubPageComponent implements OnInit {
   back() {
     history.back()
   }
-
+  
+  // 滚动
+  handleScroll() {
+    const eleId = this.route.snapshot.queryParams.project_msg_id
+    const target = this.elementRef.nativeElement.querySelector(`#${eleId}`)
+    
+    if (target) {
+      const top = target && target.offsetTop
+      try {
+        this.scrollContainer.nativeElement.scrollTo({
+          top: top - (window.innerHeight - 47), // 减去像素，正好滚动到评论栏上面
+          behavior: "smooth"
+        })
+      } catch (err) {
+        console.log('err: ', err);
+      }
+    }
+  }
 }

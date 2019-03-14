@@ -19,3 +19,14 @@ $my-dark-theme:mat-dark-theme($my-dark-primary, $my-dark-accent, $my-dark-warn);
 .myapp-dark-theme {
   @include angular-material-theme($my-dark-theme);
 }
+
+button[block] {
+  display: block;
+  width: 100%;
+}
+h4.mat-line{
+  margin-bottom: 6px !important;
+  span {
+    font-size: .7em;
+  }
+}

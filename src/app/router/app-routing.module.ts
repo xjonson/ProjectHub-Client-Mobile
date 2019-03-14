@@ -23,7 +23,8 @@ const routes: Routes = [
       },
       {
         path: 'msgs',
-        component: MsgComponent
+        component: MsgComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'user',

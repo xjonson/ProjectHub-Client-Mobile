@@ -39,7 +39,6 @@
         width: 100%;
         font-size: 16px;
         font-weight: bold;
-        margin-bottom: 10px;
         min-height: 20px;
       }
 
@@ -56,6 +55,10 @@
     font-size: 14px;
     line-height: 1.5;
     color: #555;
+
+    .price {
+      color: #f00;
+    }
   }
 
   mat-chip-list {
@@ -144,31 +147,43 @@
 }
 
 // footer
-.footer-comments {
+footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 20;
   background-color: #fff;
-  border-top: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 15px;
-  box-sizing: border-box;
 
-  img {
-    width: 36px;
-    height: 36px;
-    margin: 5px 0px;
-    margin-right: 15px;
-    border-radius: 50%;
-  }
+  .btns-opt {}
 
-  .add-comments-wrap {
-    flex: 1;
-    font-size: 14px;
-    color: #aaa;
+  .comments {
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    box-sizing: border-box;
+
+    img {
+      width: 36px;
+      height: 36px;
+      margin: 5px 0px;
+      margin-right: 15px;
+      border-radius: 50%;
+    }
+
+    .add-comments-wrap {
+      flex: 1;
+      font-size: 14px;
+      color: #aaa;
+
+      input {
+        border: none !important;
+        outline: none !important;
+        height: 30px;
+        width: 100%;
+      }
+    }
   }
 }

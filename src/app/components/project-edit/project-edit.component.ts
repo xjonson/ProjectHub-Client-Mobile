@@ -33,15 +33,19 @@ export class ProjectEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private skillService: SkillService,
-    private projectService: ProjectService,
-    private userService: UserService,
+    private projectSrv: ProjectService,
+    private userSrv: UserService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    this.userInfo = this.userService.getUserInfo()
+    this.userSrv.getUserInfo().subscribe(
+      (user: User) => {
+        this.userInfo = user
+      }
+    )
     // 
     this.handleGetSkills()
     this.initForm()
@@ -52,8 +56,6 @@ export class ProjectEditComponent implements OnInit {
     })
   }
   initForm() {
-    const now = new Date
-    const id = this.userInfo.id
     this.projectForm = this.fb.group({
       title: ['', [
         Validators.required
@@ -70,9 +72,10 @@ export class ProjectEditComponent implements OnInit {
       price: ['', [
         Validators.required
       ]],
+      demand_user: [this.userInfo],
       status: [0],
-      create_time: [now],
-      demand_user_id: [id]
+      comments: [[]],
+      create_time: [new Date()]
     })
   }
   onSubmit() {
@@ -80,7 +83,7 @@ export class ProjectEditComponent implements OnInit {
     if (data.skills) {
       data.skills = data.skills.join(',')
     }
-    this.projectService.addProject(data).subscribe((project: Project) => {
+    this.projectSrv.addProject(data).subscribe((project: Project) => {
       this.dialog.open(addProjectSuccessDialog, {
         data: {
           id: project.id
@@ -119,7 +122,9 @@ export class addProjectSuccessDialog {
     this.router.navigate(['/home/projects'])
   }
   onOk() {
-    this.router.navigate(['/sub/project', this.data.id])
+    this.router.navigate(['/sub/project', this.data.id], {
+      replaceUrl: true
+    })
   }
 }
 

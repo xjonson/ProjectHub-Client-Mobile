@@ -42,4 +42,8 @@ export class ProjectService {
   addProject(data: Project) {
     return this.http.post('api/project', data)
   }
+  // 更新项目 
+  updateProject(id: string, data: Partial<Project>) {
+    return this.http.patch(`api/project/${id}`, data)
+  }
 }

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     public snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private userService: UserService,
+    private userSrv: UserService,
   ) { }
 
   get email(): AbstractControl {
@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
       profile: formData.profile,
     }
     console.log('newUser: ', newUser);
-    this.userService.register(newUser).subscribe(res => {
+    this.userSrv.register(newUser).subscribe(res => {
       console.log('res: ', res);
       if (res) {
         alert('注册成功！')
