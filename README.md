@@ -2,12 +2,12 @@
 
 中文名还没想好
 
-这个项目是我在学习 angular 时做的，同时临近毕业打算作为毕业设计。项目分为 [移动客户端](https://github.com/xjonson/ProjectHub-Client)、[PC端后台管理](https://github.com/xjonson/ProjectHub-Admin)、[server端](https://github.com/xjonson/ProjectHub-BackEnd)。这是移动客户端。
+这个项目是我在学习 angular 时做的，同时临近毕业打算作为毕业设计。项目分为 [移动客户端](https://github.com/xjonson/ProjectHub-Client)、[PC端后台管理](https://github.com/xjonson/ProjectHub-Admin)、[server端](https://github.com/xjonson/ProjectHub-BackEnd)。这是移动客户端。
 
 ## 介绍
 
 - 当前使用fake api，将来会使用node代替
-- 用户可以注册、登录，除管理员外具有 需求者(demander)和开发者(developer)身份
+- 用户可以注册、登录，除管理员外具有 需求者(demander)和开发者(developer)身份
 - 需求者可创建项目需求
 - 开发者可和需求者对接，进行项目的开发
 
@@ -23,7 +23,7 @@
 
 ## 使用
 
-请先确保你已拥有以上环境
+请先确保你已拥有以上环境
 
 ```bash
 git clone git@github.com:xjonson/ProjectHub-Client.git
@@ -62,7 +62,7 @@ json-server --watch db.json
 
 至此项目即可正常运行
 
-将来会使用node做一个server端
+将来会使用node做一个server端
 
 ## 展示
 
