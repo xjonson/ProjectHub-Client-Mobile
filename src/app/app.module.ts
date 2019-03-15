@@ -24,6 +24,10 @@ import { SubPageComponent } from './common/sub-page/sub-page.component';
 import { ProjectEditComponent, addProjectSuccessDialog } from './components/project-edit/project-edit.component';
 import { UserRolePipe } from './pipes/user.pipe';
 import { MsgComponent } from './components/msg/msg.component';
+import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
+import { SkillService } from './service/skill.service';
+import { ProjectService } from './service/project.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,12 @@ import { MsgComponent } from './components/msg/msg.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    ProjectService,
+    SkillService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
