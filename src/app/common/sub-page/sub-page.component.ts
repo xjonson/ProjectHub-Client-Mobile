@@ -41,11 +41,9 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
     } else {
       // 订阅 getTitle()，当进入页面获取到project详情时即可获得title
       this.projectSrv.getTitle().subscribe((title: string) => {
-        // console.log('title: ', title);
         this.subTitle = title
       })
     }
-    // 在这里获取路由传的值，是因为假设用户未登录前进入详情页，如果写在 ngOnInit 中，则只在页面加载时触发 1 次，当用户登录后重定向到详情页，就获取不到路由参数了。但是 ngDoCheck 可以在每次值发送变化时触发，这样依然可以获取到值。
   }
 
   // 返回上一页
@@ -53,7 +51,7 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
     history.back()
   }
   
-  // 滚动
+  // 处理滚动
   handleScroll() {
     const eleId = this.route.snapshot.queryParams.project_msg_id
     const target = this.elementRef.nativeElement.querySelector(`#${eleId}`)
@@ -62,7 +60,7 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
       const top = target && target.offsetTop
       try {
         this.scrollContainer.nativeElement.scrollTo({
-          top: top - (window.innerHeight - 47), // 减去像素，正好滚动到评论栏上面
+          top: top - (window.innerHeight - 142), // 减去像素，正好滚动到评论栏上面
           behavior: "smooth"
         })
       } catch (err) {

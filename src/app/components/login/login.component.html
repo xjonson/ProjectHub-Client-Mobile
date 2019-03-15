@@ -16,12 +16,12 @@
       </div>
       <div class="form-item">
         <label for="password">密码</label>
-        <input type="password" name="password" [(ngModel)]="user.password" required minlength="6">
+        <input type="password" name="password" [(ngModel)]="user.password" required >
       </div>
     </mat-card-content>
     <mat-card-actions class="d-flex align-items-center justify-content-between">
       <a mat-button color="primary" [routerLink]="['/sub/register']" [queryParams]="{title: '注册账号'}">注册账号</a>
-      <button mat-raised-button color="primary" type="submit">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
         登录
       </button>
     </mat-card-actions>

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="userInfo">
 
   <mat-card-title class="d-flex align-items-center flex-column mb-3">
     <img class="avatar" *ngIf="userInfo.profile.avatar as avatar; else defaultAvatar" [src]="avatar">

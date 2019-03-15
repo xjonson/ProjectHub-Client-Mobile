@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { User } from 'src/app/models/User';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
     password: '123123',
   }
 
-  @Output() subTitle: string = '请登录';
-
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -29,15 +27,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.user).then((user: User) => {
-      this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
-      // 重定向到授权前的路由
-      this.router.navigate([this.authService.redirectUrl], {
-        replaceUrl: true,
-      })
-    }).catch(err => {
-      this.snackBar.open(err);
-      console.log(err);
+    this.authService.login(this.user).subscribe((users: User[]) => {
+      if (users.length) {
+        const user = users[0]
+        this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
+        // 重定向到授权前的路由
+        this.router.navigate([this.authService.redirectUrl], {
+          replaceUrl: true,
+        })
+      }
     })
   }
+
+
 }
