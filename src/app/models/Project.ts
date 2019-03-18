@@ -15,6 +15,7 @@ export interface Project {
   price: number,
   status: Status,
   comments: Comment[]
+  audit: Audit
 }
 
 /**
@@ -25,6 +26,15 @@ export interface Comment {
   user: Partial<User>,
   create_time: string,
   content: string
+}
+
+/**
+ * @description 审核状态
+ */
+export enum Audit {
+  '未审核' = 0,
+  '审核通过' = 1,
+  '审核不通过' = 2,
 }
 
 /**

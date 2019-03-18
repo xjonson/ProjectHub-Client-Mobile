@@ -171,6 +171,7 @@
       "skills": "1,2,3",
       "cycle": 3,
       "price": 120,
+      "audit": 0,
       "demand_user": {
         "id": "2",
         "role": 2,
