@@ -46,27 +46,27 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: ['', [
+      email: ['dev2@ph.com', [
         Validators.required,
         Validators.email
       ]],
       pwd: this.fb.group({
-        password: ['', [
+        password: ['123123', [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(15)
         ]],
-        password2: ['', [
+        password2: ['123123', [
           Validators.required,
         ]]
       }, { validator: passwordEqulaValidator }),
       role: ['2', [Validators.required]],
       profile: this.fb.group({
-        name: ['', [
+        name: ['dev2', [
           Validators.required,
           Validators.maxLength(6)
         ]],
-        phone: ['', [
+        phone: ['17812312312', [
           Validators.required,
           Validators.pattern(/^1(3|4|5|6|7|8|9)\d{9}$/)
         ]],
@@ -83,19 +83,11 @@ export class RegisterComponent implements OnInit {
       role: formData.role,
       profile: formData.profile,
     }
-    console.log('newUser: ', newUser);
     this.userSrv.register(newUser).subscribe(res => {
       console.log('res: ', res);
       if (res) {
         alert('注册成功！')
         this.router.navigate(['sub/login'])
-        // const snackBarRef = this.snackBar.open('注册成功！', '去登录');
-        // snackBarRef.onAction().subscribe(() => {
-        //   console.log('The snack-bar action was triggered!');
-        // });
-        // snackBarRef.afterDismissed().subscribe(() => {
-        //   this.router.navigate(['login'])
-        // });
       } else {
         // 注册失败
         alert('注册失败！')

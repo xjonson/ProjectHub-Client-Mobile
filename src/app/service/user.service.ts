@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
-import { map } from "rxjs/operators";
+import { map, switchMap } from "rxjs/operators";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,24 @@ export class UserService {
 
 
   // 用户注册
-  register(user: Partial<User>) {
-    return this.http.post('/api/user', user)
+  register(user: Partial<User>): Observable<any> {
+    return this.http.get('/api/user').pipe(
+      switchMap(
+        (users: User[]) => {
+          if (users.some(u => u.email === user.email)) {
+            alert('此邮箱已被注册')
+            return new Observable(null)
+          } else {
+            return this.http.post('/api/user', user)
+          }
+        },
+        (firstHTTPResult, secondHTTPResult) => {
+          console.log('secondHTTPResult: ', secondHTTPResult);
+          console.log('firstHTTPResult: ', firstHTTPResult);
+          return secondHTTPResult
+        }
+      )
+    )
   }
 
   setUserInfo(user: User) {
