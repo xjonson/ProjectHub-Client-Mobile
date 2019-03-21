@@ -31,6 +31,7 @@
           "id": 1,
           "project_id": 3,
           "project_msg_id": "id0",
+          "isAction": false,
           "from_user": {
             "id": "3",
             "role": 3,
@@ -53,6 +54,7 @@
           "id": 2,
           "project_id": 3,
           "project_msg_id": "id1",
+          "isAction": false,
           "from_user": {
             "id": "3",
             "role": 3,
@@ -68,13 +70,15 @@
             "msgs": []
           },
           "content": "123",
-          "checked": false,
+          "checked": true,
           "create_time": "2019-03-21T06:35:10.696Z"
         },
         {
           "id": 3,
           "project_id": 3,
           "project_msg_id": "id2",
+          "isAction": true,
+          "action": 2,
           "from_user": {
             "id": "3",
             "role": 3,
@@ -89,9 +93,100 @@
             "skill": "1,2,3,4,5",
             "msgs": []
           },
-          "content": "123",
-          "checked": false,
+          "content": "开发者【dev1】申请接受您的【需求2】项目",
+          "checked": true,
           "create_time": "2019-03-21T06:38:24.789Z"
+        },
+        {
+          "id": 3,
+          "project_id": 1,
+          "project_msg_id": "id14",
+          "from_user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "msgs": []
+          },
+          "content": "`12",
+          "checked": true,
+          "create_time": "2019-03-21T08:02:09.871Z"
+        },
+        {
+          "id": "91",
+          "project_id": 3,
+          "from_user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "msgs": []
+          },
+          "content": "开发者【dev1】申请更新您的【需求2】项目进度为：开发者申请验收",
+          "checked": true,
+          "create_time": "Thu Mar 21 2019 17:10:21 GMT+0800 (中国标准时间)",
+          "isAction": true,
+          "action": 2
+        },
+        {
+          "id": "101",
+          "project_id": 3,
+          "from_user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "msgs": []
+          },
+          "content": "开发者【dev1】申请更新您的【需求2】项目进度为：开发者申请结款",
+          "checked": true,
+          "create_time": "Thu Mar 21 2019 17:11:18 GMT+0800 (中国标准时间)",
+          "isAction": true,
+          "action": 3
+        },
+        {
+          "id": "61",
+          "project_id": 1,
+          "from_user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "msgs": []
+          },
+          "content": "开发者【dev1】申请更新您的【第一个项目】项目进度为：开发者申请接单",
+          "checked": true,
+          "create_time": "Thu Mar 21 2019 17:31:15 GMT+0800 (中国标准时间)",
+          "isAction": true,
+          "action": 1
         }
       ]
     },
@@ -172,7 +267,7 @@
         "skill": "",
         "msgs": []
       },
-      "status": 0,
+      "status": 1,
       "create_time": "2019-03-14T05:58:31.323Z",
       "id": 1,
       "comments": [
@@ -441,8 +536,41 @@
           },
           "create_time": "2019-03-21T06:32:39.315Z",
           "content": "123"
+        },
+        {
+          "id": "id14",
+          "user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "msgs": []
+          },
+          "create_time": "2019-03-21T08:02:09.820Z",
+          "content": "`12"
         }
-      ]
+      ],
+      "dev_user": {
+        "id": "3",
+        "role": 3,
+        "email": "dev1@ph.com",
+        "password": "123123",
+        "profile": {
+          "phone": "17864387607",
+          "name": "dev1",
+          "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+          "desc": "前端，熟练使用html、css、js......"
+        },
+        "skill": "1,2,3,4,5",
+        "msgs": []
+      }
     },
     {
       "audit": 1,
@@ -465,7 +593,7 @@
         "skill": "",
         "msgs": []
       },
-      "status": 0,
+      "status": 3,
       "comments": [
         {
           "id": "id0",
@@ -526,7 +654,21 @@
         }
       ],
       "create_time": "2019-03-20T07:50:59.671Z",
-      "id": 3
+      "id": 3,
+      "dev_user": {
+        "id": "3",
+        "role": 3,
+        "email": "dev1@ph.com",
+        "password": "123123",
+        "profile": {
+          "phone": "17864387607",
+          "name": "dev1",
+          "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+          "desc": "前端，熟练使用html、css、js......"
+        },
+        "skill": "1,2,3,4,5",
+        "msgs": []
+      }
     },
     {
       "audit": 1,

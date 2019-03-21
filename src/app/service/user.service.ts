@@ -56,6 +56,12 @@ export class UserService {
 
   // 更新信息
   updateUserInfo(id: string, data: Partial<User>) {
-    return this.http.patch(`api/user/${id}`, data)
+    return this.http.patch(`api/user/${id}`, data).pipe(
+      tap(
+        (user: User) => {
+          if(!this.userInfo || id === this.userInfo.id) this.userInfo = user
+        }
+      )
+    )
   }
 }

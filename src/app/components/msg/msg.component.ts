@@ -3,6 +3,8 @@ import { UserService } from 'src/app/service/user.service';
 import { User, Msg } from 'src/app/models/User';
 import { Router } from '_@angular_router@7.2.8@@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { ProjectService } from 'src/app/service/project.service';
+import { Project } from 'src/app/models/Project';
 
 @Component({
   selector: 'app-msg',
@@ -16,6 +18,7 @@ export class MsgComponent implements OnInit {
     private userSrv: UserService,
     private router: Router,
     public snackBar: MatSnackBar,
+    private projectSrv: ProjectService,
   ) { }
 
   ngOnInit() {
@@ -41,6 +44,7 @@ export class MsgComponent implements OnInit {
       }
     )
   }
+  // 删除已读
   delChecked() {
     if (!this.userInfo.msgs.length) return
     const myConfirm = confirm('删除后不可恢复，确认删除？')
@@ -57,8 +61,8 @@ export class MsgComponent implements OnInit {
     )
   }
   // 标记为已读并跳转到项目
-  navigateToProject(msg: Msg, i: number): void {
-    this.userInfo.msgs[i].checked = true
+  navigateToProject(msg: Msg): void {
+    msg.checked = true
     this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe(
       () => {
         this.router.navigate(['/sub/project', msg.project_id], {
@@ -66,6 +70,38 @@ export class MsgComponent implements OnInit {
         })
       }
     )
+  }
+  // 操作通知
+  actionMsg(msg: Msg, confirm: boolean) {
+    
+    // 点击取消或管理员信息，直接跳过
+    if (confirm && msg.action !== 0) {
+      const pid = msg.project_id
+      this.projectSrv.getProject(pid).subscribe(
+        (project: Project) => {
+          // 更新状态
+          project.status = msg.action as number
+          project.dev_user = msg.from_user
+          // 更新
+          this.projectSrv.updateProject(pid, project).subscribe(
+            () => {
+              this.snackBar.open(`操作成功`);
+            }
+          )
+        }
+      )
+    } else {
+      // 删除取消处理的
+      this.userInfo.msgs.forEach((item, index) => {
+        if (item.id === msg.id) {
+          this.userInfo.msgs.splice(index, 1)
+        }
+      })
+    }
+    msg.checked = true
+    this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe()
+
+
   }
 
 }

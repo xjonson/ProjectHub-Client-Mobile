@@ -2,7 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
 import { ProjectService } from 'src/app/service/project.service';
-import { User } from 'src/app/models/User';
+import { User, Action } from 'src/app/models/User';
 import { UserService } from 'src/app/service/user.service';
 import { MatSnackBar } from '@angular/material';
 
@@ -41,9 +41,39 @@ export class ProjectDetailComponent implements OnInit {
     })
   }
 
-  // 更新项目状态 进度
-  changeProjStatus(status) {
-    
+  // 申请更新项目状态 进度
+  applyProject(action) {
+    // 给需求者发消息
+    const demand_user_id = this.project.demand_user.id
+    const dev_user_no_msg = Object.assign(this.userSrv.userInfo, { msgs: [] })
+    this.userSrv.getUserInfo(demand_user_id).subscribe(
+      (demander: User) => {
+        // 如果申请过一次且未checked则直接返回
+        if(demander.msgs.some(item => (item.project_id === this.project.id) && (item.action === action))) {
+          this.snackBar.open(`你已经申请过一次了，请等待需求者回复`);
+          return
+        }
+        
+        demander.msgs = [
+          ...demander.msgs,
+          {
+            id: demander.msgs.length + '1',
+            project_id: this.project.id,
+            from_user: dev_user_no_msg,
+            content: `开发者【${dev_user_no_msg.profile.name}】申请更新您的【${this.project.title}】项目进度为：${Action[action]}`,
+            checked: false,
+            create_time: new Date() + '',
+            isAction: true,
+            action,
+          }
+        ]
+        this.userSrv.updateUserInfo(demander.id, demander).subscribe(
+          () => {
+            this.snackBar.open(`申请成功！`);
+          }
+        )
+      }
+    )
   }
 
   // 添加评论
@@ -51,7 +81,7 @@ export class ProjectDetailComponent implements OnInit {
     if (!this.commentContent) return
     const project_msg_id = this.project.comments ? 'id' + this.project.comments.length : 'id0'
     // 构造一个没有msgs的user，方便作为参数
-    const user_no_msg = Object.assign(this.userSrv.userInfo, {msgs: []})
+    const user_no_msg = Object.assign(this.userSrv.userInfo, { msgs: [] })
 
     // 构造新项目--comments
     const updateProj = {
@@ -112,5 +142,5 @@ export class ProjectDetailComponent implements OnInit {
       }
     )
   }
- 
+
 }

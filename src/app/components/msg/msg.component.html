@@ -1,28 +1,55 @@
-<mat-list>
-  <h3 matSubheader>
-    <p>消息列表</p>
-  </h3>
-  <h3 matSubheader class="d-flex align-items-center justify-content-between">
-    <button mat-button (click)="allChecked()">全部标记为已读</button>
-    <button mat-button color="warn" (click)="delChecked()">删除已读</button>
-  </h3>
-  <div class="mt-5 text-center" *ngIf="!!!userInfo?.msgs; else msgList">
-    还没有新消息~
-  </div>
-  <ng-template #msgList>
-    <mat-nav-list>
-      <a mat-list-item *ngFor="let item of userInfo?.msgs; let i = index" [ngClass]="{'checked': item.checked }" (click)="navigateToProject(item, i)">
-        <img matListAvatar *ngIf="item.from_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
-        <ng-template #defaultAvatar>
-          <img matListAvatar src="../../../assets/image/shield-large.svg">
-        </ng-template>
-        <h4 mat-line class="d-flex align-items-center justify-content-between">
-          {{item.from_user.profile.name | titlecase}}
-          <span>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
-        </h4>
-        <p mat-line> {{item.content}} </p>
-        <mat-divider></mat-divider>
-      </a>
-    </mat-nav-list>
-  </ng-template>
-</mat-list>
+<mat-tab-group>
+  <!-- tab1 -->
+  <mat-tab label="消息">
+    <mat-list>
+      <h3 matSubheader class="d-flex align-items-center justify-content-between">
+        <button mat-button (click)="allChecked()">全部标记为已读</button>
+        <button mat-button color="warn" (click)="delChecked()">删除已读</button>
+      </h3>
+      <div class="mt-5 text-center" *ngIf="!!!userInfo?.msgs; else msgList">
+        还没有新消息~
+      </div>
+      <ng-template #msgList>
+        <mat-nav-list>
+          <div *ngFor="let item of userInfo?.msgs">
+            <a mat-list-item *ngIf="!item.isAction" [ngClass]="{'checked': item.checked }" (click)="navigateToProject(item)">
+              <img matListAvatar *ngIf="item.from_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
+              <ng-template #defaultAvatar>
+                <img matListAvatar src="../../../assets/image/shield-large.svg">
+              </ng-template>
+              <h4 mat-line class="d-flex align-items-center justify-content-between">
+                {{item.from_user.profile.name | titlecase}}
+                <span>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
+              </h4>
+              <p mat-line> {{item.content}} </p>
+              <mat-divider></mat-divider>
+            </a>
+          </div>
+        </mat-nav-list>
+      </ng-template>
+    </mat-list>
+  </mat-tab>
+
+  <!-- tab2 -->
+  <mat-tab label="处理">
+    <mat-accordion>
+      <div *ngFor="let item of userInfo?.msgs; let i = index">
+        <mat-expansion-panel *ngIf="item.isAction">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.from_user.profile.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{item.checked ? '已处理' : '未处理'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{item.content}}</p>
+          <div *ngIf="!item.checked">
+            <button block mat-raised-button color="accent" class="mb-3 mt-4" (click)="actionMsg(item, true)">确认</button>
+            <button block mat-raised-button (click)="actionMsg(item, false)">取消</button>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>

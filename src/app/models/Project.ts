@@ -4,8 +4,8 @@ import { User } from './User';
 // 项目
 export interface Project {
   id: string,
-  demand_user: User,
-  dev_user: User,
+  demand_user: Partial<User>,
+  dev_user: Partial<User>,
   avatar?: string,
   title: string,
   desc: string,

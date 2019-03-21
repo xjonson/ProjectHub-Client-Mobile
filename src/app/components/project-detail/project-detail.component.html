@@ -9,13 +9,28 @@
       </ng-template>
       <div class="text">
         <h6>{{project.demand_user.profile.name}}</h6>
-        <p>{{project.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
+        <p>{{project.demand_user.profile.desc}}</p>
+      </div>
+    </div>
+    <div *ngIf="project.dev_user">
+      <h2>开发者</h2>
+      <div class="top-info demand-user" [routerLink]="['/home/user']" [queryParams]="{'id': project.dev_user.id}">
+        <img *ngIf="project.dev_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
+        <ng-template #defaultAvatar>
+          <img src="../../../assets/image/shield-large.svg">
+        </ng-template>
+        <div class="text">
+          <h6>{{project.dev_user.profile.name}}</h6>
+          <p>{{project.dev_user.profile.desc}}</p>
+        </div>
       </div>
     </div>
     <h2>项目名称</h2>
     <div class="desc">{{project.title}}</div>
     <h2>项目详情</h2>
     <div class="desc">{{project.desc}}</div>
+    <h2>发布时间</h2>
+    <div class="desc">{{project.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</div>
     <h2>技能需求</h2>
     <mat-chip-list>
       <mat-chip *ngFor="let item of project.skills | array" color="accent">{{ item | skill }}</mat-chip>
@@ -33,7 +48,11 @@
         </div>
       </div>
     </mat-chip-list>
-    <button *ngIf="project.status === 0 && userSrv.userInfo.role === 3" mat-raised-button color="accent" block (click)="changeProjStatus(1)">我要接单</button>
+    <div *ngIf="userSrv.userInfo.role === 3">
+      <button *ngIf="project.status === 0" mat-raised-button color="accent" block (click)="applyProject(1)">申请接单</button>
+      <button *ngIf="project.status === 1 && project.dev_user.id === userSrv.userInfo.id" mat-raised-button color="accent" block (click)="applyProject(2)">提交验收</button>
+      <button *ngIf="project.status === 2 && project.dev_user.id === userSrv.userInfo.id" mat-raised-button color="accent" block (click)="applyProject(3)">申请结款</button>
+    </div>
   </div>
   <!-- 评论 -->
   <div *ngIf="!!project.comments">
@@ -75,7 +94,7 @@
 
 <!-- 审核 -->
 <ng-template #unpass>
-  <span [ngSwitch]="project.audit" class="audit">
+  <span [ngSwitch]="project?.audit" class="audit">
     <div *ngSwitchCase="0">
       <img src="../../../assets/image/404.svg">
       <p>项目审核中</p>

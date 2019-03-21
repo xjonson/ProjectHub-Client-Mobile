@@ -32,13 +32,13 @@ export class UserComponent implements OnInit {
 
   // 获取用户信息
   handleGetUserInfo() {
-    this.selfProfile = true
     this.route.queryParams.pipe(
       map(params => {
         return params['id']
       })
     ).subscribe(
       id => {
+        this.selfProfile = true
         // 如果是查看别人的 profile 则设置 selfProfile 为 false
         if (id) this.selfProfile = false
         // 获取用户信息

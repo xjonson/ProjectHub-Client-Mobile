@@ -22,7 +22,7 @@ export class ProjectService {
   }
 
   // 获取单个project详情
-  getProject(id: number): Observable<any> {
+  getProject(id: string): Observable<any> {
     return this.http.get(`api/project/${id}`)
   }
   // 设置title
