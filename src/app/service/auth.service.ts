@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { Location } from '@angular/common';
 import { UserService } from './user.service';
 import { tap, catchError, map } from 'rxjs/operators';
+import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,28 @@ import { tap, catchError, map } from 'rxjs/operators';
 export class AuthService {
   private loginState = false;
   public redirectUrl: string = 'home/projects';
+  public userid: string;
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
-  ) { }
+    private userSrv: UserService,
+    public cookieSrv: CookieService,
+    private router: Router,
+  ) {
+    // 查看cookie中是否有登录信息
+    this.userid = this.cookieSrv.getCookie('ph-user')
+    console.log('userid: ', this.userid);
+    this.userSrv.getUserInfo(this.userid).subscribe(
+      (user: User) => {
+        console.log('login')
+        this.login(user).subscribe()
+      }
+    )
+  }
 
   // 登录
   login(loginForm: Partial<User>): Observable<User[]> {
+    console.log('loginForm: ', loginForm);
     const params = new HttpParams().set("email", loginForm.email)
     return this.http.get<User[]>(`/api/user`, { params })
       .pipe(
@@ -31,7 +46,7 @@ export class AuthService {
             // 检测密码
             if (user.password === loginForm.password) {
               this.loginState = true
-              this.userService.setUserInfo(user)
+              this.userSrv.setUserInfo(user)
               return users
             }
           }
@@ -45,6 +60,7 @@ export class AuthService {
   // 登出
   logout() {
     this.loginState = false
+    this.router.navigateByUrl('/sub/login')
   }
 
   // 获取登录状态
@@ -75,18 +91,14 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // 如果已登录，不守卫
-    if(this.authSrv.getAuthState()) return true
+    if (this.authSrv.getAuthState() || this.authSrv.userid) return true
     // 分割出params，不然会报错
     const redirectUrl: string = state.url.split('?')[0]
     // 保存进入前的路由
     this.authSrv.redirectUrl = redirectUrl
     console.log('进入前的路由: ', redirectUrl);
+    this.router.navigate(['/sub/login'])
+    return false
 
-    if (this.authSrv.getAuthState()) {
-      return true
-    } else {
-      this.router.navigate(['/sub/login'])
-      return false
-    }
   }
 }

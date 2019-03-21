@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './material.module';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { UserComponent } from './components/user/user.component';
+import { UserComponent, BottomSheetOverviewExampleSheet } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
@@ -49,10 +49,12 @@ import { ProjectService } from './service/project.service';
     ProjectEditComponent,
     UserRolePipe,
     MsgComponent,
-    addProjectSuccessDialog
+    addProjectSuccessDialog,
+    BottomSheetOverviewExampleSheet,
   ],
   entryComponents: [
-    addProjectSuccessDialog
+    addProjectSuccessDialog,
+    BottomSheetOverviewExampleSheet,
   ],
   imports: [
     BrowserModule,

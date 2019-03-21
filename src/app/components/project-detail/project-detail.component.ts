@@ -13,27 +13,20 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ProjectDetailComponent implements OnInit {
   project: Project;
-  userInfo: User;
   commentContent: string;
+  showHelp = false
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private projectSrv: ProjectService,
-    private userSrv: UserService,
+    public userSrv: UserService,
     public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
     // 获取项目详情
     this.handleGetProj()
-    // 获取用户信息
-    this.userSrv.getUserInfo().subscribe(
-      (user: User) => {
-        this.userInfo = user
-      }
-    )
-    
   }
 
 
@@ -44,9 +37,13 @@ export class ProjectDetailComponent implements OnInit {
       this.projectSrv.getProject(id).subscribe(proj => {
         this.project = proj
         this.projectSrv.setTitle(proj.title)
-        console.log('this.project: ', this.project);
       })
     })
+  }
+
+  // 更新项目状态 进度
+  changeProjStatus(status) {
+    
   }
 
   // 添加评论
@@ -54,7 +51,7 @@ export class ProjectDetailComponent implements OnInit {
     if (!this.commentContent) return
     const project_msg_id = this.project.comments ? 'id' + this.project.comments.length : 'id0'
     // 构造一个没有msgs的user，方便作为参数
-    const user_no_msg = Object.assign(this.userInfo, {msgs: []})
+    const user_no_msg = Object.assign(this.userSrv.userInfo, {msgs: []})
 
     // 构造新项目--comments
     const updateProj = {
@@ -76,7 +73,7 @@ export class ProjectDetailComponent implements OnInit {
         this.snackBar.open(`评论成功！`);
 
         // 如果是恢回复自己的项目，则不给自己推送消息
-        if (this.project.demand_user.id === this.userInfo.id) {
+        if (this.project.demand_user.id === this.userSrv.userInfo.id) {
           // 清空输入框
           this.commentContent = ''
           return
@@ -104,7 +101,6 @@ export class ProjectDetailComponent implements OnInit {
               // 请求服务，推送消息
               this.userSrv.updateUserInfo(demand_user.id, updateUser).subscribe(
                 updateUser => {
-                  console.log(updateUser);
                 }
               )
               // 清空输入框
@@ -116,4 +112,5 @@ export class ProjectDetailComponent implements OnInit {
       }
     )
   }
+ 
 }

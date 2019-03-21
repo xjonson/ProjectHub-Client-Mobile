@@ -12,26 +12,14 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[]
-  userInfo: User
 
 
   constructor(
     private projectSrv: ProjectService,
-    private userSrv: UserService,
-    private authSrv: AuthService,
+    public userSrv: UserService,
   ) { }
 
   ngOnInit() {
-    // 对于用户未登录就可以访问的页面，只有用户登录后才获取用户信息
-    if (this.authSrv.getAuthState()) {
-      // 获取用户信息
-      this.userSrv.getUserInfo().subscribe(
-        (user: User) => {
-          this.userInfo = user
-        }
-      )
-    }
-    // 
     this.handleGetProjects()
   }
 
@@ -39,10 +27,10 @@ export class ProjectsComponent implements OnInit {
     this.projectSrv.getProjects().subscribe(
       (val: Project[]) => {
         // console.log(val);
-        val.map(item => {
+        this.projects = val.filter(item => {
           item.desc = item.desc.substr(0, 100) + '...'
+          return item.audit === 1
         })
-        this.projects = val
       }
     )
   }

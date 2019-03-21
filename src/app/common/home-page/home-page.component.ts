@@ -18,22 +18,16 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // 对于用户未登录就可以访问的页面，只有用户登录后才获取用户信息
-    if (this.authSrv.getAuthState()) {
-      this.handleGetUserInfo()
-    }
   }
-
+  ngDoCheck(): void {
+    this.handleGetUserInfo()
+  }
   // 获取未读信息数量
   handleGetUserInfo() {
-    this.userSrv.getUserInfo().subscribe(
-      (user: User) => {
-        this.userInfo = user
-        this.newMsg = user.msgs.filter(msg => {
-          return !msg.checked
-        }).length
-      }
-    )
+    this.userInfo = this.userSrv.userInfo
+    if (this.userInfo && this.userInfo.msgs) {
+      this.newMsg = this.userInfo.msgs.filter(msg => !msg.checked).length
+    }
   }
 
 }

@@ -9,7 +9,9 @@
 
   h2 {
     font-weight: bold;
-    margin: 15px 0 8px;
+    margin: 20px 0 15px -8px;
+    border-left: 4px solid #2196f3;
+    padding-left: 10px;
   }
 
   .top-info {
@@ -17,6 +19,11 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+
+    &.demand-user {
+      background: #f9f9f9;
+      padding: 20px 10px;
+    }
 
     img {
       width: 40px;
@@ -185,5 +192,18 @@ footer {
         width: 100%;
       }
     }
+  }
+}
+
+.audit {
+  color: rgba(0, 0, 0, .45);
+
+  &>div {
+    text-align: center;
+  }
+
+  img {
+    width: 200px;
+    margin: 40px;
   }
 }

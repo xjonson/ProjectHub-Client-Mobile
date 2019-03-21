@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { User, Msg } from 'src/app/models/User';
 import { Router } from '_@angular_router@7.2.8@@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-msg',
@@ -14,6 +15,7 @@ export class MsgComponent implements OnInit {
   constructor(
     private userSrv: UserService,
     private router: Router,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -31,9 +33,25 @@ export class MsgComponent implements OnInit {
 
   // 全部标记为已读
   allChecked() {
+    if (this.userInfo.msgs.every(msg => msg.checked)) return
     this.userInfo.msgs.forEach(msg => msg.checked = true)
     this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe(
       (user: User) => {
+        this.userInfo = user
+      }
+    )
+  }
+  delChecked() {
+    if (!this.userInfo.msgs.length) return
+    const myConfirm = confirm('删除后不可恢复，确认删除？')
+    if (!myConfirm) return
+    const arr = this.userInfo.msgs.filter(msg => !msg.checked)
+    const newUser = {
+      msgs: arr
+    }
+    this.userSrv.updateUserInfo(this.userInfo.id, newUser).subscribe(
+      (user: User) => {
+        this.snackBar.open(`删除成功`);
         this.userInfo = user
       }
     )

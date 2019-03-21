@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../models/Project';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -10,7 +11,8 @@ import { Project } from '../models/Project';
 export class ProjectService {
   projectTitle: string;
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private userSrv: UserService,
   ) { }
 
 
@@ -40,6 +42,12 @@ export class ProjectService {
   }
   // 发布项目
   addProject(data: Project) {
+    data = {
+      ...data,
+      audit: 0,
+      demand_user: Object.assign(this.userSrv.userInfo, {msgs: []})
+    }
+    console.log(data)
     return this.http.post('api/project', data)
   }
   // 更新项目 

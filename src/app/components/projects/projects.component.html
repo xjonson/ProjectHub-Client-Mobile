@@ -21,7 +21,7 @@
 </section>
 
 
-<div class="fix-add-btn" *ngIf="userInfo && userInfo.role !== 3">
+<div class="fix-add-btn" *ngIf="userSrv.userInfo && userSrv.userInfo.role !== 3">
 <!-- <div class="fix-add-btn"> -->
   <button mat-fab routerLink="/sub/project-edit/0">
     <mat-icon>add</mat-icon>

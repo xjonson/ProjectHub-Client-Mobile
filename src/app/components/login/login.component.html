@@ -16,7 +16,7 @@
       </div>
       <div class="form-item">
         <label for="password">密码</label>
-        <input type="password" name="password" [(ngModel)]="user.password" required >
+        <input type="password" name="password" [(ngModel)]="user.password" required>
       </div>
     </mat-card-content>
     <mat-card-actions class="d-flex align-items-center justify-content-between">
@@ -29,3 +29,9 @@
 
   <p class="copyright">Copyright © 2019 ProjectHub </p>
 </mat-card>
+<button mat-raised-button block color="primary" (click)="fakeLogin(1)">
+  测试用demander1登录
+</button><br>
+<button mat-raised-button block color="primary" (click)="fakeLogin(2)">
+  测试用dev1登录
+</button>

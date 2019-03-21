@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, MatOptionModule, MatGridListModule, MatProgressBarModule, MatSliderModule, MatSlideToggleModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatInputModule, MatSidenavModule, MatCardModule, MatIconModule, MatRadioModule, MatProgressSpinnerModule, MatTabsModule, MatListModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatStepperModule, MatBadgeModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, MatOptionModule, MatGridListModule, MatProgressBarModule, MatSliderModule, MatSlideToggleModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatInputModule, MatSidenavModule, MatCardModule, MatIconModule, MatRadioModule, MatProgressSpinnerModule, MatTabsModule, MatListModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatStepperModule, MatBadgeModule, MatBottomSheetModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -25,7 +25,8 @@ import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, M
     MatProgressSpinnerModule,
     MatTabsModule,
     MatListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatBottomSheetModule,
   ],
   exports: [
     MatButtonModule,
@@ -51,6 +52,7 @@ import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatChipsModule, M
     MatListModule,
     MatStepperModule,
     MatBadgeModule,
+    MatBottomSheetModule,
   ],
   providers: [
     // snack bar

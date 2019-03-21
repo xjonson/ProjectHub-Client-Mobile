@@ -17,7 +17,6 @@ import { Project } from 'src/app/models/Project';
 })
 export class ProjectEditComponent implements OnInit {
   projectForm: FormGroup;
-  userInfo: User;
   skills: []
   cycles = [
     { name: '1天', value: 1 },
@@ -41,11 +40,6 @@ export class ProjectEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userSrv.getUserInfo().subscribe(
-      (user: User) => {
-        this.userInfo = user
-      }
-    )
     // 
     this.handleGetSkills()
     this.initForm()
@@ -63,16 +57,14 @@ export class ProjectEditComponent implements OnInit {
       desc: ['', [
         Validators.required
       ]],
-      skills: [[], [
-        // Validators.required
-      ]],
-      cycle: [0, [
+      skills: [[]],
+      cycle: ['', [
         Validators.required
       ]],
       price: ['', [
         Validators.required
       ]],
-      demand_user: [this.userInfo],
+      demand_user: [''],
       status: [0],
       comments: [[]],
       create_time: [new Date()]
@@ -105,8 +97,8 @@ export class ProjectEditComponent implements OnInit {
       <p>项目发布成功！</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="true" (click)="onCancel()">取消</button>
-      <button mat-button [mat-dialog-close]="true" (click)="onOk()">查看项目</button>
+      <button mat-button (click)="onCancel()">取消</button>
+      <button mat-button [mat-dialog-close]="true" (click)="onOk()" cdkFocusInitial>查看项目</button>
     </div>
   `,
   styleUrls: ['./project-edit.component.scss']
