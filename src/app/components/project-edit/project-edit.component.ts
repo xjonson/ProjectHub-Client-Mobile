@@ -5,7 +5,7 @@ import { SkillService } from 'src/app/service/skill.service';
 import { ProjectService } from 'src/app/service/project.service';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/service/user.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Project } from 'src/app/models/Project';
@@ -106,11 +106,13 @@ export class ProjectEditComponent implements OnInit {
 export class addProjectSuccessDialog {
 
   constructor(
+    public dialogRef: MatDialogRef<addProjectSuccessDialog>,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   onCancel() {
+    this.dialogRef.close();
     this.router.navigate(['/home/projects'])
   }
   onOk() {

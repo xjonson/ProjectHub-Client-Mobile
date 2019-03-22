@@ -9,6 +9,7 @@ export interface User {
   profile: profile,
   skill: Skill[],
   msgs?: Msg[],
+  create_time: string,
 }
 
 /**

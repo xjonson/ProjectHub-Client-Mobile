@@ -18,7 +18,9 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('on init')
   }
+  
   ngDoCheck(): void {
     this.handleGetUserInfo()
   }

@@ -12,6 +12,7 @@
         "desc": "管理员"
       },
       "skill": "",
+      "create_time": "2019-03-14T05:58:31.323Z",
       "msgs": []
     },
     {
@@ -26,169 +27,8 @@
         "desc": "一个想做网站的产品经理"
       },
       "skill": "",
-      "msgs": [
-        {
-          "id": 1,
-          "project_id": 3,
-          "project_msg_id": "id0",
-          "isAction": false,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "123",
-          "checked": true,
-          "create_time": "2019-03-21T06:34:31.687Z"
-        },
-        {
-          "id": 2,
-          "project_id": 3,
-          "project_msg_id": "id1",
-          "isAction": false,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "123",
-          "checked": true,
-          "create_time": "2019-03-21T06:35:10.696Z"
-        },
-        {
-          "id": 3,
-          "project_id": 3,
-          "project_msg_id": "id2",
-          "isAction": true,
-          "action": 2,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "开发者【dev1】申请接受您的【需求2】项目",
-          "checked": true,
-          "create_time": "2019-03-21T06:38:24.789Z"
-        },
-        {
-          "id": 3,
-          "project_id": 1,
-          "project_msg_id": "id14",
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "`12",
-          "checked": true,
-          "create_time": "2019-03-21T08:02:09.871Z"
-        },
-        {
-          "id": "91",
-          "project_id": 3,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "开发者【dev1】申请更新您的【需求2】项目进度为：开发者申请验收",
-          "checked": true,
-          "create_time": "Thu Mar 21 2019 17:10:21 GMT+0800 (中国标准时间)",
-          "isAction": true,
-          "action": 2
-        },
-        {
-          "id": "101",
-          "project_id": 3,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "开发者【dev1】申请更新您的【需求2】项目进度为：开发者申请结款",
-          "checked": true,
-          "create_time": "Thu Mar 21 2019 17:11:18 GMT+0800 (中国标准时间)",
-          "isAction": true,
-          "action": 3
-        },
-        {
-          "id": "61",
-          "project_id": 1,
-          "from_user": {
-            "id": "3",
-            "role": 3,
-            "email": "dev1@ph.com",
-            "password": "123123",
-            "profile": {
-              "phone": "17864387607",
-              "name": "dev1",
-              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
-              "desc": "前端，熟练使用html、css、js......"
-            },
-            "skill": "1,2,3,4,5",
-            "msgs": []
-          },
-          "content": "开发者【dev1】申请更新您的【第一个项目】项目进度为：开发者申请接单",
-          "checked": true,
-          "create_time": "Thu Mar 21 2019 17:31:15 GMT+0800 (中国标准时间)",
-          "isAction": true,
-          "action": 1
-        }
-      ]
+      "create_time": "2019-03-14T05:58:31.323Z",
+      "msgs": []
     },
     {
       "id": "3",
@@ -202,47 +42,63 @@
         "desc": "前端，熟练使用html、css、js......"
       },
       "skill": "1,2,3,4,5",
+      "create_time": "2019-03-14T05:58:31.323Z",
       "msgs": []
     },
     {
       "email": "demand2@ph.com",
       "password": "123123",
-      "role": "2",
+      "role": 2,
       "profile": {
         "name": "demand",
         "phone": "17812344321"
       },
+      "create_time": "2019-03-14T05:58:31.323Z",
       "id": "JvoFOQK"
     },
     {
       "email": "dev2@ph.com",
       "password": "123123",
-      "role": "2",
+      "role": 3,
       "profile": {
         "name": "dev2",
         "phone": "17812312312"
       },
+      "create_time": "2019-03-14T05:58:31.323Z",
       "id": "U83ZN4m"
     },
     {
       "email": "dev3@ph.com",
       "password": "123123",
-      "role": "2",
+      "role": 3,
       "profile": {
         "name": "dev3",
         "phone": "17812312312"
       },
+      "create_time": "2019-03-14T05:58:31.323Z",
       "id": "WGUlr-8"
     },
     {
       "email": "dev4@ph.com",
       "password": "123123",
-      "role": "2",
+      "role": 3,
       "profile": {
         "name": "dev4",
         "phone": "17812312312"
       },
+      "create_time": "2019-03-21T05:58:31.323Z",
       "id": "rP2c3al"
+    },
+    {
+      "email": "demand3@ph.com",
+      "password": "123123",
+      "role": 2,
+      "profile": {
+        "name": "deman3",
+        "phone": "17812312312"
+      },
+      "create_time": "2019-03-22T05:58:31.323Z",
+      "id": "_GlVTMl"
     }
   ],
   "project": [
@@ -721,6 +577,58 @@
       "comments": [],
       "create_time": "2019-03-21T06:46:23.141Z",
       "id": 5
+    },
+    {
+      "title": "测试一下",
+      "desc": "123",
+      "skills": "2",
+      "cycle": 3,
+      "price": 123,
+      "demand_user": {
+        "id": "2",
+        "role": 2,
+        "email": "demand1@ph.com",
+        "password": "123123",
+        "profile": {
+          "phone": "17864387607",
+          "name": "demand1",
+          "avatar": "https://ws1.sinaimg.cn/large/006djfE8ly1g0u1e1lzxwj30ig0igq3o.jpg",
+          "desc": "一个想做网站的产品经理"
+        },
+        "skill": "",
+        "msgs": []
+      },
+      "status": 0,
+      "comments": [],
+      "create_time": "2019-03-22T02:26:30.983Z",
+      "audit": 0,
+      "id": 6
+    },
+    {
+      "title": "123123",
+      "desc": "123123",
+      "skills": "2",
+      "cycle": 1,
+      "price": 123,
+      "demand_user": {
+        "id": "2",
+        "role": 2,
+        "email": "demand1@ph.com",
+        "password": "123123",
+        "profile": {
+          "phone": "17864387607",
+          "name": "demand1",
+          "avatar": "https://ws1.sinaimg.cn/large/006djfE8ly1g0u1e1lzxwj30ig0igq3o.jpg",
+          "desc": "一个想做网站的产品经理"
+        },
+        "skill": "",
+        "msgs": []
+      },
+      "status": 0,
+      "comments": [],
+      "create_time": "2019-03-22T02:58:06.633Z",
+      "audit": 0,
+      "id": 7
     }
   ],
   "skill": [
@@ -748,5 +656,213 @@
       "id": 6,
       "name": "Angular.js"
     }
-  ]
+  ],
+  "dashboard": {
+    "page": [
+      {
+        "date": "2019-03-7",
+        "value": 30
+      },
+      {
+        "date": "2019-03-8",
+        "value": 20
+      },
+      {
+        "date": "2019-03-9",
+        "value": 13
+      },
+      {
+        "date": "2019-03-10",
+        "value": 19
+      },
+      {
+        "date": "2019-03-11",
+        "value": 30
+      },
+      {
+        "date": "2019-03-12",
+        "value": 20
+      },
+      {
+        "date": "2019-03-13",
+        "value": 13
+      },
+      {
+        "date": "2019-03-14",
+        "value": 19
+      },
+      {
+        "date": "2019-03-15",
+        "value": 32
+      },
+      {
+        "date": "2019-03-16",
+        "value": 21
+      },
+      {
+        "date": "2019-03-17",
+        "value": 25
+      },
+      {
+        "date": "2019-03-18",
+        "value": 40
+      },
+      {
+        "date": "2019-03-19",
+        "value": 20
+      },
+      {
+        "date": "2019-03-20",
+        "value": 19
+      },
+      {
+        "date": "2019-03-21",
+        "value": 14
+      },
+      {
+        "date": "2019-3-22",
+        "value": 3
+      }
+    ],
+    "user": [
+      {
+        "date": "2019-03-7",
+        "value": 1
+      },
+      {
+        "date": "2019-03-8",
+        "value": 2
+      },
+      {
+        "date": "2019-03-9",
+        "value": 3
+      },
+      {
+        "date": "2019-03-10",
+        "value": 3
+      },
+      {
+        "date": "2019-03-11",
+        "value": 3
+      },
+      {
+        "date": "2019-03-11",
+        "value": 3
+      },
+      {
+        "date": "2019-03-12",
+        "value": 3
+      },
+      {
+        "date": "2019-03-13",
+        "value": 3
+      },
+      {
+        "date": "2019-03-14",
+        "value": 3
+      },
+      {
+        "date": "2019-03-15",
+        "value": 3
+      },
+      {
+        "date": "2019-03-16",
+        "value": 4
+      },
+      {
+        "date": "2019-03-17",
+        "value": 5
+      },
+      {
+        "date": "2019-03-18",
+        "value": 5
+      },
+      {
+        "date": "2019-03-19",
+        "value": 5
+      },
+      {
+        "date": "2019-03-20",
+        "value": 5
+      },
+      {
+        "date": "2019-03-21",
+        "value": 6
+      },
+      {
+        "date": "2019-3-22",
+        "value": 8
+      }
+    ],
+    "project": [
+      {
+        "date": "2019-03-7",
+        "value": 1
+      },
+      {
+        "date": "2019-03-8",
+        "value": 2
+      },
+      {
+        "date": "2019-03-9",
+        "value": 2
+      },
+      {
+        "date": "2019-03-10",
+        "value": 2
+      },
+      {
+        "date": "2019-03-11",
+        "value": 2
+      },
+      {
+        "date": "2019-03-11",
+        "value": 2
+      },
+      {
+        "date": "2019-03-12",
+        "value": 2
+      },
+      {
+        "date": "2019-03-13",
+        "value": 2
+      },
+      {
+        "date": "2019-03-14",
+        "value": 2
+      },
+      {
+        "date": "2019-03-15",
+        "value": 2
+      },
+      {
+        "date": "2019-03-16",
+        "value": 2
+      },
+      {
+        "date": "2019-03-17",
+        "value": 2
+      },
+      {
+        "date": "2019-03-18",
+        "value": 2
+      },
+      {
+        "date": "2019-03-19",
+        "value": 3
+      },
+      {
+        "date": "2019-03-20",
+        "value": 4
+      },
+      {
+        "date": "2019-03-21",
+        "value": 4
+      },
+      {
+        "date": "2019-3-22",
+        "value": 6
+      }
+    ]
+  }
 }

@@ -60,7 +60,8 @@ export class RegisterComponent implements OnInit {
           Validators.required,
         ]]
       }, { validator: passwordEqulaValidator }),
-      role: ['2', [Validators.required]],
+      role: [3, [Validators.required]],
+      create_time: [new Date()],
       profile: this.fb.group({
         name: ['dev2', [
           Validators.required,
