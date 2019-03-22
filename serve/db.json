@@ -8,7 +8,7 @@
       "profile": {
         "phone": "",
         "name": "admin",
-        "avatar": "",
+        "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
         "desc": "管理员"
       },
       "skill": "",
@@ -28,7 +28,55 @@
       },
       "skill": "",
       "create_time": "2019-03-14T05:58:31.323Z",
-      "msgs": []
+      "msgs": [
+        {
+          "id": 0,
+          "project_id": 3,
+          "project_msg_id": "id3",
+          "from_user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "create_time": "2019-03-14T05:58:31.323Z",
+            "msgs": []
+          },
+          "content": "123123",
+          "checked": true,
+          "create_time": "2019-03-22T07:08:47.595Z"
+        },
+        {
+          "id": "11",
+          "project_id": 8,
+          "from_user": {
+            "id": "1",
+            "role": 1,
+            "email": "admin@ph.com",
+            "password": "admin",
+            "profile": {
+              "phone": "",
+              "name": "admin",
+              "avatar": "",
+              "desc": "管理员"
+            },
+            "skill": [],
+            "create_time": "2019-03-14T05:58:31.323Z",
+            "msgs": []
+          },
+          "content": "您的【项目】项目审核通过",
+          "checked": false,
+          "create_time": "Fri Mar 22 2019 15:20:39 GMT+0800 (中国标准时间)",
+          "isAction": true,
+          "action": 0
+        }
+      ]
     },
     {
       "id": "3",
@@ -507,6 +555,26 @@
           },
           "create_time": "2019-03-21T06:38:24.743Z",
           "content": "123"
+        },
+        {
+          "id": "id3",
+          "user": {
+            "id": "3",
+            "role": 3,
+            "email": "dev1@ph.com",
+            "password": "123123",
+            "profile": {
+              "phone": "17864387607",
+              "name": "dev1",
+              "avatar": "http://ww1.sinaimg.cn/large/006djfE8ly1g0t8rraqgvj30jw0jm76g.jpg",
+              "desc": "前端，熟练使用html、css、js......"
+            },
+            "skill": "1,2,3,4,5",
+            "create_time": "2019-03-14T05:58:31.323Z",
+            "msgs": []
+          },
+          "create_time": "2019-03-22T07:08:47.562Z",
+          "content": "123123"
         }
       ],
       "create_time": "2019-03-20T07:50:59.671Z",
@@ -629,6 +697,33 @@
       "create_time": "2019-03-22T02:58:06.633Z",
       "audit": 0,
       "id": 7
+    },
+    {
+      "title": "项目",
+      "desc": "123123",
+      "skills": "1",
+      "cycle": 1,
+      "price": 123,
+      "demand_user": {
+        "id": "2",
+        "role": 2,
+        "email": "demand1@ph.com",
+        "password": "123123",
+        "profile": {
+          "phone": "17864387607",
+          "name": "demand1",
+          "avatar": "https://ws1.sinaimg.cn/large/006djfE8ly1g0u1e1lzxwj30ig0igq3o.jpg",
+          "desc": "一个想做网站的产品经理"
+        },
+        "skill": "",
+        "create_time": "2019-03-14T05:58:31.323Z",
+        "msgs": []
+      },
+      "status": 0,
+      "comments": [],
+      "create_time": "2019-03-22T07:09:07.875Z",
+      "audit": 1,
+      "id": 8
     }
   ],
   "skill": [
@@ -721,7 +816,7 @@
       },
       {
         "date": "2019-3-22",
-        "value": 3
+        "value": 7
       }
     ],
     "user": [
@@ -861,7 +956,7 @@
       },
       {
         "date": "2019-3-22",
-        "value": 6
+        "value": 7
       }
     ]
   }

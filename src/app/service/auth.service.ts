@@ -60,6 +60,7 @@ export class AuthService {
   // 登出
   logout() {
     this.loginState = false
+    this.cookieSrv.delCookie('ph-user')
     this.router.navigateByUrl('/sub/login')
   }
 
