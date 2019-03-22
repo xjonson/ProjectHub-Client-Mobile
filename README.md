@@ -34,7 +34,7 @@ cd ProjectHub-Client
 ```
 
 ```bash
-npm install  # 或 cnpm install
+npm install
 ```
 
 ```bash
