@@ -21,7 +21,7 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
-    this.pageViewCount()
+    // this.pageViewCount()
 
   }
   pageViewCount() {

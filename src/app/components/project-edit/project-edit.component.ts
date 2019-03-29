@@ -9,6 +9,7 @@ import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Project } from 'src/app/models/Project';
+import { ResTpl } from 'src/app/models/ResTpl';
 
 @Component({
   selector: 'app-project-edit',
@@ -51,23 +52,19 @@ export class ProjectEditComponent implements OnInit {
   }
   initForm() {
     this.projectForm = this.fb.group({
-      title: ['', [
+      title: ['项目', [
         Validators.required
       ]],
-      desc: ['', [
+      desc: ['123', [
         Validators.required
       ]],
       skills: [[]],
-      cycle: ['', [
+      cycle: ['12', [
         Validators.required
       ]],
-      price: ['', [
+      price: ['2', [
         Validators.required
-      ]],
-      demand_user: [''],
-      status: [0],
-      comments: [[]],
-      create_time: [new Date()]
+      ]]
     })
   }
   onSubmit() {
@@ -75,11 +72,10 @@ export class ProjectEditComponent implements OnInit {
     if (data.skills) {
       data.skills = data.skills.join(',')
     }
-    this.projectSrv.addProject(data).subscribe((project: Project) => {
+    this.projectSrv.addProject(data).subscribe((res: ResTpl) => {
+      console.log('res: ', res);
       this.dialog.open(addProjectSuccessDialog, {
-        data: {
-          id: project.id
-        }
+        data: res.data
       });
     })
   }
@@ -116,7 +112,8 @@ export class addProjectSuccessDialog {
     this.router.navigate(['/home/projects'])
   }
   onOk() {
-    this.router.navigate(['/sub/project', this.data.id], {
+    console.log('this.id: ', this.data);
+    this.router.navigate(['/sub/project', this.data._id], {
       replaceUrl: true
     })
   }

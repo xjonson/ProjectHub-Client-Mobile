@@ -3,7 +3,7 @@ import { User } from './User';
 
 // 项目
 export interface Project {
-  id: string,
+  _id: string,
   demand_user: Partial<User>,
   dev_user: Partial<User>,
   avatar?: string,
@@ -22,7 +22,7 @@ export interface Project {
  * @description 项目评论
  */
 export interface Comment {
-  id: string, 
+  _id: string, 
   user: Partial<User>,
   create_time: string,
   content: string

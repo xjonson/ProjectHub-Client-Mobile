@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('on init')
+    
   }
   
   ngDoCheck(): void {
@@ -26,10 +26,7 @@ export class HomePageComponent implements OnInit {
   }
   // 获取未读信息数量
   handleGetUserInfo() {
-    this.userInfo = this.userSrv.userInfo
-    if (this.userInfo && this.userInfo.msgs) {
-      this.newMsg = this.userInfo.msgs.filter(msg => !msg.checked).length
-    }
+    
   }
 
 }

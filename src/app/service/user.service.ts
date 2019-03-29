@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
 import { map, switchMap, tap } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { CookieService } from './cookie.service';
+import { ResTpl } from '../models/ResTpl';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -13,45 +14,36 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private cookieSrv: CookieService,
+    public snackBar: MatSnackBar,
   ) { }
 
   // 用户注册
   register(user: Partial<User>): Observable<any> {
-    // 查询邮箱是否已被注册
-    return this.http.get('/api/user').pipe(
-      switchMap(
-        (users: User[]) => {
-          if (users.some(u => u.email === user.email)) {
-            alert('此邮箱已被注册')
-            return new Observable(null)
-          } else {
-            return this.http.post('/api/user', user)
-          }
-        },
-        (firstHTTPResult, secondHTTPResult) => {
-          console.log('secondHTTPResult: ', secondHTTPResult);
-          console.log('firstHTTPResult: ', firstHTTPResult);
-          return secondHTTPResult
-        }
-      )
-    )
+    return this.http.post('/api/user/register', user)
+  }
+
+  // 用户登录
+  login(user: Partial<User>): Observable<any> {
+    return this.http.post('/api/user/login', user)
   }
 
   setUserInfo(user: User) {
     this.userInfo = user
   }
 
-  // 获取用户信息 默认是当前登录用户
-  getUserInfo(id: string = (this.userInfo && this.userInfo.id)) {
-    if (!id) id = this.cookieSrv.getCookie('ph-user')
-    return this.http.get(`/api/user/${id}`).pipe(
-      tap(
-        (user: User) => {
-          if(!this.userInfo || id === this.userInfo.id) this.userInfo = user
-        }
+  // 获取用户信息
+  getUserInfo(id?: string) {
+    if (id) {
+      return this.http.get(`/api/user/${id}`)
+    } else {
+      return this.http.get(`/api/user`).pipe(
+        tap((res: ResTpl) => {
+          if(res.code === 0) {
+            this.userInfo = res.data
+          }
+        })
       )
-    )
+    }
   }
 
   // 更新信息
@@ -59,7 +51,7 @@ export class UserService {
     return this.http.patch(`api/user/${id}`, data).pipe(
       tap(
         (user: User) => {
-          if(!this.userInfo || id === this.userInfo.id) this.userInfo = user
+          if (!this.userInfo || id === this.userInfo._id) this.userInfo = user
         }
       )
     )

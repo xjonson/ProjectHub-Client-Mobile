@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
-import { User, Msg } from 'src/app/models/User';
+import { User } from 'src/app/models/User';
 import { Router } from '_@angular_router@7.2.8@@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { ProjectService } from 'src/app/service/project.service';
 import { Project } from 'src/app/models/Project';
+import { Msg } from 'src/app/models/Msg';
+import { MsgService } from 'src/app/service/msg.service';
+import { ResTpl } from 'src/app/models/ResTpl';
 
 @Component({
   selector: 'app-msg',
@@ -19,51 +22,35 @@ export class MsgComponent implements OnInit {
     private router: Router,
     public snackBar: MatSnackBar,
     private projectSrv: ProjectService,
+    private msgSrv: MsgService,
   ) { }
 
   ngOnInit() {
-    this.handleGetUserInfo()
+    this.handleGetMsgs()
   }
 
   // 获取未读信息数量
-  handleGetUserInfo() {
-    this.userSrv.getUserInfo().subscribe(
-      (user: User) => {
-        this.userInfo = user
+  handleGetMsgs() {
+    this.msgSrv.getMsgs().subscribe(
+      (res: ResTpl) => {
+        console.log('res: ', res);
+
       }
     )
   }
 
   // 全部标记为已读
   allChecked() {
-    if (this.userInfo.msgs.every(msg => msg.checked)) return
-    this.userInfo.msgs.forEach(msg => msg.checked = true)
-    this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe(
-      (user: User) => {
-        this.userInfo = user
-      }
-    )
+    
   }
   // 删除已读
   delChecked() {
-    if (!this.userInfo.msgs.length) return
-    const myConfirm = confirm('删除后不可恢复，确认删除？')
-    if (!myConfirm) return
-    const arr = this.userInfo.msgs.filter(msg => !msg.checked)
-    const newUser = {
-      msgs: arr
-    }
-    this.userSrv.updateUserInfo(this.userInfo.id, newUser).subscribe(
-      (user: User) => {
-        this.snackBar.open(`删除成功`);
-        this.userInfo = user
-      }
-    )
+    
   }
   // 标记为已读并跳转到项目
   navigateToProject(msg: Msg): void {
     msg.checked = true
-    this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe(
+    this.userSrv.updateUserInfo(this.userInfo._id, this.userInfo).subscribe(
       () => {
         this.router.navigate(['/sub/project', msg.project_id], {
           queryParams: { project_msg_id: msg.project_msg_id }
@@ -92,14 +79,10 @@ export class MsgComponent implements OnInit {
       )
     } else {
       // 删除取消处理的
-      this.userInfo.msgs.forEach((item, index) => {
-        if (item.id === msg.id) {
-          this.userInfo.msgs.splice(index, 1)
-        }
-      })
+      
     }
     msg.checked = true
-    this.userSrv.updateUserInfo(this.userInfo.id, this.userInfo).subscribe()
+    this.userSrv.updateUserInfo(this.userInfo._id, this.userInfo).subscribe()
 
 
   }

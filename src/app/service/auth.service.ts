@@ -5,8 +5,6 @@ import { Observable, of } from 'rxjs';
 import { User } from '../models/User';
 import { Location } from '@angular/common';
 import { UserService } from './user.service';
-import { tap, catchError, map } from 'rxjs/operators';
-import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,62 +17,28 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
-    public cookieSrv: CookieService,
     private router: Router,
   ) {
     // 查看cookie中是否有登录信息
-    this.userid = this.cookieSrv.getCookie('ph-user')
-    console.log('userid: ', this.userid);
-    this.userSrv.getUserInfo(this.userid).subscribe(
-      (user: User) => {
-        console.log('login')
-        this.login(user).subscribe()
-      }
-    )
-  }
-
-  // 登录
-  login(loginForm: Partial<User>): Observable<User[]> {
-    console.log('loginForm: ', loginForm);
-    const params = new HttpParams().set("email", loginForm.email)
-    return this.http.get<User[]>(`/api/user`, { params })
-      .pipe(
-        map((users: User[]) => {
-          // 检测账户名
-          if (users && users.length === 1) {
-            const user = users[0]
-            // 检测密码
-            if (user.password === loginForm.password) {
-              this.loginState = true
-              this.userSrv.setUserInfo(user)
-              return users
-            }
-          }
-          alert('账户或密码错误')
-          throw new Error('账户或密码错误');
-        }),
-        catchError(this.handleError<User[]>('', []))
+    if (localStorage.getItem('ph-token')) {
+      this.userSrv.getUserInfo().subscribe(
+        (user: User) => {
+          this.loginState = true
+          console.log('login')
+          // this.userSrv.login(user).subscribe()
+        }
       )
+    }
   }
 
-  // 登出
-  logout() {
-    this.loginState = false
-    this.cookieSrv.delCookie('ph-user')
-    this.router.navigateByUrl('/sub/login')
-  }
 
   // 获取登录状态
   getAuthState(): boolean {
     return this.loginState
   }
 
-  // catch Error
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      return of(result as T);
-    };
+  logout() {
+
   }
 }
 
@@ -88,11 +52,12 @@ export class AuthGuard implements CanActivate {
   constructor(
     private authSrv: AuthService,
     private router: Router,
+    private userSrv: UserService,
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // 如果已登录，不守卫
-    if (this.authSrv.getAuthState() || this.authSrv.userid) return true
+    if (this.authSrv.getAuthState() || this.userSrv.userInfo) return true
     // 分割出params，不然会报错
     const redirectUrl: string = state.url.split('?')[0]
     // 保存进入前的路由

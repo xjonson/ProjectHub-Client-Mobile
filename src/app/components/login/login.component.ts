@@ -3,7 +3,9 @@ import { AuthService } from 'src/app/service/auth.service';
 import { User } from 'src/app/models/User';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { CookieService } from 'src/app/service/cookie.service';
+import { UserService } from 'src/app/service/user.service';
+import { ResTpl } from 'src/app/models/ResTpl';
+// import { CookieService } from 'src/app/service/cookie.service';
 
 
 @Component({
@@ -13,31 +15,33 @@ import { CookieService } from 'src/app/service/cookie.service';
 })
 export class LoginComponent implements OnInit {
   user: Partial<User> = {
-    email: '',
-    password: '',
+    email: 'dev1@ph.com',
+    password: '123123',
   }
 
   constructor(
     private authSrv: AuthService,
+    private userSrv: UserService,
     private router: Router,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar,
-    public cookieSrv: CookieService,
   ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.authSrv.login(this.user).subscribe((users: User[]) => {
-      if (users.length) {
-        const user = users[0]
-        this.cookieSrv.setCookie('ph-user', user.id, 24 * 60 * 60)
+    this.userSrv.login(this.user).subscribe((resTpl: ResTpl) => {
+      if (resTpl.code === 0) {
+        const user = resTpl.data
+        localStorage.setItem('ph-token', user.token)
         this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
         // 重定向到授权前的路由
         this.router.navigate([this.authSrv.redirectUrl], {
           replaceUrl: true,
         })
+      } else {
+        this.snackBar.open(resTpl.msg)
       }
     })
   }
@@ -47,15 +51,17 @@ export class LoginComponent implements OnInit {
       email: i === 1 ? 'demand1@ph.com' : 'dev1@ph.com',
       password: '123123',
     }
-    this.authSrv.login(user).subscribe((users: User[]) => {
-      if (users.length) {
-        const user = users[0]
-        this.cookieSrv.setCookie('ph-user', user.id, 24 * 60 * 60)
+    this.userSrv.login(user).subscribe((resTpl: ResTpl) => {
+      if (resTpl.code === 0) {
+        const user = resTpl.data
+        localStorage.setItem('ph-token', user.token)
         this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
         // 重定向到授权前的路由
         this.router.navigate([this.authSrv.redirectUrl], {
           replaceUrl: true,
         })
+      } else {
+        this.snackBar.open(resTpl.msg)
       }
     })
 

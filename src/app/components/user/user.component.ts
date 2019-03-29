@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { tap, map } from 'rxjs/operators';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ResTpl } from 'src/app/models/ResTpl';
 
 @Component({
   selector: 'app-user',
@@ -43,8 +44,8 @@ export class UserComponent implements OnInit {
         if (id) this.selfProfile = false
         // 获取用户信息
         this.userSrv.getUserInfo(id).subscribe(
-          (user: User) => {
-            this.userInfo = user
+          (res: ResTpl) => {
+            this.userInfo = res.data
           }
         )
       }
@@ -105,7 +106,7 @@ export class BottomSheetOverviewExampleSheet {
     const newUser: Partial<User> = {
       password: this.pwdFrom.value.newPwd
     }
-    this.userSrv.updateUserInfo(this.userSrv.userInfo.id, newUser).subscribe(
+    this.userSrv.updateUserInfo(this.userSrv.userInfo._id, newUser).subscribe(
       () => {
         alert('修改成功，请重新登录')
         this.authSrv.logout()

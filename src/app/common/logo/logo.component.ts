@@ -12,6 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styles: [
     `
     div{
+      display: none;
       text-align: center;
     }
     img {

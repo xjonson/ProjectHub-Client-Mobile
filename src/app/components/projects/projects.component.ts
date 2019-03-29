@@ -4,6 +4,7 @@ import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { ResTpl } from 'src/app/models/ResTpl';
 
 @Component({
   selector: 'app-projects',
@@ -25,12 +26,13 @@ export class ProjectsComponent implements OnInit {
 
   handleGetProjects() {
     this.projectSrv.getProjects().subscribe(
-      (val: Project[]) => {
-        // console.log(val);
-        this.projects = val.filter(item => {
-          item.desc = item.desc.substr(0, 100) + '...'
-          return item.audit === 1
-        })
+      (res: ResTpl) => {
+        if (res.code === 0) {
+          this.projects = res.data.filter(item => {
+            item.desc = item.desc.substr(0, 100) + '...'
+            return item.audit === 1
+          })
+        }
       }
     )
   }

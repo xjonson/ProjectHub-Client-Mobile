@@ -1,7 +1,11 @@
-<section class="projs">
-  <div class="proj-item" *ngFor="let item of projects" [routerLink]="[ '/sub/project', item.id ]">
+<section class="projs"
+  *ngIf="projects?.length; else NoProject">
+  <div class="proj-item"
+    *ngFor="let item of projects"
+    [routerLink]="[ '/sub/project', item._id ]">
     <div class="top-info">
-      <img *ngIf="item.demand_user.profile.avatar as avatar; else defaultAvatar" [src]="avatar">
+      <img *ngIf="item.demand_user.profile.avatar as avatar; else defaultAvatar"
+        [src]="avatar">
       <ng-template #defaultAvatar>
         <img src="../../../assets/image/shield-large.svg">
       </ng-template>
@@ -15,15 +19,21 @@
       <a>阅读全文</a>
     </div>
     <mat-chip-list>
-      <mat-chip color="{{ item.status | projectColor }}" selected>{{ item.status | projectStatus }}</mat-chip>
+      <mat-chip color="{{ item.status | projectColor }}"
+        selected>{{ item.status | projectStatus }}</mat-chip>
     </mat-chip-list>
   </div>
 </section>
 
+<ng-template #NoProject>
+  <p class="mt-5 text-center">还没有项目~</p>
+</ng-template>
 
-<div class="fix-add-btn" *ngIf="userSrv.userInfo && userSrv.userInfo.role !== 3">
-<!-- <div class="fix-add-btn"> -->
-  <button mat-fab routerLink="/sub/project-edit/0">
+<div class="fix-add-btn"
+  *ngIf="userSrv.userInfo && userSrv.userInfo.role !== 3">
+  <!-- <div class="fix-add-btn"> -->
+  <button mat-fab
+    routerLink="/sub/project-edit/0">
     <mat-icon>add</mat-icon>
   </button>
 </div>

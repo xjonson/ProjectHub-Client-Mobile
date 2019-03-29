@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../models/Project';
+import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import { map, tap } from 'rxjs/operators';
+import { ResTpl } from '../models/ResTpl';
+import { MatSnackBar } from '@angular/material';
 
 
 @Injectable({
@@ -13,12 +16,17 @@ export class ProjectService {
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
+    public snackBar: MatSnackBar,
   ) { }
 
 
   // 获取全部project
   getProjects(): Observable<any> {
-    return this.http.get('api/project')
+    return this.http.get('api/project').pipe(
+      tap((res: ResTpl) => {
+        this.snackBar.open(res.msg);
+      })
+    )
   }
 
   // 获取单个project详情
@@ -42,16 +50,14 @@ export class ProjectService {
   }
   // 发布项目
   addProject(data: Project) {
-    data = {
-      ...data,
-      audit: 0,
-      demand_user: Object.assign(this.userSrv.userInfo, {msgs: []})
-    }
-    console.log(data)
     return this.http.post('api/project', data)
   }
   // 更新项目 
-  updateProject(id: string, data: Partial<Project>) {
-    return this.http.patch(`api/project/${id}`, data)
+  updateProject(id: string, data: Partial<Project> | any) {
+    return this.http.patch(`api/project/${id}`, data).pipe(
+      tap((res: ResTpl) => {
+        this.snackBar.open(res.msg);
+      })
+    )
   }
 }

@@ -14,7 +14,7 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './common/logo/logo.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProjectStatusPipe, ProjectStatusPipeText, ProjectColorPipe } from './pipes/project.pipe';
 import { ArrayPipe } from './pipes/common.pipe';
 import { SkillPipe } from './pipes/skill.pipe';
@@ -27,6 +27,7 @@ import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { SkillService } from './service/skill.service';
 import { ProjectService } from './service/project.service';
+import { AuthInterceptor } from './service/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ProjectService } from './service/project.service';
     UserService,
     ProjectService,
     SkillService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

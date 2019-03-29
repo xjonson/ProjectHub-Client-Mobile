@@ -81,17 +81,14 @@ export class RegisterComponent implements OnInit {
     const newUser = {
       email: formData.email,
       password: formData.pwd.password,
+      password2: formData.pwd.password2,
       role: formData.role,
       profile: formData.profile,
     }
     this.userSrv.register(newUser).subscribe(res => {
-      console.log('res: ', res);
-      if (res) {
-        alert('注册成功！')
+      this.snackBar.open(res.msg);
+      if (res.code === 0) {
         this.router.navigate(['sub/login'])
-      } else {
-        // 注册失败
-        alert('注册失败！')
       }
     })
   }
