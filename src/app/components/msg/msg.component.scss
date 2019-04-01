@@ -1,12 +1,32 @@
-mat-tab-group {
+.msg-wrap {
   margin: -10px -1rem 0;
-
 }
+
 mat-list {
   a.mat-list-item {
     background-color: #fff;
-    &.checked{
-      background-color: #eee;
+
+    &.checked {
+      background-color: #f9f9f9;
     }
+  }
+}
+
+mat-expansion-panel,
+mat-expansion-panel-header {
+  &.checked {
+    background-color: #f9f9f9;
+  }
+}
+
+mat-expansion-panel-header {
+  line-height: 40px;
+  padding: 6px 16px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
   }
 }

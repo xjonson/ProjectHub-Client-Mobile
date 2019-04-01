@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
-import { User } from 'src/app/models/User';
-import { AuthService } from 'src/app/service/auth.service';
+import { MsgService } from 'src/app/service/msg.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,24 +7,12 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  newMsg: number;
-  userInfo: User;
 
   constructor(
-    private userSrv: UserService,
-    private authSrv: AuthService,
+    public msgSrv: MsgService,
   ) { }
 
   ngOnInit() {
     
   }
-  
-  ngDoCheck(): void {
-    this.handleGetUserInfo()
-  }
-  // 获取未读信息数量
-  handleGetUserInfo() {
-    
-  }
-
 }

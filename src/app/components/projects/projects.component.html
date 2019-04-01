@@ -4,11 +4,8 @@
     *ngFor="let item of projects"
     [routerLink]="[ '/sub/project', item._id ]">
     <div class="top-info">
-      <img *ngIf="item.demand_user.profile.avatar as avatar; else defaultAvatar"
+      <img *ngIf="item.demand_user.profile.avatar as avatar"
         [src]="avatar">
-      <ng-template #defaultAvatar>
-        <img src="../../../assets/image/shield-large.svg">
-      </ng-template>
       <div class="text">
         <h6>{{item.title}}</h6>
         <p>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>

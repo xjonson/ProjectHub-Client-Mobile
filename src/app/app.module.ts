@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './material.module';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { UserComponent, BottomSheetOverviewExampleSheet } from './components/user/user.component';
+import {
+  UserComponent, ChangePwdBottomSheet, ChangeInfoBottomSheet,
+} from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
@@ -28,6 +30,7 @@ import { UserService } from './service/user.service';
 import { SkillService } from './service/skill.service';
 import { ProjectService } from './service/project.service';
 import { AuthInterceptor } from './service/AuthInterceptor';
+import { UploadService } from './service/upload.service';
 
 @NgModule({
   declarations: [
@@ -50,11 +53,13 @@ import { AuthInterceptor } from './service/AuthInterceptor';
     UserRolePipe,
     MsgComponent,
     addProjectSuccessDialog,
-    BottomSheetOverviewExampleSheet,
+    ChangePwdBottomSheet,
+    ChangeInfoBottomSheet,
   ],
   entryComponents: [
     addProjectSuccessDialog,
-    BottomSheetOverviewExampleSheet,
+    ChangePwdBottomSheet,
+    ChangeInfoBottomSheet,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,7 @@ import { AuthInterceptor } from './service/AuthInterceptor';
     UserService,
     ProjectService,
     SkillService,
+    UploadService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

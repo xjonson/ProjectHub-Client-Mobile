@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ProjectService } from 'src/app/service/project.service';
 import { ViewportScroller } from '@angular/common';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sub-page',
@@ -26,7 +27,9 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
     private elementRef: ElementRef,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // this.handleScroll();
+  }
 
 
   ngAfterViewChecked() {
@@ -50,22 +53,30 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
   back() {
     history.back()
   }
-  
+
   // 处理滚动
   handleScroll() {
-    const eleId = this.route.snapshot.queryParams.project_msg_id
-    const target = this.elementRef.nativeElement.querySelector(`#${eleId}`)
-    
-    if (target) {
-      const top = target && target.offsetTop
-      try {
-        this.scrollContainer.nativeElement.scrollTo({
-          top: top - (window.innerHeight - 142), // 减去像素，正好滚动到评论栏上面
-          behavior: "smooth"
-        })
-      } catch (err) {
-        console.log('err: ', err);
+    this.route.queryParams.pipe(
+      map(
+        val => {
+          return val.project_comment_id
+        }
+      )
+    ).subscribe(
+      eleId => {
+        const target = this.elementRef.nativeElement.querySelector(`#id-${eleId}`)
+        if (target) {
+          const top = target && target.offsetTop
+          try {
+            this.scrollContainer.nativeElement.scrollTo({
+              top: top - (window.innerHeight - 142), // 减去像素，正好滚动到评论栏上面
+              behavior: "smooth"
+            })
+          } catch (err) {
+            console.log('err: ', err);
+          }
+        }
       }
-    }
+    )
   }
 }

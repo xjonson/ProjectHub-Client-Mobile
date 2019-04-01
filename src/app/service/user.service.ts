@@ -24,7 +24,15 @@ export class UserService {
 
   // 用户登录
   login(user: Partial<User>): Observable<any> {
-    return this.http.post('/api/user/login', user)
+    return this.http.post('/api/user/login', user).pipe(
+      tap(
+        (res: ResTpl) => {
+          if (res.code === 0) {
+            this.setUserInfo(res.data)
+          }
+        }
+      )
+    )
   }
 
   setUserInfo(user: User) {
@@ -38,7 +46,7 @@ export class UserService {
     } else {
       return this.http.get(`/api/user`).pipe(
         tap((res: ResTpl) => {
-          if(res.code === 0) {
+          if (res.code === 0) {
             this.userInfo = res.data
           }
         })
@@ -47,11 +55,28 @@ export class UserService {
   }
 
   // 更新信息
-  updateUserInfo(id: string, data: Partial<User>) {
-    return this.http.patch(`api/user/${id}`, data).pipe(
+  updateUserInfo(data: Partial<User>) {
+    return this.http.patch(`api/user/${this.userInfo._id}`, data).pipe(
       tap(
-        (user: User) => {
-          if (!this.userInfo || id === this.userInfo._id) this.userInfo = user
+        (res: ResTpl) => {
+          this.snackBar.open(res.msg)
+          if (res.code === 0) this.userInfo = res.data
+        }
+      )
+    )
+  }
+
+  // 修改密码
+  updatePassword(oldPwd, newPwd) {
+    const data = {
+      oldPwd,
+      newPwd
+    }
+    return this.http.patch(`api/user/password/${'updatePassword'}`, data).pipe(
+      tap(
+        (res: ResTpl) => {
+          this.snackBar.open(res.msg)
+          console.log('res: ', res);
         }
       )
     )

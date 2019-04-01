@@ -15,7 +15,8 @@ export interface Project {
   price: number,
   status: Status,
   comments: Comment[]
-  audit: Audit
+  audit: Audit,
+  applyList?: [],
 }
 
 /**

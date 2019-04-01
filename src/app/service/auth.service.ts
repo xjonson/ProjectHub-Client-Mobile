@@ -38,7 +38,11 @@ export class AuthService {
   }
 
   logout() {
-
+    const myConfirm = confirm('确定退出登录？')
+    if (myConfirm) {
+      localStorage.removeItem('ph-token')
+      this.router.navigate(['sub/login'])
+    }
   }
 }
 
@@ -57,7 +61,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // 如果已登录，不守卫
-    if (this.authSrv.getAuthState() || this.userSrv.userInfo) return true
+    if (localStorage.getItem('ph-token') || this.authSrv.getAuthState() || this.userSrv.userInfo) return true
     // 分割出params，不然会报错
     const redirectUrl: string = state.url.split('?')[0]
     // 保存进入前的路由

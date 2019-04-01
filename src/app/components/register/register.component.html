@@ -50,7 +50,7 @@
         <!-- 昵称 -->
         <div class="form-item">
           <label>昵 称</label>
-          <input type="text" formControlName="name" required maxlength="6" placeholder="请输入昵称，不得大于6个字符">
+          <input type="text" formControlName="name" required maxlength="10" placeholder="请输入昵称，不得大于10个字符">
         </div>
         <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
           <div *ngIf="name.getError('required')">

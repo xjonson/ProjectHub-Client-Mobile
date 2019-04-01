@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { map, tap } from 'rxjs/operators';
 import { ResTpl } from '../models/ResTpl';
 import { MatSnackBar } from '@angular/material';
+import { User } from '../models/User';
 
 
 @Injectable({
@@ -32,6 +33,11 @@ export class ProjectService {
   // 获取单个project详情
   getProject(id: string): Observable<any> {
     return this.http.get(`api/project/${id}`)
+    // .pipe(
+    //   tap((res: ResTpl) => {
+    //     this.snackBar.open(res.msg);
+    //   })
+    // )
   }
   // 设置title
   setTitle(title: string): void {
@@ -52,9 +58,32 @@ export class ProjectService {
   addProject(data: Project) {
     return this.http.post('api/project', data)
   }
-  // 更新项目 
-  updateProject(id: string, data: Partial<Project> | any) {
-    return this.http.patch(`api/project/${id}`, data).pipe(
+  // 更新项目信息
+  updateProject(pid: string, data: any) {
+    return this.http.patch(`api/project/${pid}`, data).pipe(
+      tap((res: ResTpl) => {
+        this.snackBar.open(res.msg);
+      })
+    )
+  }
+  // 更新项目评论
+  addProjectComment(pid: string, content: string) {
+    const obj = {
+      content
+    }
+    return this.http.patch(`api/project/${pid}`, obj).pipe(
+      tap((res: ResTpl) => {
+        this.snackBar.open(res.msg);
+      })
+    )
+  }
+  // 更新项目状态
+  updateProjectStatus(pid: string, status: number, dev_user: Partial<User>) {
+    const obj = {
+      status,
+      dev_user,
+    }
+    return this.http.patch(`api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
         this.snackBar.open(res.msg);
       })

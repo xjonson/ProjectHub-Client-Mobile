@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: ['dev2@ph.com', [
+      email: ['dev1@ph.com', [
         Validators.required,
         Validators.email
       ]],
@@ -63,9 +63,9 @@ export class RegisterComponent implements OnInit {
       role: [3, [Validators.required]],
       create_time: [new Date()],
       profile: this.fb.group({
-        name: ['dev2', [
+        name: ['dev1', [
           Validators.required,
-          Validators.maxLength(6)
+          Validators.maxLength(10)
         ]],
         phone: ['17812312312', [
           Validators.required,
