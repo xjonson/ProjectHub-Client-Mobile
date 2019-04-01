@@ -31,6 +31,7 @@ import { SkillService } from './service/skill.service';
 import { ProjectService } from './service/project.service';
 import { AuthInterceptor } from './service/AuthInterceptor';
 import { UploadService } from './service/upload.service';
+import { MsgService } from './service/msg.service';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { UploadService } from './service/upload.service';
     ProjectService,
     SkillService,
     UploadService,
+    MsgService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

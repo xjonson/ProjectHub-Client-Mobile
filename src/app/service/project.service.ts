@@ -39,6 +39,7 @@ export class ProjectService {
     //   })
     // )
   }
+
   // 设置title
   setTitle(title: string): void {
     this.projectTitle = title
@@ -54,10 +55,12 @@ export class ProjectService {
       return { unsubscribe() { } };
     })
   }
+
   // 发布项目
   addProject(data: Project) {
     return this.http.post('api/project', data)
   }
+
   // 更新项目信息
   updateProject(pid: string, data: any) {
     return this.http.patch(`api/project/${pid}`, data).pipe(
@@ -66,6 +69,7 @@ export class ProjectService {
       })
     )
   }
+
   // 更新项目评论
   addProjectComment(pid: string, content: string) {
     const obj = {
@@ -77,6 +81,7 @@ export class ProjectService {
       })
     )
   }
+  
   // 更新项目状态
   updateProjectStatus(pid: string, status: number, dev_user: Partial<User>) {
     const obj = {

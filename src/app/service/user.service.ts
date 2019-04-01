@@ -44,7 +44,7 @@ export class UserService {
     if (id) {
       return this.http.get(`/api/user/${id}`)
     } else {
-      return this.http.get(`/api/user`).pipe(
+      return this.http.get(`/api/user/self`).pipe(
         tap((res: ResTpl) => {
           if (res.code === 0) {
             this.userInfo = res.data

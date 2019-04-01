@@ -45,17 +45,19 @@ export class ProjectEditComponent implements OnInit {
     this.handleGetSkills()
     this.initForm()
   }
+  // 获取全部skill
   handleGetSkills() {
-    this.skillService.getSkills().subscribe((skills: []) => {
-      this.skills = skills
+    this.skillService.getSkills().subscribe((res: ResTpl) => {
+      this.skills = res.data
     })
   }
+  // 项目初始化
   initForm() {
     this.projectForm = this.fb.group({
       title: ['项目', [
         Validators.required
       ]],
-      desc: ['123', [
+      desc: ['项目详情项目详情项目详情项目详情，项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情。', [
         Validators.required
       ]],
       skills: [[]],
