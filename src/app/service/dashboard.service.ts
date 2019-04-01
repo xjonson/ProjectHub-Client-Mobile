@@ -10,11 +10,8 @@ export class DashboardService {
     private http: HttpClient,
   ) { }
 
-  get() {
-    return this.http.get('/api/dashboard')
+  addPageView() {
+    return this.http.post('/api/dashboard', {})
   }
 
-  update(data) {
-    return this.http.patch('/api/dashboard', data)
-  }
 }

@@ -21,35 +21,10 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.pageViewCount()
+    this.pageViewCount()
 
   }
   pageViewCount() {
-    this.dashboardSrv.get().subscribe(
-      (res: Dashboard) => {
-        const date1 = new Date()
-        const today = this.formatDate(date1)
-        const todayPage = res.page.find(item => item.date === today)
-        // page
-        if (todayPage) {
-          todayPage.value++
-        } else {
-          res.page = [
-            ...res.page,
-            {
-              date: today,
-              value: 1
-            }
-          ]
-        }
-        this.dashboardSrv.update(res).subscribe()
-      }
-    )
-  }
-  formatDate(str: string | Date) {
-    if (!(str instanceof Date)) {
-      str = new Date(str)
-    }
-    return `${str.getFullYear()}-${str.getMonth() + 1}-${str.getDate()}`
+    this.dashboardSrv.addPageView().subscribe()
   }
 }
