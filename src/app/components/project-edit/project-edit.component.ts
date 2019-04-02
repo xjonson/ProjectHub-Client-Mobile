@@ -54,20 +54,35 @@ export class ProjectEditComponent implements OnInit {
   // 项目初始化
   initForm() {
     this.projectForm = this.fb.group({
-      title: ['项目', [
+      title: ['', [
         Validators.required
       ]],
-      desc: ['项目详情项目详情项目详情项目详情，项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情。', [
+      desc: ['', [
         Validators.required
       ]],
       skills: [[]],
-      cycle: ['12', [
+      cycle: ['', [
         Validators.required
       ]],
-      price: ['2', [
+      price: ['', [
         Validators.required
       ]]
     })
+    // this.projectForm = this.fb.group({
+    //   title: ['项目', [
+    //     Validators.required
+    //   ]],
+    //   desc: ['项目详情项目详情项目详情项目详情，项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情。', [
+    //     Validators.required
+    //   ]],
+    //   skills: [[]],
+    //   cycle: ['12', [
+    //     Validators.required
+    //   ]],
+    //   price: ['2', [
+    //     Validators.required
+    //   ]]
+    // })
   }
   onSubmit() {
     const data = this.projectForm.value

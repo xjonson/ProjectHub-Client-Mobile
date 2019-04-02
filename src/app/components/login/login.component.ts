@@ -15,8 +15,10 @@ import { ResTpl } from 'src/app/models/ResTpl';
 })
 export class LoginComponent implements OnInit {
   user: Partial<User> = {
-    email: 'dev1@ph.com',
-    password: '123123',
+    email: '',
+    password: '',
+    // email: 'dev1@ph.com',
+    // password: '123123',
   }
 
   constructor(

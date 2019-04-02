@@ -46,33 +46,61 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: ['dev1@ph.com', [
+      email: ['', [
         Validators.required,
         Validators.email
       ]],
       pwd: this.fb.group({
-        password: ['123123', [
+        password: ['', [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(15)
         ]],
-        password2: ['123123', [
+        password2: ['', [
           Validators.required,
         ]]
       }, { validator: passwordEqulaValidator }),
       role: [3, [Validators.required]],
       create_time: [new Date()],
       profile: this.fb.group({
-        name: ['dev1', [
+        name: ['', [
           Validators.required,
           Validators.maxLength(10)
         ]],
-        phone: ['17812312312', [
+        phone: ['', [
           Validators.required,
           Validators.pattern(/^1(3|4|5|6|7|8|9)\d{9}$/)
         ]],
       })
     })
+    // this.registerForm = this.fb.group({
+    //   email: ['dev1@ph.com', [
+    //     Validators.required,
+    //     Validators.email
+    //   ]],
+    //   pwd: this.fb.group({
+    //     password: ['123123', [
+    //       Validators.required,
+    //       Validators.minLength(6),
+    //       Validators.maxLength(15)
+    //     ]],
+    //     password2: ['123123', [
+    //       Validators.required,
+    //     ]]
+    //   }, { validator: passwordEqulaValidator }),
+    //   role: [3, [Validators.required]],
+    //   create_time: [new Date()],
+    //   profile: this.fb.group({
+    //     name: ['dev1', [
+    //       Validators.required,
+    //       Validators.maxLength(10)
+    //     ]],
+    //     phone: ['17812312312', [
+    //       Validators.required,
+    //       Validators.pattern(/^1(3|4|5|6|7|8|9)\d{9}$/)
+    //     ]],
+    //   })
+    // })
   }
 
   // 提交
