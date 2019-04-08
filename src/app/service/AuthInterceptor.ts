@@ -9,14 +9,11 @@ import { Router } from '_@angular_router@7.2.8@@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
-  ) {
-
-  }
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ) { }
+  
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('ph-token') ? localStorage.getItem('ph-token') : ''
+    
     const clonedRequest = req.clone({
       headers: req.headers.set("Authorization", token)
     });

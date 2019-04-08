@@ -57,11 +57,9 @@ export class SubPageComponent implements OnInit, AfterViewChecked {
   // 处理滚动
   handleScroll() {
     this.route.queryParams.pipe(
-      map(
-        val => {
-          return val.project_comment_id
-        }
-      )
+      map(val => {
+        return val.project_comment_id
+      })
     ).subscribe(
       eleId => {
         const target = this.elementRef.nativeElement.querySelector(`#id-${eleId}`)
