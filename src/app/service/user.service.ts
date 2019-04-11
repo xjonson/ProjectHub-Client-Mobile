@@ -36,6 +36,7 @@ export class UserService {
   }
 
   setUserInfo(user: User) {
+    console.log('user: ', user);
     this.userInfo = user
   }
 

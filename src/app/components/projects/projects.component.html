@@ -15,10 +15,16 @@
       <span>{{item.desc}}</span>
       <a>阅读全文</a>
     </div>
-    <mat-chip-list>
-      <mat-chip color="{{ item.status | projectColor }}"
-        selected>{{ item.status | projectStatus }}</mat-chip>
-    </mat-chip-list>
+    <div class="d-flex align-item-center justify-content-between">
+      <mat-chip-list>
+        <mat-chip color="{{ item.status | projectColor }}"
+          selected>{{ item.status | projectStatus }}</mat-chip>
+      </mat-chip-list>
+      <p class="desc mt-2 toe ml-2 "
+        style="max-width: 200px;">
+        <span *ngFor="let skill of item.skills">{{skill | skill}} | </span>
+      </p>
+    </div>
   </div>
 </section>
 
@@ -29,8 +35,7 @@
 <div class="fix-add-btn"
   *ngIf="userSrv.userInfo && userSrv.userInfo.role !== 3">
   <!-- <div class="fix-add-btn"> -->
-  <button mat-fab
-    routerLink="/sub/project-edit/0">
+  <button mat-fab (click)="pushToAddProject()">
     <mat-icon>add</mat-icon>
   </button>
 </div>

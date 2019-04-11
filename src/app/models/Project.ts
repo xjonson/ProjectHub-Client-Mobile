@@ -3,19 +3,33 @@ import { User } from './User';
 
 // 项目
 export interface Project {
+  // id
   _id: string,
+  // 需求方信息
   demand_user: Partial<User>,
+  // 开发方信息
   dev_user: Partial<User>,
-  avatar?: string,
+  // 头像
+  // avatar?: string,
+  // 标题
   title: string,
+  // 描述
   desc: string,
+  // 技能要求
   skills: Skill[],
+  // 创建时间
   create_time: string,
+  // 开发周期
   cycle: number,
+  // 开发预算
   price: number,
+  // 状态
   status: Status,
+  // 评论列表
   comments: Comment[]
+  // 是否审核
   audit: Audit,
+  // 申请列表
   applyList?: [],
 }
 
@@ -23,10 +37,14 @@ export interface Project {
  * @description 项目评论
  */
 export interface Comment {
+  // id
   _id: string, 
+  // 发布评论的用户信息
   user: Partial<User>,
-  create_time: string,
+  // 评论内容
   content: string
+  // 发布时间
+  create_time: string,
 }
 
 /**
