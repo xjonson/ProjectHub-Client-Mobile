@@ -6,10 +6,11 @@
 
 ## 介绍
 
-- 当前使用fake api，将来会使用node代替
-- 用户可以注册、登录，除管理员外具有 需求者(demander)和开发者(developer)身份
-- 需求者可创建项目需求
-- 开发者可和需求者对接，进行项目的开发
+- ~~当前使用fake api，将来会使用node代替~~已经使用node后端提供api
+- 用户可以注册、登录，除管理员外具有 需求方(demander)和开发方(developer)身份
+- 需求方可发布项目需求，经过后台审核通过后可展示在项目大厅
+- 开发方可查看项目、留言、申请接单
+- 通过需求方审核后的会确定项目的开发方，双方互相对接，推动项目的开发
 
 
 ## 开发环境
@@ -43,26 +44,7 @@ npm run dev
 
 然后打开 [http://localhost:4200/](http://localhost:4200/) 即可预览效果
 
-项目部分页面请求接口会报错，是因为项目中使用了[json-server](https://github.com/typicode/json-server) 的 fake REST-API，所以还要全局安装一下 json-server
-
-新建一个终端，执行
-
-```bash
-sudo npm install -g json-server
-
-# windows use: 
-npm install -g json-server
-```
-
-```bash
-cd ./server
-
-json-server --watch db.json
-```
-
-至此项目即可正常运行
-
-将来会使用node做一个server端
+server端api请[移步这里](https://github.com/xjonson/ProjectHub-BackEnd)
 
 ## 展示
 
