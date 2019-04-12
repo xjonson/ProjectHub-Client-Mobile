@@ -44,10 +44,4 @@ server端api请[移步这里](https://github.com/xjonson/ProjectHub-BackEnd)
 
 ## 展示
 
-<img src="./screenshots/user_login.png" style="width: 250px;"/>
-<img src="./screenshots/user_register.png" style="width: 250px;"/>
-<img src="./screenshots/user_profile.png" style="width: 250px;"/>
-<img src="./screenshots/project_list.png" style="width: 250px;"/>
-<img src="./screenshots/project_edit.png" style="width: 250px;"/>
-<img src="./screenshots/project_detail.png" style="width: 250px;"/>
-<img src="./screenshots/msgs.png" style="width: 250px;"/>
+![user_login](./screenshots/user_login.png)![user_register](./screenshots/user_register.png)![user_profile](./screenshots/user_profile.png)![project_list](./screenshots/project_list.png)![project_edit](./screenshots/project_edit.png)![project_detail](./screenshots/project_detail.png)![msgs](./screenshots/msgs.png)
