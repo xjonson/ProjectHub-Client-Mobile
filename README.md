@@ -8,7 +8,7 @@
 
 - ~~当前使用fake api，将来会使用node代替~~已经使用node后端提供api
 - 用户可以注册、登录，除管理员外具有 需求方(demander)和开发方(developer)身份
-- 需求方可发布项目需求，经过后台审核通过后可展示在项目大厅
+- 需求方可发布项目需求，经过后台审核通过后可展示在项目大厅
 - 开发方可查看项目、留言、申请接单
 - 通过需求方审核后的会确定项目的开发方，双方互相对接，推动项目的开发
 
@@ -32,13 +32,9 @@ git clone git@github.com:xjonson/ProjectHub-Client.git
 
 ```bash
 cd ProjectHub-Client
-```
 
-```bash
 npm install
-```
 
-```bash
 npm run dev
 ```
 
@@ -48,9 +44,10 @@ server端api请[移步这里](https://github.com/xjonson/ProjectHub-BackEnd)
 
 ## 展示
 
-![login](./screenshots/user_login.png)
-![register](./screenshots/user_register.png)
-![user_profile](./screenshots/user_profile.png)
-![project_edit](./screenshots/project_edit.png)
-![project_list](./screenshots/project_list.png)
-![project_detail](./screenshots/project_detail.png)
+<img src="./screenshots/user_login.png" style="width: 250px;"/>
+<img src="./screenshots/user_register.png" style="width: 250px;"/>
+<img src="./screenshots/user_profile.png" style="width: 250px;"/>
+<img src="./screenshots/project_list.png" style="width: 250px;"/>
+<img src="./screenshots/project_edit.png" style="width: 250px;"/>
+<img src="./screenshots/project_detail.png" style="width: 250px;"/>
+<img src="./screenshots/msgs.png" style="width: 250px;"/>
