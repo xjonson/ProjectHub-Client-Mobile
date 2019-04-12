@@ -2,7 +2,7 @@
 
 中文名还没想好
 
-这个项目是我在学习 angular 时做的，同时临近毕业打算作为毕业设计。项目分为 [移动客户端](https://github.com/xjonson/ProjectHub-Client)、[PC端后台管理](https://github.com/xjonson/ProjectHub-Admin)、[server端](https://github.com/xjonson/ProjectHub-BackEnd)。这是移动客户端。
+这个项目是我在学习 angular 时做的，同时临近毕业打算作为毕业设计。项目分为 [移动客户端](https://github.com/xjonson/ProjectHub-Client-Mobile)、[PC端后台管理](https://github.com/xjonson/ProjectHub-Admin)、[server端](https://github.com/xjonson/ProjectHub-BackEnd)。这是移动客户端。
 
 ## 介绍
 
@@ -27,11 +27,11 @@
 请先确保你已拥有以上环境
 
 ```bash
-git clone git@github.com:xjonson/ProjectHub-Client.git
+git clone git@github.com:xjonson/ProjectHub-Client-Mobile.git
 ```
 
 ```bash
-cd ProjectHub-Client
+cd ProjectHub-Client-Mobile
 
 npm install
 
