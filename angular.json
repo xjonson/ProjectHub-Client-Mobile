@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "proj-hub": {
+    "proj-hub-mobile": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,19 +17,25 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/proj-hub",
+            "outputPath": "dist/proj-hub-mobile",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss",
               "src/assets/css/class.scss",
-              "src/assets/css/resset.css"
+              "src/assets/css/resset.css",
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -64,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "proj-hub:build"
+            "browserTarget": "proj-hub-mobile:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "proj-hub:build:production"
+              "browserTarget": "proj-hub-mobile:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "proj-hub:build"
+            "browserTarget": "proj-hub-mobile:build"
           }
         },
         "test": {
@@ -109,7 +115,7 @@
         }
       }
     },
-    "proj-hub-e2e": {
+    "proj-hub-mobile-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -118,11 +124,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "proj-hub:serve"
+            "devServerTarget": "proj-hub-mobile:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "proj-hub:serve:production"
+              "devServerTarget": "proj-hub-mobile:serve:production"
             }
           }
         },
@@ -138,5 +144,5 @@
       }
     }
   },
-  "defaultProject": "proj-hub"
+  "defaultProject": "proj-hub-mobile"
 }

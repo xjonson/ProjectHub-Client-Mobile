@@ -33,3 +33,18 @@ h4.mat-line{
 mat-form-field.mat-form-field {
   display: block !important;
 }
+
+// zorro
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  color: rgba(0,0,0,.85);
+  font-weight: 500;
+}
+address, dl, ol, p, pre, ul {
+  margin-bottom: 0 !important;
+}
+.ant-checkbox-wrapper {
+  margin-bottom: 14px !important;
+  margin-right: 12px !important;
+  margin-left: 0 !important;
+}

@@ -3,7 +3,7 @@ import { HttpEvent, HttpRequest, HttpHandler, HttpInterceptor, HttpResponse, Htt
 
 import { Observable, of } from "rxjs";
 import { mergeMap, catchError } from 'rxjs/operators';
-import { Router } from '_@angular_router@7.2.8@@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

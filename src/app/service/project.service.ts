@@ -14,6 +14,18 @@ import { User } from '../models/User';
 })
 export class ProjectService {
   projectTitle: string;
+  // 开发周期
+  cycles = [
+    { name: '1天', value: 1 },
+    { name: '3天', value: 3 },
+    { name: '5天', value: 5 },
+    { name: '7天', value: 7 },
+    { name: '1个月', value: 30 },
+    { name: '3个月', value: 90 },
+    { name: '5个月', value: 150 },
+    { name: '7个月', value: 210 },
+  ]
+  
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
@@ -81,7 +93,7 @@ export class ProjectService {
       })
     )
   }
-  
+
   // 更新项目状态
   updateProjectStatus(pid: string, status: number, dev_user: Partial<User>) {
     const obj = {

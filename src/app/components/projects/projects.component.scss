@@ -1,5 +1,33 @@
 @import "../../../assets/css/class.scss";
 
+.filter-wrap {
+
+  .filter-bar {
+    height: 50px;
+    width: 100%;
+
+    .filter-item {
+      height: 44px;
+    }
+  }
+
+  .filter-expand {
+    font-size: 14px;
+    padding: 10px 0 20px;
+    .button-wrap {
+      margin-top: 20px;
+      text-align: right;
+      button {
+        margin-left: 10px;
+      }
+    }
+    mat-radio-button {
+      margin-bottom: 14px;
+      margin-right: 12px;
+    }
+  }
+}
+
 .proj-item {
   max-height: 300px;
 

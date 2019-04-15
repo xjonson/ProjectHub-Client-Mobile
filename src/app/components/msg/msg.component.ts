@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/models/User';
-import { Router } from '_@angular_router@7.2.8@@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { ProjectService } from 'src/app/service/project.service';
 import { Project } from 'src/app/models/Project';

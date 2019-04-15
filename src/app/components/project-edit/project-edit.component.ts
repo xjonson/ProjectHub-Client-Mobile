@@ -18,17 +18,8 @@ import { ResTpl } from 'src/app/models/ResTpl';
 })
 export class ProjectEditComponent implements OnInit {
   projectForm: FormGroup;
-  skills: []
-  cycles = [
-    { name: '1天', value: 1 },
-    { name: '3天', value: 3 },
-    { name: '5天', value: 5 },
-    { name: '7天', value: 7 },
-    { name: '1个月', value: 30 },
-    { name: '3个月', value: 90 },
-    { name: '5个月', value: 150 },
-    { name: '7个月', value: 210 },
-  ]
+  skills: [];
+  cycles = [];
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +33,7 @@ export class ProjectEditComponent implements OnInit {
 
   ngOnInit() {
     // 
+    this.cycles = this.projectSrv.cycles
     this.handleGetSkills()
     this.initForm()
   }
