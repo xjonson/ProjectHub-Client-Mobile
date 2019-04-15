@@ -73,8 +73,11 @@ export class UserComponent implements OnInit {
   }
   // 选择图片
   handleChooseImg() {
-    const input = this.elementRef.nativeElement.querySelector(`#avatar-input`)
-    input.click()
+    // 只有编辑自己信息才可修改头像
+    if(this.selfProfile) {
+      const input = this.elementRef.nativeElement.querySelector(`#avatar-input`)
+      input.click()
+    }
   }
   // 头像上传
   uploadImg(e): void {
@@ -101,7 +104,7 @@ export class UserComponent implements OnInit {
 }
 
 
-
+// 修改密码组件
 @Component({
   selector: 'change-pwd-bottom-sheet',
   template: `
@@ -155,6 +158,7 @@ export class ChangePwdBottomSheet {
   }
 }
 
+// 修改信息组件
 @Component({
   selector: 'change-info-overview-example-sheet',
   template: `
