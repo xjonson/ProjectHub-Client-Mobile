@@ -11,6 +11,7 @@ import { HomePageComponent } from '../common/home-page/home-page.component';
 import { SubPageComponent } from '../common/sub-page/sub-page.component';
 import { ProjectEditComponent } from '../components/project-edit/project-edit.component';
 import { MsgComponent } from '../components/msg/msg.component';
+import { UserProjectComponent } from '../components/user-project/user-project.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,14 @@ const routes: Routes = [
         component: LoginComponent,
         data: {
           title: '登录'
+        }
+      },
+      {
+        path: 'user-project',
+        component: UserProjectComponent,
+        canActivate: [AuthGuard],
+        data: {
+          title: '我的项目'
         }
       },
     ]

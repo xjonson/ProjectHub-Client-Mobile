@@ -1,9 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Skill } from '../models/Skill';
+import { SkillService } from '../service/skill.service';
+import { ResTpl } from '../models/ResTpl';
 
-@Pipe({name: 'skill'})
+@Pipe({ name: 'skill' })
 export class SkillPipe implements PipeTransform {
+  Skill: [{
+    id: string,
+    name: string
+  }]
+  constructor(
+    private skillService: SkillService
+  ) {
+    this.skillService.getSkills().subscribe((res: ResTpl) => {
+      this.Skill = res.data
+    })
+  }
   transform(value: number): any {
-    return Skill[value]
+    return this.Skill.filter(item => +item.id == value)[0].name
   }
 }

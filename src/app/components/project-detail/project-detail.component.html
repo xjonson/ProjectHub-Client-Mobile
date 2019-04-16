@@ -1,4 +1,26 @@
-<div *ngIf="project && project.audit === 1; else unpass">
+
+<!-- 审核 -->
+<div *ngIf="project && project.audit === 0">
+  <span [ngSwitch]="project?.audit"
+    class="audit">
+    <div *ngSwitchCase="0">
+      <img src="../../../assets/image/404.svg">
+      <p>项目审核中</p>
+    </div>
+    <div *ngSwitchCase="2">
+      <img src="../../../assets/image/403.svg">
+      <p>项目未通过审核</p>
+      <br>
+      <button mat-raised-button
+        (click)="showHelp = !showHelp">查看帮助</button>
+      <p class="mt-5"
+        style="line-height: 1.4;text-indent: 2em;"
+        *ngIf="showHelp">项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。</p>
+    </div>
+  </span>
+</div>
+
+<div *ngIf="project">
   <!-- main -->
   <div class="proj-item">
     <h2>发布者</h2>
@@ -111,24 +133,3 @@
     </div>
   </footer>
 </div>
-
-<!-- 审核 -->
-<ng-template #unpass>
-  <span [ngSwitch]="project?.audit"
-    class="audit">
-    <div *ngSwitchCase="0">
-      <img src="../../../assets/image/404.svg">
-      <p>项目审核中</p>
-    </div>
-    <div *ngSwitchCase="2">
-      <img src="../../../assets/image/403.svg">
-      <p>项目未通过审核</p>
-      <br>
-      <button mat-raised-button
-        (click)="showHelp = !showHelp">查看帮助</button>
-      <p class="mt-5"
-        style="line-height: 1.4;text-indent: 2em;"
-        *ngIf="showHelp">项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。项目含义描述清晰、禁止发布或出售违反宪法精神和中华人民共和国相关法律法规、带有民族歧视性、夸大宣传并带有欺骗性、有损于社会主义道德风尚或者有其他不良影响的信息、商品、服务等。</p>
-    </div>
-  </span>
-</ng-template>

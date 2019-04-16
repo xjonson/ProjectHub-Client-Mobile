@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project } from '../models/Project';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './user.service';
 import { map, tap } from 'rxjs/operators';
 import { ResTpl } from '../models/ResTpl';
@@ -25,7 +25,7 @@ export class ProjectService {
     { name: '5个月', value: 150 },
     { name: '7个月', value: 210 },
   ]
-  
+
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
@@ -34,8 +34,20 @@ export class ProjectService {
 
 
   // 获取全部project
-  getProjects(): Observable<any> {
-    return this.http.get('api/project').pipe(
+  getProjects(filter?): Observable<any> {
+    let params
+    if (filter) {
+      params = new HttpParams({
+        fromObject: {
+          cycle: filter.cycle,
+          min_price: filter.price[0],
+          max_price: filter.price[1],
+          skills: filter.skills
+        }
+      })
+    }
+
+    return this.http.get('api/project', { params }).pipe(
       tap((res: ResTpl) => {
         this.snackBar.open(res.msg);
       })

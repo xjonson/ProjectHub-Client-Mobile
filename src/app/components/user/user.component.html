@@ -13,6 +13,7 @@
     </h2>
     <p class="text-center">{{userInfo.profile.desc}}</p>
   </mat-card-title>
+  <!-- 信息 -->
   <mat-list>
     <mat-divider></mat-divider>
     <h3 matSubheader>信息</h3>
@@ -29,8 +30,27 @@
       <h3 mat-line>{{userInfo.profile.phone}}</h3>
     </mat-list-item>
   </mat-list>
-  <mat-list *ngIf="selfProfile">
+  <!-- 功能 -->
+  <mat-list>
     <h3 matSubheader>功能</h3>
+    <mat-nav-list *ngIf="userInfo.role === 2">
+      <a mat-list-item
+        [routerLink]="['/sub/user-project']">
+        <mat-icon matListIcon>settings</mat-icon>
+        <h3 mat-line>我发布的项目</h3>
+      </a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="userInfo.role === 3">
+      <a mat-list-item
+        [routerLink]="['/sub/user-project']">
+        <mat-icon matListIcon>settings</mat-icon>
+        <h3 mat-line>我开发的项目</h3>
+      </a>
+    </mat-nav-list>
+  </mat-list>
+  <!-- 修改 -->
+  <mat-list *ngIf="selfProfile">
+    <h3 matSubheader>修改</h3>
     <mat-nav-list>
       <a mat-list-item
         (click)="openChangeInfo()">
@@ -42,13 +62,6 @@
         (click)="openChangePwd()">
         <mat-icon matListIcon>security</mat-icon>
         <h3 mat-line>修改密码</h3>
-      </a>
-    </mat-nav-list>
-    <h3 matSubheader>功能</h3>
-    <mat-nav-list *ngIf="userInfo.role !== 3">
-      <a mat-list-item>
-        <mat-icon matListIcon>settings</mat-icon>
-        <h3 mat-line>我发布的项目</h3>
       </a>
     </mat-nav-list>
   </mat-list>

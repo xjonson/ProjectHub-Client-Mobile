@@ -1,0 +1,33 @@
+<section class="projs"
+  *ngIf="projects?.length; else NoProject">
+  <div class="proj-item"
+    *ngFor="let item of projects"
+    [routerLink]="[ '/sub/project', item._id ]">
+    <div class="top-info">
+      <img *ngIf="item.demand_user.profile.avatar as avatar"
+        [src]="avatar">
+      <div class="text">
+        <h6>{{item.title}}</h6>
+        <p>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
+      </div>
+    </div>
+    <div class="desc">
+      <span>{{item.desc}}</span>
+      <a>阅读全文</a>
+    </div>
+    <div class="d-flex align-item-center justify-content-between">
+      <mat-chip-list>
+        <mat-chip color="{{ item.status | projectColor }}"
+          selected>{{ item.status | projectStatus }}</mat-chip>
+      </mat-chip-list>
+      <p class="desc mt-2 toe ml-2 "
+        style="max-width: 200px;">
+        <span *ngFor="let skill of item.skills">{{skill | skill}} | </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<ng-template #NoProject>
+  <p class="mt-5 text-center">还没有项目~</p>
+</ng-template>

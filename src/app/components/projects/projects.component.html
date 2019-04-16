@@ -6,9 +6,10 @@
       发布时间
     </button>
     <mat-menu #timeMenu="matMenu">
-      <button mat-menu-item>最新优先</button>
-      <button mat-menu-item>最早优先</button>
-      <button mat-menu-item>自定义时间段</button>
+      <button mat-menu-item
+        (click)="sortByNew()">最新优先</button>
+      <button mat-menu-item
+        (click)="sortByOld()">最早优先</button>
     </mat-menu>
     <button mat-button
       (click)="changeFilterExpand(1)"
@@ -23,7 +24,7 @@
     <button mat-button
       (click)="changeFilterExpand(3)"
       class="filter-item">
-      &nbsp;技术栈&nbsp;
+      &nbsp;&nbsp;技术栈&nbsp;&nbsp;
     </button>
   </div>
 
@@ -40,22 +41,25 @@
     <div *ngIf="showFilterExpand === 2">
       <p class="mb-2">选择金额区间: ￥{{formData.price[0]}} - ￥{{formData.price[1]}}</p>
       <nz-slider [nzRange]="true"
-        [nzMax]="5000"
-        [nzMin]="50"
+        [nzMax]="10000"
+        [nzMin]="0"
         [nzStep]="50"
         [nzTipFormatter]="formatterPrice"
         [(ngModel)]="formData.price"></nz-slider>
     </div>
     <!-- 3.技术栈 -->
     <div *ngIf="showFilterExpand === 3">
-      <nz-checkbox-group [(ngModel)]="formData.skill"></nz-checkbox-group>
+      <nz-checkbox-group [(ngModel)]="skillList"></nz-checkbox-group>
     </div>
     <!-- button -->
     <div class="button-wrap">
-      <button mat-raised-button style="margin-right: 40px;">全部清除</button>
-
-      <button mat-raised-button>清除</button>
       <button mat-raised-button
+        style="margin-right: 40px;"
+        (click)="clearAllQuery()">全部清除</button>
+      <button mat-raised-button
+        (click)="clearQuery()">清除</button>
+      <button mat-raised-button
+        (click)="handleGetProjects()"
         color="primary">确定</button>
     </div>
   </div>

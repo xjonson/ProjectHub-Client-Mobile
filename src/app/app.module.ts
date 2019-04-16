@@ -37,6 +37,7 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { UserProjectComponent } from './components/user-project/user-project.component';
 registerLocaleData(zh);
 
 @NgModule({
@@ -62,6 +63,7 @@ registerLocaleData(zh);
     addProjectSuccessDialog,
     ChangePwdBottomSheet,
     ChangeInfoBottomSheet,
+    UserProjectComponent,
   ],
   entryComponents: [
     addProjectSuccessDialog,

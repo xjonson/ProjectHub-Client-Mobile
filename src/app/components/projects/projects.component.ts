@@ -15,10 +15,11 @@ export class ProjectsComponent implements OnInit {
   showFilterExpand = 0
   projects: Project[];
   cycles = [];
+  skillList = [];
   formData = {
     cycle: 0,
-    price: [50, 5000],
-    skill: []
+    price: [0, 10000],
+    skills: [],
   }
 
 
@@ -37,14 +38,18 @@ export class ProjectsComponent implements OnInit {
 
   // 获取全部项目
   handleGetProjects() {
-    this.projectSrv.getProjects().subscribe(
+    this.formData.skills = this.skillList.filter(item => item.checked).map(item => +item.id)
+    console.log('this.formData: ', this.formData);
+    this.projectSrv.getProjects(this.formData).subscribe(
       (res: ResTpl) => {
         if (res.code === 0) {
           this.projects = res.data.filter(item => {
+            // 展示skill
             item.skills = item.skills.split(',')
+            // 截取desc
             item.desc = item.desc.substr(0, 100) + '...'
             return item.audit === 1 && item.status < 3
-          })
+          }).reverse()
         }
       }
     )
@@ -62,7 +67,7 @@ export class ProjectsComponent implements OnInit {
   // 获取全部skill
   handleGetSkills() {
     this.skillService.getSkills().subscribe((res: ResTpl) => {
-      this.formData.skill = res.data.map(item => {
+      this.skillList = res.data.map(item => {
         item.label = item.name
         item.value = item.id
         return item
@@ -81,5 +86,47 @@ export class ProjectsComponent implements OnInit {
   // 格式
   formatterPrice(value: number): string {
     return `￥${value}`;
+  }
+
+  // 全部清除
+  clearAllQuery() {
+    this.formData = {
+      cycle: 0,
+      price: [0, 10000],
+      skills: [],
+    }
+    this.handleGetProjects()
+  }
+  // 清除
+  clearQuery() {
+    switch (this.showFilterExpand) {
+      case 1:
+        this.formData.cycle = 0
+        break;
+      case 2:
+        this.formData.price = [0, 10000]
+        break;
+      case 3:
+        this.formData.skills = []
+        this.skillList.forEach(i => i.checked = false)
+        break;
+      default:
+        break;
+    }
+    this.handleGetProjects()
+  }
+
+  // 按时间 新在上
+  sortByNew() {
+    this.projects = this.projects.sort((a, b) => {
+      return +b.create_time - +a.create_time
+    })
+  }
+  // 按时间 旧在上
+  sortByOld() {
+    this.projects = this.projects.sort((a, b) => {
+      return +a.create_time - +b.create_time
+    })
+
   }
 }
