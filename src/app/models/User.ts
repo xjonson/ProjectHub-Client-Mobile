@@ -1,4 +1,3 @@
-import { Skill } from './Skill';
 
 export interface User {
   // id
@@ -11,7 +10,7 @@ export interface User {
   // 信息
   profile: profile, 
   // 技能
-  skill: Skill[], 
+  skill: [], 
   // 注册时间
   create_time: string, 
   // 是否审核

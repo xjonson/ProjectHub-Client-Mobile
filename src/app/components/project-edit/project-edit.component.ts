@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Skill } from 'src/app/models/Skill';
 import { SkillService } from 'src/app/service/skill.service';
 import { ProjectService } from 'src/app/service/project.service';
 import { User } from 'src/app/models/User';

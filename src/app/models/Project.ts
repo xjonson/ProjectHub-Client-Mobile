@@ -1,4 +1,3 @@
-import { Skill } from './Skill';
 import { User } from './User';
 
 // 项目
@@ -16,7 +15,7 @@ export interface Project {
   // 描述
   desc: string,
   // 技能要求
-  skills: Skill[],
+  skills: [],
   // 创建时间
   create_time: string,
   // 开发周期
