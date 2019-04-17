@@ -4,13 +4,13 @@
       class="filter-item"
       [matMenuTriggerFor]="timeMenu">
       发布时间
+      <mat-menu #timeMenu="matMenu">
+        <button mat-menu-item
+          (click)="sortByNew()">最新优先</button>
+        <button mat-menu-item
+          (click)="sortByOld()">最早优先</button>
+      </mat-menu>
     </button>
-    <mat-menu #timeMenu="matMenu">
-      <button mat-menu-item
-        (click)="sortByNew()">最新优先</button>
-      <button mat-menu-item
-        (click)="sortByOld()">最早优先</button>
-    </mat-menu>
     <button mat-button
       (click)="changeFilterExpand(1)"
       class="filter-item">
@@ -65,6 +65,7 @@
   </div>
 </div>
 
+<!-- 列表 -->
 <section class="projs"
   *ngIf="projects?.length; else NoProject">
   <div class="proj-item"
@@ -95,10 +96,12 @@
   </div>
 </section>
 
+<!-- 没项目 -->
 <ng-template #NoProject>
   <p class="mt-5 text-center">还没有项目~</p>
 </ng-template>
 
+<!-- 添加项目 -->
 <div class="fix-add-btn"
   *ngIf="userSrv.userInfo && userSrv.userInfo.role !== 3">
   <!-- <div class="fix-add-btn"> -->
