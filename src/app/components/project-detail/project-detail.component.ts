@@ -5,10 +5,10 @@ import { ProjectService } from 'src/app/service/project.service';
 import { User } from 'src/app/models/User';
 
 import { UserService } from 'src/app/service/user.service';
-import { MatSnackBar } from '@angular/material';
 import { ResTpl } from 'src/app/models/ResTpl';
 import { MsgService } from 'src/app/service/msg.service';
 import { Action } from 'src/app/models/Msg';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-project-detail',
@@ -25,7 +25,7 @@ export class ProjectDetailComponent implements OnInit {
     private router: Router,
     private projectSrv: ProjectService,
     public userSrv: UserService,
-    private snackBar: MatSnackBar,
+    private message: NzMessageService,
     private msgSrv: MsgService,
   ) { }
 
@@ -56,7 +56,7 @@ export class ProjectDetailComponent implements OnInit {
       this.projectSrv.addProjectComment(this.project._id, this.commentContent).subscribe(
         (res: ResTpl) => {
           if (res.code == 0) {
-            this.snackBar.open('评论成功')
+            this.message.info('评论成功')
             const data = res.data
             this.handleGetProj()
             // 不给自己推送消息
@@ -86,7 +86,7 @@ export class ProjectDetailComponent implements OnInit {
               return i.user_id === userInfo._id && i.status == action && new Date().getTime() <= i.deadline
             }).length
             if (hasApply) {
-              this.snackBar.open('您24小时之内已经申请过了，请等待需求发布者反馈')
+              this.message.info('您24小时之内已经申请过了，请等待需求发布者反馈')
             } else {
               // 更新项目apply
               const data = {

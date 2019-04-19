@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Project } from 'src/app/models/Project';
 import { ResTpl } from 'src/app/models/ResTpl';
+import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-project-edit',
@@ -28,6 +29,8 @@ export class ProjectEditComponent implements OnInit {
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     private router: Router,
+    private modal: NzModalService,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit() {
@@ -59,71 +62,39 @@ export class ProjectEditComponent implements OnInit {
         Validators.required
       ]]
     })
-    // this.projectForm = this.fb.group({
-    //   title: ['项目', [
-    //     Validators.required
-    //   ]],
-    //   desc: ['项目详情项目详情项目详情项目详情，项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情项目详情。', [
-    //     Validators.required
-    //   ]],
-    //   skills: [[]],
-    //   cycle: ['12', [
-    //     Validators.required
-    //   ]],
-    //   price: ['2', [
-    //     Validators.required
-    //   ]]
-    // })
   }
   onSubmit() {
     const data = this.projectForm.value
     if (data.skills) {
       data.skills = data.skills.join(',')
     }
-    this.projectSrv.addProject(data).subscribe((res: ResTpl) => {
-      console.log('res: ', res);
-      this.dialog.open(addProjectSuccessDialog, {
-        data: res.data
-      });
+    // 项目发布
+    this.projectSrv.addProject(data).subscribe((resTpl: ResTpl) => {
+      if (resTpl.code === 0) {
+        // 进入项目估价系统step1
+        this.router.navigate(['/sub/project-assess-step1', resTpl.data._id], {
+          replaceUrl: true
+        })
+        this.message.success('信息提交成功！进入项目估价系统')
+        return
+        this.modal.success({
+          nzTitle: '提示',
+          nzContent: '项目发布成功！',
+          nzCancelDisabled: false,
+          nzCancelText: '取消',
+          nzOkText: '查看项目',
+          nzOnCancel: () => {
+            this.router.navigate(['/home/projects'])
+          },
+          nzOnOk: () => {
+            this.router.navigate(['/sub/project', resTpl.data._id], {
+              replaceUrl: true
+            })
+          }
+        });
+      }
     })
   }
 }
 
-
-/**
- * @description 发布成功的dialog
- */
-@Component({
-  selector: 'add-project-success-dialog',
-  template: `
-    <h2 mat-dialog-title>提示</h2>
-    <div mat-dialog-content>
-      <p>项目发布成功！</p>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onCancel()">取消</button>
-      <button mat-button [mat-dialog-close]="true" (click)="onOk()" cdkFocusInitial>查看项目</button>
-    </div>
-  `,
-  styleUrls: ['./project-edit.component.scss']
-})
-export class addProjectSuccessDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<addProjectSuccessDialog>,
-    private router: Router,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
-  onCancel() {
-    this.dialogRef.close();
-    this.router.navigate(['/home/projects'])
-  }
-  onOk() {
-    console.log('this.id: ', this.data);
-    this.router.navigate(['/sub/project', this.data._id], {
-      replaceUrl: true
-    })
-  }
-}
 

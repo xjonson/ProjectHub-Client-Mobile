@@ -1,0 +1,28 @@
+.project-type-card {
+  font-size: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #24282eab;
+  i {
+    font-size: 22px;
+  }
+  &.on {
+    background-color: #24282e;
+    color: #fff;
+  }
+
+  .check {
+    color: #fff;
+  }
+}
+
+button[type=submit] {
+  margin-left: auto;
+  margin-top: 40px;
+  display: block;
+}

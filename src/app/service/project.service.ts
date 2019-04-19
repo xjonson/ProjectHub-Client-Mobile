@@ -5,8 +5,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './user.service';
 import { map, tap } from 'rxjs/operators';
 import { ResTpl } from '../models/ResTpl';
-import { MatSnackBar } from '@angular/material';
 import { User } from '../models/User';
+import { NzMessageService } from 'ng-zorro-antd';
 
 
 @Injectable({
@@ -29,7 +29,7 @@ export class ProjectService {
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
-    public snackBar: MatSnackBar,
+    private message: NzMessageService
   ) { }
 
 
@@ -49,7 +49,7 @@ export class ProjectService {
 
     return this.http.get('api/project', { params }).pipe(
       tap((res: ResTpl) => {
-        this.snackBar.open(res.msg);
+        this.message.info(res.msg);
       })
     )
   }
@@ -59,7 +59,7 @@ export class ProjectService {
     return this.http.get(`api/project/${id}`)
     // .pipe(
     //   tap((res: ResTpl) => {
-    //     this.snackBar.open(res.msg);
+    //     this.message.info(res.msg);
     //   })
     // )
   }
@@ -69,7 +69,7 @@ export class ProjectService {
     this.projectTitle = title
   }
   // 获取title
-  getTitle() {
+  getTitle(): Observable<any> {
     // 创建一个Observable对象，subpage订阅值
     return new Observable((observer) => {
       if (this.projectTitle) {
@@ -81,40 +81,55 @@ export class ProjectService {
   }
 
   // 发布项目
-  addProject(data: Project) {
+  addProject(data: Project): Observable<any> {
     return this.http.post('api/project', data)
   }
 
   // 更新项目信息
-  updateProject(pid: string, data: any) {
+  updateProject(pid: string, data: any): Observable<any> {
     return this.http.patch(`api/project/${pid}`, data).pipe(
       tap((res: ResTpl) => {
-        this.snackBar.open(res.msg);
+        this.message.info(res.msg);
       })
     )
   }
 
   // 更新项目评论
-  addProjectComment(pid: string, content: string) {
+  addProjectComment(pid: string, content: string): Observable<any> {
     const obj = {
       content
     }
     return this.http.patch(`api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
-        this.snackBar.open(res.msg);
+        this.message.info(res.msg);
       })
     )
   }
 
   // 更新项目状态
-  updateProjectStatus(pid: string, status: number, dev_user: Partial<User>) {
+  updateProjectStatus(pid: string, status: number, dev_user: Partial<User>): Observable<any> {
     const obj = {
       status,
       dev_user,
     }
     return this.http.patch(`api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
-        this.snackBar.open(res.msg);
+        this.message.info(res.msg);
+      })
+    )
+  }
+
+  /**
+   * @desc 项目评估
+   */
+  // 设置项目类型
+  setProjectType(pid: string, pType): Observable<any> {
+    const obj = {
+      pType
+    }
+    return this.http.patch(`api/project/${pid}`, obj).pipe(
+      tap((res: ResTpl) => {
+        this.message.info(res.msg);
       })
     )
   }

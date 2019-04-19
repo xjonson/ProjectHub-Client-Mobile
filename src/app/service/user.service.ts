@@ -4,7 +4,7 @@ import { User } from '../models/User';
 import { map, switchMap, tap } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { ResTpl } from '../models/ResTpl';
-import { MatSnackBar } from '@angular/material';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    public snackBar: MatSnackBar,
+    private message: NzMessageService,
   ) { }
 
   // 用户注册
@@ -60,7 +60,7 @@ export class UserService {
     return this.http.patch(`api/user/${this.userInfo._id}`, data).pipe(
       tap(
         (res: ResTpl) => {
-          this.snackBar.open(res.msg)
+          this.message.info(res.msg)
           if (res.code === 0) this.userInfo = res.data
         }
       )
@@ -76,7 +76,7 @@ export class UserService {
     return this.http.patch(`api/user/password/${'updatePassword'}`, data).pipe(
       tap(
         (res: ResTpl) => {
-          this.snackBar.open(res.msg)
+          this.message.info(res.msg)
           console.log('res: ', res);
         }
       )

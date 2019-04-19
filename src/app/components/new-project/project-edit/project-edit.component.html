@@ -1,0 +1,79 @@
+<mat-card class="mt-2">
+  <mat-card-title class="d-flex align-items-center flex-column mb-3 mt-2">
+    <h2>填写项目基本信息</h2>
+  </mat-card-title>
+  <mat-card-subtitle class="text-center mb-4">
+    <p></p>
+  </mat-card-subtitle>
+
+  <form [formGroup]="projectForm"
+    (ngSubmit)="onSubmit()">
+    <!-- title -->
+    <mat-form-field appearance="outline">
+      <mat-label>项目名称/标题</mat-label>
+      <input matInput
+        formControlName="title"
+        required
+        maxlength="10">
+      <mat-hint>10个字以内</mat-hint>
+    </mat-form-field>
+    <!-- desc -->
+    <mat-form-field appearance="outline">
+      <mat-label>项目简介</mat-label>
+      <textarea matInput
+        formControlName="desc"
+        required
+        maxlength="400"
+        rows="6"></textarea>
+      <mat-hint>描述一下你的项目，400个字以内</mat-hint>
+    </mat-form-field>
+    <!-- skill -->
+    <mat-form-field appearance="outline">
+      <mat-label>技能需求</mat-label>
+      <mat-select formControlName="skills"
+        multiple>
+        <mat-option *ngFor="let item of skills"
+          [value]="item.id">{{item.name}}</mat-option>
+      </mat-select>
+      <mat-hint>不了解相关技能可不填</mat-hint>
+    </mat-form-field>
+    <!-- cycle -->
+    <mat-form-field class="example-full-width"
+      appearance="outline">
+      <mat-label>期望开发时间</mat-label>
+      <mat-select formControlName="cycle"
+        required>
+        <mat-option *ngFor="let item of cycles"
+          [value]="item.value">{{item.name}}</mat-option>
+      </mat-select>
+      <mat-hint>具体开发时间和项目等其他信息有关</mat-hint>
+    </mat-form-field>
+    <!-- price -->
+    <mat-form-field appearance="outline">
+      <mat-label>开发预算</mat-label>
+      <input type="number"
+        matInput
+        formControlName="price"
+        required
+        min="0">
+      <mat-hint>单位：元</mat-hint>
+    </mat-form-field>
+    <!--  -->
+    <button mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="projectForm.invalid">
+      下一步
+    </button>
+    <!--  -->
+    <!-- <button type="submit"
+      mat-raised-button
+      color="accent"
+      [disabled]="projectForm.invalid">发布</button>
+    <p class="tips">
+      <mat-icon inline>info</mat-icon>
+      项目发布后，平台会对项目进行初步审核，审核通过后即可发布。工作人员或接受需求的开发人员可能会通过手机号联系您，请保持手机畅通。
+    </p> -->
+
+  </form>
+</mat-card>

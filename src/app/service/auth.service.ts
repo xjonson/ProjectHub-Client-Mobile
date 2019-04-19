@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../models/User';
 import { Location } from '@angular/common';
 import { UserService } from './user.service';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
     private http: HttpClient,
     private userSrv: UserService,
     private router: Router,
+    private modal: NzModalService
   ) {
     // 查看cookie中是否有登录信息
     if (localStorage.getItem('ph-token')) {
@@ -38,11 +40,13 @@ export class AuthService {
   }
 
   logout() {
-    const myConfirm = confirm('确定退出登录？')
-    if (myConfirm) {
-      localStorage.removeItem('ph-token')
-      this.router.navigate(['sub/login'])
-    }
+    this.modal.confirm({
+      nzContent: '确定退出登录？',
+      nzOnOk: () => {
+        localStorage.removeItem('ph-token')
+        this.router.navigate(['sub/login'])
+      }
+    })
   }
 }
 

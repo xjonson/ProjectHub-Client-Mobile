@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { User } from 'src/app/models/User';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import { UserService } from 'src/app/service/user.service';
 import { ResTpl } from 'src/app/models/ResTpl';
+import { NzMessageService } from 'ng-zorro-antd';
 // import { CookieService } from 'src/app/service/cookie.service';
 
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private userSrv: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    public snackBar: MatSnackBar,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit() {
@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
       if (resTpl.code === 0) {
         const user = resTpl.data
         localStorage.setItem('ph-token', user.token)
-        this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
+        this.message.info(`登录成功！欢迎您，${user.profile.name}`);
         // 重定向到授权前的路由
         this.router.navigate([this.authSrv.redirectUrl], {
           replaceUrl: true,
         })
       } else {
-        this.snackBar.open(resTpl.msg)
+        this.message.info(resTpl.msg)
       }
     })
   }
@@ -57,13 +57,13 @@ export class LoginComponent implements OnInit {
       if (resTpl.code === 0) {
         const user = resTpl.data
         localStorage.setItem('ph-token', user.token)
-        this.snackBar.open(`登录成功！欢迎您，${user.profile.name}`);
+        this.message.info(`登录成功！欢迎您，${user.profile.name}`);
         // 重定向到授权前的路由
         this.router.navigate([this.authSrv.redirectUrl], {
           replaceUrl: true,
         })
       } else {
-        this.snackBar.open(resTpl.msg)
+        this.message.info(resTpl.msg)
       }
     })
 

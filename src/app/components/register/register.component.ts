@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
-import { User } from 'src/app/models/User';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { passwordEqulaValidator } from 'src/app/validators/validators';
 import { UserService } from 'src/app/service/user.service';
+import { NzMessageService } from 'ng-zorro-antd';
 
 
 
@@ -20,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public snackBar: MatSnackBar,
+    private message: NzMessageService,
     private fb: FormBuilder,
     private userSrv: UserService,
   ) { }
@@ -114,7 +113,7 @@ export class RegisterComponent implements OnInit {
       profile: formData.profile,
     }
     this.userSrv.register(newUser).subscribe(res => {
-      this.snackBar.open(res.msg);
+      this.message.info(res.msg);
       if (res.code === 0) {
         this.router.navigate(['sub/login'])
       }

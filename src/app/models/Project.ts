@@ -30,6 +30,12 @@ export interface Project {
   audit: Audit,
   // 申请列表
   applyList?: [],
+  // 项目类型
+  project_type: string,
+  // 项目功能
+  project_fun: []
+  // 项目估价
+  project_assess: number
 }
 
 /**

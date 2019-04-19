@@ -4,10 +4,12 @@ import { User } from 'src/app/models/User';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { tap, map } from 'rxjs/operators';
-import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatSnackBar } from '@angular/material';
+import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ResTpl } from 'src/app/models/ResTpl';
 import { UploadService } from 'src/app/service/upload.service';
+import { NzMessageService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +29,7 @@ export class UserComponent implements OnInit {
     private bottomSheet: MatBottomSheet,
     private elementRef: ElementRef,
     private uploadSrv: UploadService,
-    private snackBar: MatSnackBar,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit() {
@@ -74,7 +76,7 @@ export class UserComponent implements OnInit {
   // 选择图片
   handleChooseImg() {
     // 只有编辑自己信息才可修改头像
-    if(this.selfProfile) {
+    if (this.selfProfile) {
       const input = this.elementRef.nativeElement.querySelector(`#avatar-input`)
       input.click()
     }
@@ -95,7 +97,7 @@ export class UserComponent implements OnInit {
           if (res.code === 0) {
             // 清空input
             input.value = ''
-            this.snackBar.open('头像更新成功')
+            this.message.info('头像更新成功')
           }
         }
       )
@@ -116,12 +118,12 @@ export class UserComponent implements OnInit {
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>新密码</mat-label>
-        <input matInput formControlName="newPwd" required minlength="6" maxlength="16">
+        <input matInput formControlName="newPwd" required minlength="6" maxlength="16" type="password">
         <mat-hint>10个字以内</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>重复新密码</mat-label>
-        <input matInput formControlName="reNewPwd" required minlength="6" maxlength="16">
+        <input matInput formControlName="reNewPwd" required minlength="6" maxlength="16" type="password">
         <mat-hint>10个字以内</mat-hint>
       </mat-form-field>
       <button class="mt-3" mat-raised-button color="accent" block type="submit">确认修改</button>      
@@ -140,18 +142,28 @@ export class ChangePwdBottomSheet {
     private bottomSheetRef: MatBottomSheetRef<ChangePwdBottomSheet>,
     private fb: FormBuilder,
     private userSrv: UserService,
-    private authSrv: AuthService,
+    private modal: NzModalService,
+    private router: Router,
   ) { }
 
   onSubmit() {
     const form = this.pwdFrom.value
-    if (form.newPwd !== form.reNewPwd) return alert('两次密码不一致')
+    if (form.newPwd !== form.reNewPwd) {
+      return this.modal.warning({
+        nzContent: '两次密码不一致'
+      })
+    }
     this.userSrv.updatePassword(form.oldPwd, form.newPwd).subscribe(
       (res: ResTpl) => {
         if (res.code === 0) {
-          alert('修改成功，请重新登录')
-          this.authSrv.logout()
-          this.bottomSheetRef.dismiss();
+          this.modal.info({
+            nzContent: '修改成功，请重新登录',
+            nzOnOk: () => {
+              localStorage.removeItem('ph-token')
+              this.router.navigate(['sub/login'])
+              this.bottomSheetRef.dismiss();
+            }
+          })
         }
       }
     )
@@ -201,6 +213,7 @@ export class ChangeInfoBottomSheet {
     private fb: FormBuilder,
     private userSrv: UserService,
     private authSrv: AuthService,
+    private modal: NzModalService,
   ) {
   }
 
@@ -211,7 +224,9 @@ export class ChangeInfoBottomSheet {
     this.userSrv.userInfo.profile.desc = form.desc
     this.userSrv.updateUserInfo(this.userSrv.userInfo).subscribe(res => {
       if (res.code === 0) {
-        alert('修改成功')
+        this.modal.info({
+          nzContent: '修改成功'
+        })
         this.bottomSheetRef.dismiss();
       }
     })

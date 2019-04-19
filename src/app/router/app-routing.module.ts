@@ -9,9 +9,12 @@ import { LoginComponent } from '../components/login/login.component';
 import { AuthGuard } from '../service/auth.service';
 import { HomePageComponent } from '../common/home-page/home-page.component';
 import { SubPageComponent } from '../common/sub-page/sub-page.component';
-import { ProjectEditComponent } from '../components/project-edit/project-edit.component';
+import { ProjectEditComponent } from '../components/new-project/project-edit/project-edit.component';
 import { MsgComponent } from '../components/msg/msg.component';
 import { UserProjectComponent } from '../components/user-project/user-project.component';
+import { ProjectAssessStep1Component } from '../components/new-project/project-assess-step1/project-assess-step1.component';
+import { ProjectAssessStep2Component } from '../components/new-project/project-assess-step2/project-assess-step2.component';
+import { ProjectPublishComponent } from '../components/new-project/project-publish/project-publish.component';
 
 const routes: Routes = [
   {
@@ -50,6 +53,30 @@ const routes: Routes = [
         // HostGuard
         data: {
           title: '编辑项目需求'
+        },
+      },
+      {
+        path: 'project-assess-step1/:id',
+        component: ProjectAssessStep1Component,
+        canActivate: [AuthGuard],
+        data: {
+          title: '项目估价 Step1'
+        },
+      },
+      {
+        path: 'project-assess-step2/:id',
+        component: ProjectAssessStep2Component,
+        canActivate: [AuthGuard],
+        data: {
+          title: '项目估价 Step2'
+        },
+      },
+      {
+        path: 'project-publish/:id',
+        component: ProjectPublishComponent,
+        canActivate: [AuthGuard],
+        data: {
+          title: '项目发布'
         },
       },
       {

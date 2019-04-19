@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // components
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { UserComponent, ChangePwdBottomSheet, ChangeInfoBottomSheet,} from './components/user/user.component';
+import { UserComponent, ChangePwdBottomSheet, ChangeInfoBottomSheet, } from './components/user/user.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
@@ -15,7 +15,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LogoComponent } from './common/logo/logo.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { SubPageComponent } from './common/sub-page/sub-page.component';
-import { ProjectEditComponent, addProjectSuccessDialog } from './components/project-edit/project-edit.component';
+import { ProjectEditComponent } from './components/new-project/project-edit/project-edit.component';
 import { MsgComponent } from './components/msg/msg.component';
 // pipes
 import { ArrayPipe } from './pipes/common.pipe';
@@ -38,6 +38,10 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { UserProjectComponent } from './components/user-project/user-project.component';
+import { ProjectAssessStep1Component } from './components/new-project/project-assess-step1/project-assess-step1.component';
+import { ProjectAssessStep2Component } from './components/new-project/project-assess-step2/project-assess-step2.component';
+import { ProjectPublishComponent } from './components/new-project/project-publish/project-publish.component';
+import { ProjectStepService } from './service/project-step.service';
 registerLocaleData(zh);
 
 @NgModule({
@@ -60,13 +64,14 @@ registerLocaleData(zh);
     ProjectEditComponent,
     UserRolePipe,
     MsgComponent,
-    addProjectSuccessDialog,
     ChangePwdBottomSheet,
     ChangeInfoBottomSheet,
     UserProjectComponent,
+    ProjectAssessStep1Component,
+    ProjectAssessStep2Component,
+    ProjectPublishComponent,
   ],
   entryComponents: [
-    addProjectSuccessDialog,
     ChangePwdBottomSheet,
     ChangeInfoBottomSheet,
   ],
@@ -87,6 +92,7 @@ registerLocaleData(zh);
     SkillService,
     UploadService,
     MsgService,
+    ProjectStepService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: NZ_I18N, useValue: zh_CN },
   ],

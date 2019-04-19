@@ -60,15 +60,6 @@ import {
     MatExpansionModule,
   ],
   providers: [
-    // snack bar
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: {
-        duration: 1000,
-        panelClass: 'white-bg',
-        verticalPosition: 'top'
-      }
-    }
   ]
 })
 export class AppMaterialModule { }

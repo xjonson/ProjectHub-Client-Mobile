@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
-import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ResTpl } from '../models/ResTpl';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class MsgService {
   constructor(
     private http: HttpClient,
     private userSrv: UserService,
-    public snackBar: MatSnackBar,
+    private message: NzMessageService,
   ) { }
 
 
@@ -24,7 +24,7 @@ export class MsgService {
     return this.http.get('api/msg').pipe(
       tap((res: ResTpl) => {
         this.unReadMsg = res.data.filter(i => !i.checked).length
-        this.snackBar.open(res.msg);
+        this.message.info(res.msg);
       })
     )
   }
@@ -38,7 +38,7 @@ export class MsgService {
       .pipe(
         tap((res: ResTpl) => {
           if (data.isAction) {
-            this.snackBar.open(res.msg);
+            this.message.info(res.msg);
           }
         })
       )
@@ -54,7 +54,7 @@ export class MsgService {
     return this.http.delete(`api/msg/`, {})
       .pipe(
         tap((res: ResTpl) => {
-          this.snackBar.open(res.msg);
+          this.message.info(res.msg);
         })
       )
   }
