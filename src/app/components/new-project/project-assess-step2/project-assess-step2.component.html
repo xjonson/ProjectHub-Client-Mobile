@@ -1,22 +1,39 @@
 <mat-card class="mt-2">
-    <mat-card-title class="d-flex align-items-center flex-column mb-3 mt-2">
-      <h2>选择项目功能</h2>
-    </mat-card-title>
-    <mat-card-subtitle class="text-center mb-4">
-      <p></p>
-    </mat-card-subtitle>
-    <!-- list -->
-    <div class="list">
-      <div class="fun1-wrap">
-        <div class="fun2-wrap"></div>
+  <mat-card-title class="d-flex align-items-center flex-column mb-3 mt-2">
+    <h2>选择项目功能</h2>
+  </mat-card-title>
+  <mat-card-subtitle class="text-center mb-4">
+    <p>系统会根据您选择的功能进行周期、价格的评估</p>
+  </mat-card-subtitle>
+  <!-- list -->
+  <div class="list">
+    <div class="fun1-wrap"
+      *ngFor="let item of selectPS?.data; let i = index">
+      <span (click)="clickFun1(item, i)"
+        [ngClass]="{'on': item.on}">{{item.title}}</span>
+      <div class="fun2-wrap"
+        [ngClass]="{'is-leaf': !item1.children.length}"
+        *ngFor="let item1 of item.children; let i1 = index">
+        <span (click)="clickFun2(item1, i, i1)"
+          [ngClass]="{'on': item1.on}">{{item1.title}}</span>
+        <div class="fun3-wrap"
+          *ngFor="let item2 of item1.children; let i2 = index">
+          <span (click)="clickFun3(item2, i, i1, i2)"
+            [ngClass]="{'on': item2.on}">{{item2.title}}</span>
+        </div>
       </div>
     </div>
-    <!-- 下一步 -->
-    <button mat-raised-button
-      color="accent"
-      (click)="submit()"
-      type="submit">
-      下一步
-    </button>
-  
-  </mat-card>
+  </div>
+  <p class="tips">
+    <mat-icon inline>info</mat-icon>
+    没有想要的功能？联系管理员 admin@ph.com 反馈！
+  </p>
+  <!-- 下一步 -->
+  <button mat-raised-button
+    color="accent"
+    (click)="submit()"
+    type="submit">
+    下一步
+  </button>
+
+</mat-card>

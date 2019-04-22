@@ -8,7 +8,7 @@ import { UserService } from 'src/app/service/user.service';
 import { ResTpl } from 'src/app/models/ResTpl';
 import { MsgService } from 'src/app/service/msg.service';
 import { Action } from 'src/app/models/Msg';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-project-detail',
@@ -27,6 +27,7 @@ export class ProjectDetailComponent implements OnInit {
     public userSrv: UserService,
     private message: NzMessageService,
     private msgSrv: MsgService,
+    private modal: NzModalService,
   ) { }
 
   ngOnInit() {
@@ -40,7 +41,37 @@ export class ProjectDetailComponent implements OnInit {
       const id = params['id']
       this.projectSrv.getProject(id).subscribe((res: ResTpl) => {
         if (res.code === 0) {
-          const proj = res.data
+          const proj: Project = res.data
+          if (!proj.project_type) {
+            return this.modal.info({
+              nzContent: '请先完善项目信息',
+              nzOnOk: () => {
+                this.router.navigate(['/sub/project-assess-step1', proj._id], {
+                  replaceUrl: true
+                })
+              }
+            })
+          }
+          if (!proj.project_fun || !proj.project_fun.length) {
+            return this.modal.info({
+              nzContent: '请先完善项目信息',
+              nzOnOk: () => {
+                this.router.navigate(['/sub/project-assess-step2', proj._id], {
+                  replaceUrl: true
+                })
+              }
+            })
+          }
+          if (!proj.project_assess) {
+            return this.modal.info({
+              nzContent: '请先完善项目信息',
+              nzOnOk: () => {
+                this.router.navigate(['/sub/project-publish', proj._id], {
+                  replaceUrl: true
+                })
+              }
+            })
+          }
           this.project = proj
           this.projectSrv.setTitle(proj.title)
         }

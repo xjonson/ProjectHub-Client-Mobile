@@ -22,13 +22,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       mergeMap((event: any) => {
-        // console.log('event: ', event);
         return of(event);
       }),
       catchError((err: HttpErrorResponse) => {
         switch (err.status) {
           // case 200:
-          case 401: // 未登录状态码
+          case 401: // 未登录状态码'
+            console.log(err)
             this.modal.error({
               nzContent: '身份信息过期，请重新登录',
               nzOnOk: () => {

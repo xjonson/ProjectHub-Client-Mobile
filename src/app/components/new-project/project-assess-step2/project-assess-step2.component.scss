@@ -1,6 +1,64 @@
-
 button[type=submit] {
   margin-left: auto;
   margin-top: 40px;
   display: block;
+}
+
+$width: 50px;
+$border: 1px solid #eee;
+
+.list {
+  border: $border;
+  border-radius: 10px;
+
+  span {
+    display: block;
+
+    &.on {
+      background-color: #24282e;
+      color: #fff;
+    }
+  }
+}
+
+.fun1-wrap {
+  min-height: $width;
+}
+
+.fun1-wrap:not(:last-child),
+.fun2-wrap:not(:last-child),
+.fun3-wrap:not(:last-child) {
+  border-bottom: $border;
+}
+
+.fun1-wrap,
+.fun2-wrap:not(.is-leaf) {
+  display: flex;
+  position: relative;
+  padding-left: $width;
+  flex-direction: column;
+
+  &>span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    text-align: center;
+    line-height: $width - 2px;
+    writing-mode: tb;
+    border-right: $border;
+  }
+}
+
+.fun2-wrap.is-leaf,
+.fun3-wrap {
+  text-align: center;
+  line-height: $width;
+}
+
+.tips {
+  font-size: 12px;
+  margin-top: 20px;
+  color: #aaa;
+  line-height: 1.4;
 }

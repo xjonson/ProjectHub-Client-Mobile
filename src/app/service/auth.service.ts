@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { Location } from '@angular/common';
 import { UserService } from './user.service';
 import { NzModalService } from 'ng-zorro-antd';
+import { ResTpl } from '../models/ResTpl';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,8 @@ export class AuthService {
     // 查看cookie中是否有登录信息
     if (localStorage.getItem('ph-token')) {
       this.userSrv.getUserInfo().subscribe(
-        (user: User) => {
+        (resTpl: ResTpl) => {
           this.loginState = true
-          console.log('login')
-          // this.userSrv.login(user).subscribe()
         }
       )
     }

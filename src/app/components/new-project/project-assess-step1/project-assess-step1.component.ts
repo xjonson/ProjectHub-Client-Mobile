@@ -36,8 +36,8 @@ export class ProjectAssessStep1Component implements OnInit {
       this.projectSrv.getProject(id).subscribe((resTpl: ResTpl) => {
         if (resTpl.code === 0) {
           this.project = resTpl.data
+          this.handleGetPS()
           if (this.project.project_type) {
-            this.handleGetPS()
             this.selectType = this.project.project_type
           }
         }
@@ -71,7 +71,7 @@ export class ProjectAssessStep1Component implements OnInit {
         console.log('resTpl: ', resTpl);
         if (resTpl.code === 0) {
           this.router.navigate(['/sub/project-assess-step2', pid], {
-            replaceUrl: true
+            replaceUrl: false
           })
         }
       }

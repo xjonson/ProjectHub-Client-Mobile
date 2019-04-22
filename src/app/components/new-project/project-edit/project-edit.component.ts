@@ -73,7 +73,7 @@ export class ProjectEditComponent implements OnInit {
       if (resTpl.code === 0) {
         // 进入项目估价系统step1
         this.router.navigate(['/sub/project-assess-step1', resTpl.data._id], {
-          replaceUrl: true
+          replaceUrl: false
         })
         this.message.success('信息提交成功！进入项目估价系统')
         return
