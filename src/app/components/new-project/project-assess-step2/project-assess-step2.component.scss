@@ -10,9 +10,11 @@ $border: 1px solid #eee;
 .list {
   border: $border;
   border-radius: 10px;
+  overflow: hidden;
 
   span {
     display: block;
+    white-space: nowrap;
 
     &.on {
       background-color: #24282e;
@@ -20,8 +22,8 @@ $border: 1px solid #eee;
     }
   }
 }
-
-.fun1-wrap {
+.fun1-wrap,
+.fun2-wrap {
   min-height: $width;
 }
 

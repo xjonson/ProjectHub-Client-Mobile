@@ -1,3 +1,25 @@
-<p>
-  project-publish works!
-</p>
+<mat-card class="mt-2">
+
+  <mat-card-title class="d-flex align-items-center flex-column mb-3 mt-2">
+    <i nz-icon
+      style="font-size: 40px;color: #52c41a; margin-bottom: 30px;"
+      nzType="check-circle"
+      nzTheme="outline"></i>
+    <h2>项目发布成功</h2>
+  </mat-card-title>
+  <mat-card-subtitle class="text-center mb-4">
+    <p>请等待管理员对您的项目进行审核，审核通过后会发布到项目大厅</p>
+  </mat-card-subtitle>
+  <mat-card-content *ngIf="project">
+    <h2>项目估价：￥{{project.project_assess}}</h2>
+  </mat-card-content>
+  <!-- 确定 -->
+  <p class="text-center mt-5 mb-3">
+    <button mat-raised-button
+      color="accent"
+      (click)="submit()"
+      type="submit">
+      确定
+    </button>
+  </p>
+</mat-card>

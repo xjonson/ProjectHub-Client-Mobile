@@ -111,19 +111,35 @@ export class ProjectAssessStep2Component implements OnInit {
 
   // 下一步
   submit() {
-    // if (!this.selectType)
-    return this.message.warning('请选择项目类型')
     const pid = this.route.snapshot.paramMap.get('id')
-    // this.projectSrv.setProjectType(pid).subscribe(
-    //   (resTpl: ResTpl) => {
-    //     console.log('resTpl: ', resTpl);
-    //     if (resTpl.code === 0) {
-    //       this.router.navigate(['/sub/project-assess-step2', pid], {
-    //         replaceUrl: false
-    //       })
-    //     }
-    //   }
-    // )
+    const funs = []
+    this.selectPS.data.forEach(level1 => {
+      level1.children.forEach(level2 => {
+        level2.children.forEach(level3 => {
+          if (level3.on) {
+            const func_line = [
+              level1,
+              level2,
+              level3,
+            ]
+            funs.push(func_line)
+          }
+        })
+      });
+    })
+    if(funs.length === 0) {
+      return this.message.warning('请选择项目功能')
+    }
+    this.projectSrv.setProjectFun(pid, funs).subscribe(
+      (resTpl: ResTpl) => {
+        console.log('resTpl: ', resTpl);
+        if (resTpl.code === 0) {
+          this.router.navigate(['/sub/project-publish', pid], {
+            replaceUrl: false
+          })
+        }
+      }
+    )
 
   }
 

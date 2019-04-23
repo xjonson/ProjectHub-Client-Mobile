@@ -133,4 +133,15 @@ export class ProjectService {
       })
     )
   }
+  // 设置项目功能
+  setProjectFun(pid: string, funs: any[]): Observable<any> {
+    const obj = {
+      funs
+    }
+    return this.http.patch(`api/project/${pid}`, obj).pipe(
+      tap((res: ResTpl) => {
+        this.message.info(res.msg);
+      })
+    )
+  }
 }
