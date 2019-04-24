@@ -11,7 +11,7 @@ import { Project } from 'src/app/models/Project';
 })
 export class ProjectPublishComponent implements OnInit {
   project: Project;
-  
+
   constructor(
     private router: Router,
     private projectSrv: ProjectService,
@@ -29,6 +29,12 @@ export class ProjectPublishComponent implements OnInit {
     })
   }
   submit() {
-    this.router.navigate(['/home/projects'])
+    this.router.navigate(['/home/project'])
+    // this.route.params.subscribe(params => {
+    //   const id = params['id']
+    //   this.router.navigate(['/sub/project', id], {
+    //     replaceUrl: false
+    //   })
+    // })
   }
 }

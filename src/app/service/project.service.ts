@@ -42,7 +42,10 @@ export class ProjectService {
           cycle: filter.cycle,
           min_price: filter.price[0],
           max_price: filter.price[1],
-          skills: filter.skills
+          skills: filter.skills,
+          project_type: filter.project_type,
+          min_project_assess: filter.project_assess[0],
+          max_project_assess: filter.project_assess[1]
         }
       })
     }

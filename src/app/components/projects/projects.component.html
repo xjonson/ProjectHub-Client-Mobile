@@ -14,17 +14,12 @@
     <button mat-button
       (click)="changeFilterExpand(1)"
       class="filter-item">
-      开发周期
+      项目信息筛选
     </button>
     <button mat-button
       (click)="changeFilterExpand(2)"
       class="filter-item">
-      开发预算
-    </button>
-    <button mat-button
-      (click)="changeFilterExpand(3)"
-      class="filter-item">
-      &nbsp;&nbsp;技术栈&nbsp;&nbsp;
+      估价筛选
     </button>
   </div>
 
@@ -32,32 +27,52 @@
     *ngIf="showFilterExpand">
     <!-- 1.周期 -->
     <div *ngIf="showFilterExpand === 1">
-      <mat-radio-group [(ngModel)]="formData.cycle">
-        <mat-radio-button *ngFor="let item of cycles"
-          [value]="item.value">{{item.name}}</mat-radio-button>
-      </mat-radio-group>
+      <h4>周期</h4>
+      <div class="fe-wrap">
+        <mat-radio-group [(ngModel)]="formData.cycle">
+          <mat-radio-button *ngFor="let item of cycles"
+            [value]="item.value">{{item.name}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <h4>预算</h4>
+      <div class="fe-wrap">
+        <p class="mb-2">选择金额区间: ￥{{formData.price[0]}} - ￥{{formData.price[1]}}</p>
+        <nz-slider [nzRange]="true"
+          [nzMax]="10000"
+          [nzMin]="0"
+          [nzStep]="50"
+          [nzTipFormatter]="formatterPrice"
+          [(ngModel)]="formData.price"></nz-slider>
+      </div>
+      <h4>技术栈</h4>
+      <div class="fe-wrap">
+        <nz-checkbox-group [(ngModel)]="skillList"></nz-checkbox-group>
+      </div>
     </div>
-    <!-- 2.预算 -->
+    <!-- 2 -->
     <div *ngIf="showFilterExpand === 2">
-      <p class="mb-2">选择金额区间: ￥{{formData.price[0]}} - ￥{{formData.price[1]}}</p>
-      <nz-slider [nzRange]="true"
-        [nzMax]="10000"
-        [nzMin]="0"
-        [nzStep]="50"
-        [nzTipFormatter]="formatterPrice"
-        [(ngModel)]="formData.price"></nz-slider>
-    </div>
-    <!-- 3.技术栈 -->
-    <div *ngIf="showFilterExpand === 3">
-      <nz-checkbox-group [(ngModel)]="skillList"></nz-checkbox-group>
+      <h4>项目类型</h4>
+      <div class="fe-wrap">
+        <mat-radio-group [(ngModel)]="formData.project_type">
+          <mat-radio-button *ngFor="let item of PSList"
+            [value]="item.type">{{item.type}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <h4>估价</h4>
+      <div class="fe-wrap">
+        <p class="mb-2">选择金额区间: ￥{{formData.project_assess[0]}} - ￥{{formData.project_assess[1]}}</p>
+        <nz-slider [nzRange]="true"
+          [nzMax]="10000"
+          [nzMin]="0"
+          [nzStep]="50"
+          [nzTipFormatter]="formatterPrice"
+          [(ngModel)]="formData.project_assess"></nz-slider>
+      </div>
     </div>
     <!-- button -->
     <div class="button-wrap">
       <button mat-raised-button
-        style="margin-right: 40px;"
-        (click)="clearAllQuery()">全部清除</button>
-      <button mat-raised-button
-        (click)="clearQuery()">清除</button>
+        (click)="clearAllQuery()">清除</button>
       <button mat-raised-button
         (click)="handleGetProjects()"
         color="primary">确定</button>

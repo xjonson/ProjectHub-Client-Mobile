@@ -5,6 +5,8 @@ import { UserService } from 'src/app/service/user.service';
 import { ResTpl } from 'src/app/models/ResTpl';
 import { Router } from '@angular/router';
 import { SkillService } from 'src/app/service/skill.service';
+import { ProjectStepService } from 'src/app/service/project-step.service';
+import { ProjectStep } from 'src/app/models/ProjectStep';
 
 @Component({
   selector: 'app-projects',
@@ -16,10 +18,14 @@ export class ProjectsComponent implements OnInit {
   projects: Project[];
   cycles = [];
   skillList = [];
+  PSList: ProjectStep[] = [];
   formData = {
     cycle: 0,
     price: [0, 10000],
     skills: [],
+    // 
+    project_type: '',
+    project_assess: [0, 10000],
   }
 
 
@@ -28,12 +34,14 @@ export class ProjectsComponent implements OnInit {
     public userSrv: UserService,
     private router: Router,
     private skillService: SkillService,
+    private projStepSrv: ProjectStepService,
   ) { }
 
   ngOnInit() {
     this.cycles = this.projectSrv.cycles
     this.handleGetProjects()
     this.handleGetSkills()
+    this.handleGetPS()
   }
 
   // 获取全部项目
@@ -64,6 +72,16 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
+  // 获取全部PS
+  handleGetPS() {
+    this.projStepSrv.getProjectStep().subscribe(
+      (resTpl: ResTpl) => {
+        if (resTpl.code === 0) {
+          this.PSList = resTpl.data
+        }
+      }
+    )
+  }
   // 获取全部skill
   handleGetSkills() {
     this.skillService.getSkills().subscribe((res: ResTpl) => {
@@ -90,27 +108,16 @@ export class ProjectsComponent implements OnInit {
 
   // 全部清除
   clearAllQuery() {
-    this.formData = {
-      cycle: 0,
-      price: [0, 10000],
-      skills: [],
-    }
-    this.handleGetProjects()
-  }
-  // 清除
-  clearQuery() {
     switch (this.showFilterExpand) {
       case 1:
-        this.formData.cycle = 0
+        this.formData.cycle = 0;
+        this.formData.price = [0, 10000];
+        this.formData.skills = [];
+        this.skillList.forEach(i => i.checked = false);
         break;
       case 2:
-        this.formData.price = [0, 10000]
-        break;
-      case 3:
-        this.formData.skills = []
-        this.skillList.forEach(i => i.checked = false)
-        break;
-      default:
+        this.formData.project_type = ''
+        this.formData.project_assess = [0, 10000];
         break;
     }
     this.handleGetProjects()
