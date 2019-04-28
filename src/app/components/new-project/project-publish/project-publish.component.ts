@@ -29,7 +29,7 @@ export class ProjectPublishComponent implements OnInit {
     })
   }
   submit() {
-    this.router.navigate(['/home/project'])
+    this.router.navigate(['/home/projects'])
     // this.route.params.subscribe(params => {
     //   const id = params['id']
     //   this.router.navigate(['/sub/project', id], {
