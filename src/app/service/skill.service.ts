@@ -16,7 +16,7 @@ export class SkillService {
   ) { }
 
   getSkills() {
-    return this.http.get('api/skill').pipe(
+    return this.http.get('/api/skill').pipe(
       tap((resTpl: ResTpl) => {
         if (resTpl.code === 0) {
           this.skills = resTpl.data

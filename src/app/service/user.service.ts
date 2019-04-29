@@ -19,12 +19,12 @@ export class UserService {
 
   // 用户注册
   register(user: Partial<User>): Observable<any> {
-    return this.http.post('api/user/register', user)
+    return this.http.post('/api/user/register', user)
   }
 
   // 用户登录
   login(user: Partial<User>): Observable<any> {
-    return this.http.post('api/user/login', user).pipe(
+    return this.http.post('/api/user/login', user).pipe(
       tap(
         (res: ResTpl) => {
           if (res.code === 0) {
@@ -43,9 +43,9 @@ export class UserService {
   // 获取用户信息
   getUserInfo(id?: string) {
     if (id) {
-      return this.http.get(`api/user/${id}`)
+      return this.http.get(`/api/user/${id}`)
     } else {
-      return this.http.get(`api/user/self`).pipe(
+      return this.http.get(`/api/user/self`).pipe(
         tap((res: ResTpl) => {
           if (res.code === 0) {
             this.userInfo = res.data
@@ -57,7 +57,7 @@ export class UserService {
 
   // 更新信息
   updateUserInfo(data: Partial<User>) {
-    return this.http.patch(`api/user/${this.userInfo._id}`, data).pipe(
+    return this.http.patch(`/api/user/${this.userInfo._id}`, data).pipe(
       tap(
         (res: ResTpl) => {
           this.message.info(res.msg)
@@ -73,7 +73,7 @@ export class UserService {
       oldPwd,
       newPwd
     }
-    return this.http.patch(`api/user/password/${'updatePassword'}`, data).pipe(
+    return this.http.patch(`/api/user/password/${'updatePassword'}`, data).pipe(
       tap(
         (res: ResTpl) => {
           this.message.info(res.msg)

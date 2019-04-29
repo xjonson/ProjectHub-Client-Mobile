@@ -11,7 +11,7 @@ export class DashboardService {
   ) { }
 
   addPageView() {
-    return this.http.post('api/dashboard', {})
+    return this.http.post('/api/dashboard', {})
   }
 
 }

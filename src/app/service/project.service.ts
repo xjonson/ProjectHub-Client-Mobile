@@ -50,7 +50,7 @@ export class ProjectService {
       })
     }
 
-    return this.http.get('api/project', { params }).pipe(
+    return this.http.get('/api/project', { params }).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
@@ -59,7 +59,7 @@ export class ProjectService {
 
   // 获取单个project详情
   getProject(id: string): Observable<any> {
-    return this.http.get(`api/project/${id}`)
+    return this.http.get(`/api/project/${id}`)
     // .pipe(
     //   tap((res: ResTpl) => {
     //     this.message.info(res.msg);
@@ -85,12 +85,12 @@ export class ProjectService {
 
   // 发布项目
   addProject(data: Project): Observable<any> {
-    return this.http.post('api/project', data)
+    return this.http.post('/api/project', data)
   }
 
   // 更新项目信息
   updateProject(pid: string, data: any): Observable<any> {
-    return this.http.patch(`api/project/${pid}`, data).pipe(
+    return this.http.patch(`/api/project/${pid}`, data).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
@@ -102,7 +102,7 @@ export class ProjectService {
     const obj = {
       content
     }
-    return this.http.patch(`api/project/${pid}`, obj).pipe(
+    return this.http.patch(`/api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
@@ -115,7 +115,7 @@ export class ProjectService {
       status,
       dev_user,
     }
-    return this.http.patch(`api/project/${pid}`, obj).pipe(
+    return this.http.patch(`/api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
@@ -130,7 +130,7 @@ export class ProjectService {
     const obj = {
       pType
     }
-    return this.http.patch(`api/project/${pid}`, obj).pipe(
+    return this.http.patch(`/api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
@@ -141,7 +141,7 @@ export class ProjectService {
     const obj = {
       funs
     }
-    return this.http.patch(`api/project/${pid}`, obj).pipe(
+    return this.http.patch(`/api/project/${pid}`, obj).pipe(
       tap((res: ResTpl) => {
         this.message.info(res.msg);
       })
