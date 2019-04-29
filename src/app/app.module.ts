@@ -35,7 +35,7 @@ import { AppMaterialModule } from './material.module';
 // ng-zorro
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 配置 angular i18n **/
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { UserProjectComponent } from './components/user-project/user-project.component';
 import { ProjectAssessStep1Component } from './components/new-project/project-assess-step1/project-assess-step1.component';
@@ -95,7 +95,10 @@ registerLocaleData(zh);
     ProjectStepService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: NZ_I18N, useValue: zh_CN },
+    // 路由hash模式
+    { provide: LocationStrategy, useClass: HashLocationStrategy, }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

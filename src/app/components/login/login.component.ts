@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { ResTpl } from 'src/app/models/ResTpl';
 import { NzMessageService } from 'ng-zorro-antd';
-// import { CookieService } from 'src/app/service/cookie.service';
 
 
 @Component({
@@ -66,8 +65,5 @@ export class LoginComponent implements OnInit {
         this.message.info(resTpl.msg)
       }
     })
-
   }
-
-
 }
