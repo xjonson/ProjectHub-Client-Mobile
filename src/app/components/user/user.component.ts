@@ -91,7 +91,8 @@ export class UserComponent implements OnInit {
         if (res.code === 0) return res.data
       })
     ).subscribe(path => {
-      this.userInfo.profile.avatar = 'api/' + path
+      // 设置头像路径
+      this.userInfo.profile.avatar = '/api/' + path
       this.userSrv.updateUserInfo(this.userInfo).subscribe(
         (res: ResTpl) => {
           if (res.code === 0) {

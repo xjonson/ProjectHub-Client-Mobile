@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { SkillService } from 'src/app/service/skill.service';
 import { ProjectStepService } from 'src/app/service/project-step.service';
 import { ProjectStep } from 'src/app/models/ProjectStep';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-projects',
@@ -35,15 +36,27 @@ export class ProjectsComponent implements OnInit {
     private router: Router,
     private skillService: SkillService,
     private projStepSrv: ProjectStepService,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit() {
     this.cycles = this.projectSrv.cycles
-    this.handleGetProjects()
     this.handleGetSkills()
     this.handleGetPS()
   }
 
+  // 获取全部skill
+  handleGetSkills() {
+    this.skillService.getSkills().subscribe((res: ResTpl) => {
+      this.skillList = res.data.map(item => {
+        item.label = item.name
+        item.value = item.id
+        return item
+      })
+      this.handleGetProjects()
+    })
+  }
+  
   // 获取全部项目
   handleGetProjects() {
     this.formData.skills = this.skillList.filter(item => item.checked).map(item => +item.id)
@@ -68,7 +81,7 @@ export class ProjectsComponent implements OnInit {
     if (this.userSrv.userInfo.audit === 1) {
       this.router.navigate(['/sub/project-edit/0'])
     } else {
-      alert('您的账号正在审核，审核成功后才能发布项目')
+      this.message.warning('您的账号正在审核，审核成功后才能发布项目')
     }
   }
 
@@ -82,16 +95,7 @@ export class ProjectsComponent implements OnInit {
       }
     )
   }
-  // 获取全部skill
-  handleGetSkills() {
-    this.skillService.getSkills().subscribe((res: ResTpl) => {
-      this.skillList = res.data.map(item => {
-        item.label = item.name
-        item.value = item.id
-        return item
-      })
-    })
-  }
+
   // 控制filter-expand
   changeFilterExpand(num) {
     if (this.showFilterExpand === num) {

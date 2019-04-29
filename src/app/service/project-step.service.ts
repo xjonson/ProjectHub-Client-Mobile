@@ -13,7 +13,7 @@ export class ProjectStepService {
   
   // 获取全部项目
   getProjectStep(): Observable<any> {
-    return this.http.get('/api/projectStep')
+    return this.http.get('api/projectStep')
   }
 
 }
