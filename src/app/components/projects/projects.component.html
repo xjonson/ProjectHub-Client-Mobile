@@ -90,7 +90,7 @@
       <img *ngIf="item.demand_user.profile.avatar as avatar"
         [src]="avatar">
       <div class="text">
-        <h6>{{item.title}}</h6>
+        <h6>{{item.title}}&nbsp;&nbsp;·&nbsp;&nbsp;{{item.project_type}}</h6>
         <p>{{item.create_time | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
       </div>
     </div>

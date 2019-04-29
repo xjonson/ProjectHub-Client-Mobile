@@ -87,7 +87,6 @@ export class ProjectDetailComponent implements OnInit {
       this.projectSrv.addProjectComment(this.project._id, this.commentContent).subscribe(
         (res: ResTpl) => {
           if (res.code == 0) {
-            this.message.info('评论成功')
             const data = res.data
             this.handleGetProj()
             // 不给自己推送消息

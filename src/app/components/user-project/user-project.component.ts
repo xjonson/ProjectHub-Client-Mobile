@@ -31,7 +31,7 @@ export class UserProjectComponent implements OnInit {
             // 展示skill
             item.skills = item.skills.split(',')
             // 截取desc
-            // item.desc = item.desc.substr(0, 100) + '...'
+            item.desc = item.desc.substr(0, 100) + '...'
             const user_id = this.userSrv.userInfo._id
             if (item.dev_user) {
               return item.demand_user._id == user_id || item.dev_user._id == user_id

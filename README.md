@@ -6,7 +6,7 @@
 
 ## 介绍
 
-- ~~当前使用fake api，将来会使用node代替~~已经使用node后端提供api
+- ~~当前使用fake api，将来会使用node代替~~ 已经使用node后端提供api
 - 用户可以注册、登录，除管理员外具有 需求方(demander)和开发方(developer)身份
 - 需求方可发布项目需求，经过后台审核通过后可展示在项目大厅
 - 开发方可查看项目、留言、申请接单
@@ -19,7 +19,7 @@
 - Angular v7.3.0
 - Angular Material v7.2.0
 - TypeScript v3.2.2
-- json-server v0.14.2
+- ~~json-server v0.14.2~~
 
 
 ## 使用
@@ -44,4 +44,33 @@ server端api请[移步这里](https://github.com/xjonson/ProjectHub-BackEnd)
 
 ## 展示
 
-![user_login](./screenshots/user_login.png)![user_register](./screenshots/user_register.png)![user_profile](./screenshots/user_profile.png)![project_list](./screenshots/project_list.png)![project_edit](./screenshots/project_edit.png)![project_detail](./screenshots/project_detail.png)![msgs](./screenshots/msgs.png)
+用户登录
+![user_login](./screenshots/user_login.png)
+用户注册
+![user_register](./screenshots/user_register.png)
+用户信息
+![user_profile](./screenshots/user_profile.png)
+用户修改信息
+![user_update_info](./screenshots/user_update_info.png)
+用户修改密码
+![user_update_pwd](./screenshots/user_update_pwd.png)
+用户项目列表
+![user_projects](./screenshots/user_projects.png)
+用户消息
+![msgs](./screenshots/msgs.png)
+项目列表
+![project_list](./screenshots/project_list.png)
+项目列表筛选-1
+![project_list_filter1](./screenshots/project_list_filter1.png)
+项目列表筛选-2
+![project_list_filter2](./screenshots/project_list_filter2.png)
+项目详情
+![project_detail](./screenshots/project_detail.png)
+发布项目-编辑信息
+![project_edit](./screenshots/project_edit.png)
+发布项目-估价系统-选择项目类型
+![project_assess_step1](./screenshots/project_assess_step1.png)
+发布项目-估价系统-选择项目功能
+![project_assess_step2](./screenshots/project_assess_step2.png)
+发布项目
+![project_publish](./screenshots/project_publish.png)
