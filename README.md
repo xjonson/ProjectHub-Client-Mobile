@@ -1,4 +1,4 @@
-# Project-Hub
+# ProjectHub
 
 中文名还没想好
 
