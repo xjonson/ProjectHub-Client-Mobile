@@ -6,14 +6,15 @@ import { ResTpl } from '../models/ResTpl';
 export class SkillPipe implements PipeTransform {
   constructor(
     private skillService: SkillService
-  ) { }
+  ) {
+    this.skillService.getSkills().subscribe()
+  }
 
   transform(value: number): any {
-    if(this.skillService.skills.length) {
-      console.log('this.skillService.skills: ', this.skillService.skills);
+    if (this.skillService.skills && this.skillService.skills.length) {
       return this.skillService.skills.filter(item => +item.id == value)[0].name
     } else {
-      return 
+      return
     }
   }
 }
