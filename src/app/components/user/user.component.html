@@ -29,6 +29,12 @@
       <mat-icon matListIcon>phone</mat-icon>
       <h3 mat-line>{{userInfo.profile.phone}}</h3>
     </mat-list-item>
+    <mat-list-item *ngIf="userInfo.role === 3">
+      <mat-icon matListIcon>developer_board</mat-icon>
+      <h3 mat-line>
+        <span *ngFor="let s of userInfo.skill">{{s | skill}},&nbsp;</span>
+      </h3>
+    </mat-list-item>
   </mat-list>
   <!-- 功能 -->
   <mat-list *ngIf="selfProfile">

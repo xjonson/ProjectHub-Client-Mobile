@@ -10,6 +10,7 @@ import { ResTpl } from 'src/app/models/ResTpl';
 import { UploadService } from 'src/app/service/upload.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { NzModalService } from 'ng-zorro-antd';
+import { SkillService } from 'src/app/service/skill.service';
 
 @Component({
   selector: 'app-user',
@@ -188,6 +189,14 @@ export class ChangePwdBottomSheet {
         <input matInput formControlName="phone" required maxlength="11">
         <mat-hint></mat-hint>
       </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="userSrv.userInfo.role === 3">
+        <mat-label>技能</mat-label>
+        <mat-select formControlName="skill"
+          multiple>
+          <mat-option *ngFor="let item of skills"
+            [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>简介</mat-label>
         <input matInput formControlName="desc">
@@ -198,13 +207,15 @@ export class ChangePwdBottomSheet {
   `,
 })
 export class ChangeInfoBottomSheet {
-  profile = this.userSrv.userInfo.profile
+  profile = this.userSrv.userInfo.profile;
+  skills = this.skillSrv.skills;
   infoFrom: FormGroup = this.fb.group({
     name: [this.userSrv.userInfo.profile.name, Validators.required],
     phone: [this.userSrv.userInfo.profile.phone, [
       Validators.required,
       Validators.pattern(/^1(3|4|5|6|7|8|9)\d{9}$/)
     ]],
+    skill: [this.userSrv.userInfo.skill],
     desc: [this.userSrv.userInfo.profile.desc]
   })
 
@@ -214,8 +225,11 @@ export class ChangeInfoBottomSheet {
     private fb: FormBuilder,
     private userSrv: UserService,
     private authSrv: AuthService,
+    private skillSrv: SkillService,
     private modal: NzModalService,
   ) {
+    console.log(this.userSrv.userInfo)
+    console.log(this.infoFrom.value)
   }
 
   onSubmit() {
@@ -223,6 +237,7 @@ export class ChangeInfoBottomSheet {
     this.userSrv.userInfo.profile.name = form.name
     this.userSrv.userInfo.profile.phone = form.phone
     this.userSrv.userInfo.profile.desc = form.desc
+    this.userSrv.userInfo.skill = form.skill
     this.userSrv.updateUserInfo(this.userSrv.userInfo).subscribe(res => {
       if (res.code === 0) {
         this.modal.info({
