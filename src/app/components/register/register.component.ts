@@ -5,6 +5,8 @@ import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/fo
 import { passwordEqulaValidator } from 'src/app/validators/validators';
 import { UserService } from 'src/app/service/user.service';
 import { NzMessageService } from 'ng-zorro-antd';
+import { SkillService } from 'src/app/service/skill.service';
+import { ResTpl } from 'src/app/models/ResTpl';
 
 
 
@@ -14,7 +16,8 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['../login/login.component.scss', './register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup
+  registerForm: FormGroup;
+  skills: [];
 
   constructor(
     private authService: AuthService,
@@ -22,6 +25,7 @@ export class RegisterComponent implements OnInit {
     private message: NzMessageService,
     private fb: FormBuilder,
     private userSrv: UserService,
+    private skillService: SkillService,
   ) { }
 
   get email(): AbstractControl {
@@ -42,8 +46,16 @@ export class RegisterComponent implements OnInit {
   get phone(): AbstractControl {
     return this.registerForm.get('profile').get('phone')
   }
+  get skill(): AbstractControl {
+    return this.registerForm.get('skill')
+  }
 
   ngOnInit() {
+    this.handleGetSkills()
+    this.initForm()
+  }
+  // 表单初始化
+  initForm() {
     this.registerForm = this.fb.group({
       email: ['', [
         Validators.required,
@@ -61,6 +73,7 @@ export class RegisterComponent implements OnInit {
       }, { validator: passwordEqulaValidator }),
       role: [3, [Validators.required]],
       create_time: [new Date()],
+      skill: [[]],
       profile: this.fb.group({
         name: ['', [
           Validators.required,
@@ -72,34 +85,14 @@ export class RegisterComponent implements OnInit {
         ]],
       })
     })
-    // this.registerForm = this.fb.group({
-    //   email: ['dev1@ph.com', [
-    //     Validators.required,
-    //     Validators.email
-    //   ]],
-    //   pwd: this.fb.group({
-    //     password: ['123123', [
-    //       Validators.required,
-    //       Validators.minLength(6),
-    //       Validators.maxLength(15)
-    //     ]],
-    //     password2: ['123123', [
-    //       Validators.required,
-    //     ]]
-    //   }, { validator: passwordEqulaValidator }),
-    //   role: [3, [Validators.required]],
-    //   create_time: [new Date()],
-    //   profile: this.fb.group({
-    //     name: ['dev1', [
-    //       Validators.required,
-    //       Validators.maxLength(10)
-    //     ]],
-    //     phone: ['17812312312', [
-    //       Validators.required,
-    //       Validators.pattern(/^1(3|4|5|6|7|8|9)\d{9}$/)
-    //     ]],
-    //   })
-    // })
+    console.log(this.registerForm)
+  }
+
+  // 获取全部skill
+  handleGetSkills() {
+    this.skillService.getSkills().subscribe((res: ResTpl) => {
+      this.skills = res.data
+    })
   }
 
   // 提交
@@ -111,6 +104,7 @@ export class RegisterComponent implements OnInit {
       password2: formData.pwd.password2,
       role: formData.role,
       profile: formData.profile,
+      skill: formData.skill,
     }
     this.userSrv.register(newUser).subscribe(res => {
       this.message.info(res.msg);

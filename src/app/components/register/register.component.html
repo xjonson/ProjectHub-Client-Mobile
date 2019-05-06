@@ -1,18 +1,23 @@
 <mat-card class="mt-2">
   <mat-card-title class="d-flex align-items-center flex-column mb-3 mt-2">
-    <app-logo [size]="40" class="mb-3"></app-logo>
+    <app-logo [size]="40"
+      class="mb-3"></app-logo>
     <h2>注册</h2>
   </mat-card-title>
   <mat-card-subtitle class="text-center mb-4">
     <p>在ProjectHub轻松实现需求与开发完美对接</p>
   </mat-card-subtitle>
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()">
     <mat-card-content>
       <!-- 邮箱 -->
       <div class="form-item">
         <label>邮 箱</label>
-        <input type="email" formControlName="email" required placeholder="请输入邮箱">
+        <input type="email"
+          formControlName="email"
+          required
+          placeholder="请输入邮箱">
       </div>
       <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
         <div *ngIf="email.getError('required') Else emailInvaildTpl">
@@ -24,7 +29,11 @@
         <!-- 密码 -->
         <div class="form-item">
           <label>密 码</label>
-          <input type="password" formControlName="password" required minlength="6" placeholder="请输入6~15位的密码">
+          <input type="password"
+            formControlName="password"
+            required
+            minlength="6"
+            placeholder="请输入6~15位的密码">
         </div>
         <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
           <div *ngIf="password.getError('required')">
@@ -40,7 +49,11 @@
         <!-- 确认密码 -->
         <div class="form-item">
           <label>确认密码</label>
-          <input type="password" formControlName="password2" required minlength="6" placeholder="请确认密码">
+          <input type="password"
+            formControlName="password2"
+            required
+            minlength="6"
+            placeholder="请确认密码">
         </div>
         <mat-error *ngIf="pwd.invalid && password.valid && (password2.dirty || password2.touched)">
           {{ pwd.getError('notEqual') }}
@@ -50,7 +63,11 @@
         <!-- 昵称 -->
         <div class="form-item">
           <label>昵 称</label>
-          <input type="text" formControlName="name" required maxlength="10" placeholder="请输入昵称，不得大于10个字符">
+          <input type="text"
+            formControlName="name"
+            required
+            maxlength="10"
+            placeholder="请输入昵称，不得大于10个字符">
         </div>
         <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
           <div *ngIf="name.getError('required')">
@@ -60,7 +77,11 @@
         <!-- 手机号 -->
         <div class="form-item">
           <label>手机号</label>
-          <input type="phone" formControlName="phone" required maxlength="11" placeholder="请输入手机号">
+          <input type="phone"
+            formControlName="phone"
+            required
+            maxlength="11"
+            placeholder="请输入手机号">
         </div>
         <mat-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">
           <div *ngIf="phone.getError('required')">
@@ -74,17 +95,37 @@
       <!-- 身份 -->
       <div class="form-item">
         <label>选择身份</label>
-        <mat-radio-group formControlName="role" required>
+        <mat-radio-group formControlName="role"
+          required>
           <mat-radio-button [value]="2">我是产品经理</mat-radio-button>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <mat-radio-button [value]="3">我是开发者</mat-radio-button>
         </mat-radio-group>
       </div>
+      <!-- skill -->
+      <div class="form-item"
+        *ngIf="this.registerForm.value.role === 3">
+        <label>技能</label>
+        <mat-form-field appearance="outline">
+          <mat-label>选择你擅长的技能</mat-label>
+          <mat-select formControlName="skill"
+            multiple>
+            <mat-option *ngFor="let item of skills"
+              [value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </mat-card-content>
     <mat-card-actions class="d-flex align-items-center justify-content-between">
-      <a mat-button color="primary" [routerLink]="['/sub/login']" [queryParams]="{title: '登录'}">去登录</a>
+      <a mat-button
+        color="primary"
+        [routerLink]="['/sub/login']"
+        [queryParams]="{title: '登录'}">去登录</a>
       <!-- <button mat-raised-button color="primary" type="submit"> -->
-        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+      <button mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="registerForm.invalid">
         注册
       </button>
     </mat-card-actions>

@@ -11,7 +11,7 @@
       还没有新消息~
     </div>
     <ng-template #msgList>
-      <mat-nav-list >
+      <mat-nav-list>
         <div *ngFor="let item of msgs">
           <a mat-list-item
             *ngIf="!item.isAction"
@@ -31,7 +31,8 @@
           <mat-expansion-panel *ngIf="item.isAction"
             [ngClass]="{'checked': item.checked}">
             <mat-expansion-panel-header [ngClass]="{'checked': item.checked}">
-              <mat-panel-title>
+              <mat-panel-title [routerLink]="['/home/user']"
+                [queryParams]="{'id': item.from_user._id}">
                 <img matListAvatar
                   *ngIf="item.from_user.profile.avatar as avatar"
                   [src]="avatar">
