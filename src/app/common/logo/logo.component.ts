@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'app-logo',
   template: `
     <div>
-      <img src="../../../assets/image/logo.png">
+      <img src="assets/image/logo.png">
     </div>
   `,
   styles: [
