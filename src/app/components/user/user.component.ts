@@ -223,7 +223,7 @@ export class ChangeInfoBottomSheet {
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private bottomSheetRef: MatBottomSheetRef<ChangeInfoBottomSheet>,
     private fb: FormBuilder,
-    private userSrv: UserService,
+    public userSrv: UserService,
     private authSrv: AuthService,
     private skillSrv: SkillService,
     private modal: NzModalService,

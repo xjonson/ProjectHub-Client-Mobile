@@ -99,8 +99,10 @@ export class ProjectDetailComponent implements OnInit {
       )
     }
   }
+
   // 申请更新项目状态 进度
   applyProject(action) {
+    console.log('action: ', action);
     if (this.userSrv.userInfo.audit !== 1) {
       alert('您的账号正在审核，审核成功后才能申请接单')
     } else {
@@ -126,6 +128,7 @@ export class ProjectDetailComponent implements OnInit {
                   deadline: new Date().getTime() + (1 * 24 * 3600 * 1000)
                 }
               }
+              // 更新申请列表
               this.projectSrv.updateProject(this.project._id, data).subscribe(
                 () => {
                   // 发送申请消息
